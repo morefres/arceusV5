@@ -1,7 +1,6 @@
 # Arceus X V5 — recovered Android sources
 
 Best-effort static recovery of the uploaded **Arceus X V5 1.6.6** Android build.
-The repository follows the layout used by [Executors-Decompiled](https://github.com/Aditya-lua/Executors-Decompiled/tree/main/Mobile/Arceus-X):
 
 - [`Shared/apktool/`](Shared/apktool/) — Android manifest, resources, assets, smali, and unknown files recovered with Apktool.
 - [`Shared/jadx/sources/`](Shared/jadx/sources/) — Java sources recovered with JADX.
