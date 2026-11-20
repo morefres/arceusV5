@@ -5,6 +5,7 @@ Best-effort static recovery of the uploaded **Arceus X V5 1.6.6** Android build.
 - [`Shared/apktool/`](Shared/apktool/) — Android manifest, resources, assets, smali, and unknown files recovered with Apktool.
 - [`Shared/jadx/sources/`](Shared/jadx/sources/) — Java sources recovered with JADX.
 - [`V5/`](V5/) — build metadata and scope notes.
+- [`analysis/`](analysis/) — inventory report, tooling notes, and evidence index.
 
 This is reconstructed/decompiler output, not the vendor's original source. Names,
 types, control flow, comments, and build files may be incomplete or inaccurate.
