@@ -1,0 +1,20 @@
+package a8;
+
+import androidx.annotation.NonNull;
+import java.util.List;
+
+/* loaded from: classes.dex */
+public abstract class j {
+    @NonNull
+    public static j a(@NonNull List<m> list) {
+        return new d(list);
+    }
+
+    @NonNull
+    public static rf.a b() {
+        return new tf.d().i(b.f120a).j(true).h();
+    }
+
+    @NonNull
+    public abstract List<m> c();
+}

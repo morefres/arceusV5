@@ -1,0 +1,13 @@
+package us;
+
+import androidx.annotation.NonNull;
+import ss.r;
+import ss.t;
+
+/* loaded from: classes3.dex */
+public class e implements t {
+    @Override // ss.t
+    public Object a(@NonNull ss.g gVar, @NonNull r rVar) {
+        return new vs.f(gVar.e(), ts.b.f32467d.c(rVar).intValue());
+    }
+}

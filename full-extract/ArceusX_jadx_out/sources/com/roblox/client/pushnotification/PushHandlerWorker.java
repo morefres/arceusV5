@@ -1,0 +1,198 @@
+package com.roblox.client.pushnotification;
+
+import android.content.Context;
+import android.os.Build;
+import androidx.work.CoroutineWorker;
+import androidx.work.WorkerParameters;
+import androidx.work.b;
+import androidx.work.c;
+import com.google.firebase.messaging.RemoteMessage;
+import com.roblox.client.ossearch.OSSearchIndexSyncWorker;
+import com.roblox.client.pushnotification.ossettingsreporting.NotificationPushAckWorker;
+import ek.d0;
+import ek.q;
+import gt.n;
+import gt.o;
+import gt.s;
+import hj.a0;
+import hj.r;
+import j6.b;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import kotlin.Metadata;
+import kotlin.Pair;
+import kotlin.Unit;
+import kotlin.collections.j0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.jvm.internal.f0;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import rg.a1;
+import rh.h;
+import rl.d;
+import ve.a;
+import x5.j;
+import x5.p0;
+import x5.z;
+
+@Metadata(d1 = {"\u0000<\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0018\u0002\n\u0002\b\b\u0018\u0000 \u00102\u00020\u0001:\u0001\u0013B\u0017\u0012\u0006\u0010\u0003\u001a\u00020\u0002\u0012\u0006\u0010\u0005\u001a\u00020\u0004¢\u0006\u0004\b\u0006\u0010\u0007J\u0010\u0010\t\u001a\u00020\bH\u0096@¢\u0006\u0004\b\t\u0010\nJ\u0017\u0010\u000e\u001a\u00020\r2\u0006\u0010\f\u001a\u00020\u000bH\u0002¢\u0006\u0004\b\u000e\u0010\u000fJ\u000f\u0010\u0010\u001a\u00020\rH\u0002¢\u0006\u0004\b\u0010\u0010\u0011J\u000f\u0010\u0012\u001a\u00020\rH\u0002¢\u0006\u0004\b\u0012\u0010\u0011R\u0014\u0010\u0005\u001a\u00020\u00048\u0002X\u0082\u0004¢\u0006\u0006\n\u0004\b\u0013\u0010\u0014R(\u0010\u001d\u001a\u00020\u00158\u0006@\u0006X\u0087\u000e¢\u0006\u0018\n\u0004\b\u0016\u0010\u0017\u0012\u0004\b\u001c\u0010\u0011\u001a\u0004\b\u0018\u0010\u0019\"\u0004\b\u001a\u0010\u001bR(\u0010%\u001a\u00020\u001e8\u0006@\u0006X\u0087\u000e¢\u0006\u0018\n\u0004\b\u0012\u0010\u001f\u0012\u0004\b$\u0010\u0011\u001a\u0004\b \u0010!\"\u0004\b\"\u0010#¨\u0006&"}, d2 = {"Lcom/roblox/client/pushnotification/PushHandlerWorker;", "Landroidx/work/CoroutineWorker;", "Landroid/content/Context;", "appContext", "Landroidx/work/WorkerParameters;", "parameters", "<init>", "(Landroid/content/Context;Landroidx/work/WorkerParameters;)V", "Landroidx/work/c$a;", "doWork", "(Lmt/b;)Ljava/lang/Object;", "Landroidx/work/b;", "notifData", "", "e", "(Landroidx/work/b;)V", d.f30696a, "()V", "c", a.f33391e, "Landroidx/work/WorkerParameters;", "Lmj/a;", b.f21518e, "Lmj/a;", "getNotificationOperator", "()Lmj/a;", "setNotificationOperator", "(Lmj/a;)V", "getNotificationOperator$annotations", "notificationOperator", "Lhj/a0;", "Lhj/a0;", "getLegacyNotificationOperator", "()Lhj/a0;", "setLegacyNotificationOperator", "(Lhj/a0;)V", "getLegacyNotificationOperator$annotations", "legacyNotificationOperator", "NativeShell_googleProdRelease"}, k = 1, mv = {2, 2, 0}, xi = 48)
+/* loaded from: classes2.dex */
+public final class PushHandlerWorker extends CoroutineWorker {
+
+    /* renamed from: d, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public static final Companion INSTANCE = new Companion(null);
+
+    /* renamed from: a, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public final WorkerParameters parameters;
+
+    /* renamed from: b, reason: from kotlin metadata */
+    @NotNull
+    public mj.a notificationOperator;
+
+    /* renamed from: c, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public a0 legacyNotificationOperator;
+
+    @Metadata(d1 = {"\u0000(\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0002\b\u0006\b\u0086\u0003\u0018\u00002\u00020\u0001B\t\b\u0002¢\u0006\u0004\b\u0002\u0010\u0003J\u001f\u0010\t\u001a\u00020\b2\u0006\u0010\u0005\u001a\u00020\u00042\u0006\u0010\u0007\u001a\u00020\u0006H\u0007¢\u0006\u0004\b\t\u0010\nR\u0014\u0010\f\u001a\u00020\u000b8\u0002X\u0082T¢\u0006\u0006\n\u0004\b\f\u0010\rR\u0014\u0010\u000e\u001a\u00020\u000b8\u0002X\u0082T¢\u0006\u0006\n\u0004\b\u000e\u0010\rR\u0014\u0010\u000f\u001a\u00020\u000b8\u0002X\u0082T¢\u0006\u0006\n\u0004\b\u000f\u0010\rR\u0014\u0010\u0010\u001a\u00020\u000b8\u0002X\u0082T¢\u0006\u0006\n\u0004\b\u0010\u0010\r¨\u0006\u0011"}, d2 = {"Lcom/roblox/client/pushnotification/PushHandlerWorker$a;", "", "<init>", "()V", "Landroid/content/Context;", "appContext", "Lcom/google/firebase/messaging/RemoteMessage;", "remoteMessage", "", a.f33391e, "(Landroid/content/Context;Lcom/google/firebase/messaging/RemoteMessage;)V", "", "TAG", "Ljava/lang/String;", "KEY_PRIORITY", "KEY_ORIGINAL_PRIORITY", "PUSH_HANDLER_WORK_NAME", "NativeShell_googleProdRelease"}, k = 1, mv = {2, 2, 0}, xi = 48)
+    /* renamed from: com.roblox.client.pushnotification.PushHandlerWorker$a, reason: from kotlin metadata */
+    public static final class Companion {
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        public final void a(@NotNull Context appContext, @NotNull RemoteMessage remoteMessage) {
+            Intrinsics.checkNotNullParameter(appContext, "appContext");
+            Intrinsics.checkNotNullParameter(remoteMessage, "remoteMessage");
+            z.a aVar = new z.a(PushHandlerWorker.class);
+            f0 f0Var = new f0(3);
+            f0Var.a(s.a("priority", Integer.valueOf(remoteMessage.y3())));
+            f0Var.a(s.a("originalPriority", Integer.valueOf(remoteMessage.x3())));
+            Map<String, String> v32 = remoteMessage.v3();
+            Intrinsics.checkNotNullExpressionValue(v32, "getData(...)");
+            ArrayList arrayList = new ArrayList(v32.size());
+            for (Map.Entry<String, String> entry : v32.entrySet()) {
+                arrayList.add(s.a(entry.getKey(), entry.getValue()));
+            }
+            f0Var.b(arrayList.toArray(new Pair[0]));
+            Pair[] pairArr = (Pair[]) f0Var.d(new Pair[f0Var.c()]);
+            b.a aVar2 = new b.a();
+            for (Pair pair : pairArr) {
+                aVar2.b((String) pair.c(), pair.d());
+            }
+            z.a o8 = aVar.o(aVar2.a());
+            if (Build.VERSION.SDK_INT >= 31 && remoteMessage.y3() == 1) {
+                o8.l(x5.f0.f35273a);
+            }
+            z b = o8.b();
+            p0.Companion companion = p0.INSTANCE;
+            Context applicationContext = appContext.getApplicationContext();
+            Intrinsics.checkNotNullExpressionValue(applicationContext, "getApplicationContext(...)");
+            companion.a(applicationContext).g("PushHandlerWorkUniqueWork", j.f35288d, b);
+        }
+
+        public Companion() {
+        }
+    }
+
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public PushHandlerWorker(@NotNull Context appContext, @NotNull WorkerParameters parameters) {
+        super(appContext, parameters);
+        Intrinsics.checkNotNullParameter(appContext, "appContext");
+        Intrinsics.checkNotNullParameter(parameters, "parameters");
+        this.parameters = parameters;
+        this.notificationOperator = new mj.a();
+        this.legacyNotificationOperator = new a0();
+    }
+
+    public static final void b(@NotNull Context context, @NotNull RemoteMessage remoteMessage) {
+        INSTANCE.a(context, remoteMessage);
+    }
+
+    public final void c() {
+        androidx.work.b d10 = this.parameters.d();
+        Intrinsics.checkNotNullExpressionValue(d10, "getInputData(...)");
+        int d11 = d10.d("priority", 0);
+        int d12 = d10.d("originalPriority", 0);
+        String g10 = d10.g("notificationId");
+        if (g10 != null) {
+            d0 d0Var = new d0();
+            String g11 = d10.g("ack-metadata");
+            String g12 = d10.g("notificationType");
+            NotificationPushAckWorker.Companion companion = NotificationPushAckWorker.INSTANCE;
+            Context applicationContext = getApplicationContext();
+            Intrinsics.checkNotNullExpressionValue(applicationContext, "getApplicationContext(...)");
+            String mDeviceId = a1.f30261t;
+            Intrinsics.checkNotNullExpressionValue(mDeviceId, "mDeviceId");
+            companion.a(applicationContext, new NotificationPushAckWorker.b.NotificationAckInput(mDeviceId, d0Var.a(), g10, g11, g12, d11, d12));
+        }
+    }
+
+    public final void d() {
+        c();
+        if (h.a().K1()) {
+            r.E(getApplicationContext());
+        }
+    }
+
+    @Override // androidx.work.CoroutineWorker
+    @Nullable
+    public Object doWork(@NotNull mt.b<? super c.a> bVar) {
+        Object b;
+        c.a a10;
+        try {
+            n.Companion companion = n.INSTANCE;
+            ti.b.f().k(getApplicationContext());
+            com.roblox.client.startup.a.s(getApplicationContext());
+            androidx.work.b d10 = this.parameters.d();
+            Intrinsics.checkNotNullExpressionValue(d10, "getInputData(...)");
+            String g10 = d10.g("version");
+            q.h("MessageReceivedWorker", "NotificationVersion: " + g10);
+            oi.b.f().u(getApplicationContext());
+            e(d10);
+            d();
+            if (k2.n.f(getApplicationContext()).a()) {
+                if (g10 != null) {
+                    Map<String, Object> e10 = d10.e();
+                    LinkedHashMap linkedHashMap = new LinkedHashMap(j0.f(e10.size()));
+                    for (Object obj : e10.entrySet()) {
+                        Object key = ((Map.Entry) obj).getKey();
+                        Object value = ((Map.Entry) obj).getValue();
+                        linkedHashMap.put(key, value != null ? value.toString() : null);
+                    }
+                    this.notificationOperator.d(getApplicationContext(), linkedHashMap);
+                } else {
+                    String g11 = d10.g("message");
+                    q.h("MessageReceivedWorker", "Message: " + g11);
+                    this.legacyNotificationOperator.g(getApplicationContext(), g11);
+                }
+            }
+            b = n.b(Unit.f22894a);
+        } catch (Throwable th2) {
+            n.Companion companion2 = n.INSTANCE;
+            b = n.b(o.a(th2));
+        }
+        Throwable e11 = n.e(b);
+        if (e11 == null) {
+            q.h("MessageReceivedWorker", "PushHandlerWorker completed successfully.");
+            a10 = c.a.d();
+        } else {
+            q.f("MessageReceivedWorker", "PushHandlerWorker failed with error: " + e11.getMessage(), e11);
+            a10 = c.a.a();
+        }
+        Intrinsics.checkNotNullExpressionValue(a10, "fold(...)");
+        return a10;
+    }
+
+    public final void e(androidx.work.b notifData) {
+        if (Intrinsics.c(notifData.g("notificationType"), "Heartbeat")) {
+            OSSearchIndexSyncWorker.Companion companion = OSSearchIndexSyncWorker.INSTANCE;
+            Context applicationContext = getApplicationContext();
+            Intrinsics.checkNotNullExpressionValue(applicationContext, "getApplicationContext(...)");
+            companion.c(applicationContext);
+        }
+    }
+}

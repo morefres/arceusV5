@@ -1,0 +1,237 @@
+package zg;
+
+import ae.d;
+import ae.e;
+import ae.f;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.SystemClock;
+import android.util.Pair;
+import com.roblox.client.JNIAAssetManagerSetup;
+import com.roblox.client.RobloxApplication;
+import com.roblox.engine.jni.autovalue.RobloxTelemetryEvent;
+import com.roblox.engine.jni.autovalue.RobloxTelemetryEventConfig;
+import com.roblox.engine.jni.autovalue.RobloxTelemetryEventData;
+import com.roblox.universalapp.logging.LoggingProtocol;
+import ek.q;
+import g0.o0;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import rg.a1;
+import rh.h;
+
+/* loaded from: classes2.dex */
+public class c {
+
+    /* renamed from: a, reason: collision with root package name */
+    public static ae.b f38044a;
+    public static final f b = new f() { // from class: zg.a
+        @Override // vd.a
+        public final void a(e eVar) {
+            c.a(eVar);
+        }
+    };
+
+    /* renamed from: c, reason: collision with root package name */
+    public static final SharedPreferences.OnSharedPreferenceChangeListener f38045c = new SharedPreferences.OnSharedPreferenceChangeListener() { // from class: zg.b
+        @Override // android.content.SharedPreferences.OnSharedPreferenceChangeListener
+        public final void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String str) {
+            c.b(sharedPreferences, str);
+        }
+    };
+
+    public static /* synthetic */ void a(e eVar) {
+        switch (eVar.i()) {
+            case 0:
+                q.h("rbx.channel", "sStatus: UNKNOWN for module " + eVar.f());
+                g("Unknown");
+                break;
+            case 1:
+                q.h("rbx.channel", "sStatus: PENDING for module " + eVar.f());
+                g("Pending");
+                f("start", eVar.f());
+                break;
+            case 2:
+                if (eVar.j() == 0) {
+                    q.g("Downloading " + eVar.f());
+                } else {
+                    q.g("Downloading " + eVar.f() + ", " + ((eVar.a() * 100) / eVar.j()) + "%");
+                }
+                g("Downloading");
+                break;
+            case 3:
+                q.h("rbx.channel", "sStatus: DOWNLOADED for module " + eVar.f());
+                g("Downloaded");
+                f("end", eVar.f());
+                break;
+            case 4:
+                q.h("rbx.channel", "Installing " + eVar.f());
+                g("Installing");
+                break;
+            case 5:
+                q.h("rbx.channel", "Installed " + eVar.f());
+                g("Installed");
+                JNIAAssetManagerSetup.a(RobloxApplication.f());
+                break;
+            case 6:
+                q.h("rbx.channel", "sStatus: Failed for module " + eVar.f());
+                g("Failed");
+                break;
+            case 7:
+                q.h("rbx.channel", "sStatus: CANCELED for module " + eVar.f());
+                g("Canceled");
+                break;
+            case 8:
+                q.h("rbx.channel", "REQUIRES_USER_CONFIRMATION is unsupported " + eVar.f());
+                g("Requires User Confirmation");
+                break;
+            case 9:
+                q.h("rbx.channel", "sStatus: CANCELING for module " + eVar.f());
+                g("Canceling");
+                break;
+        }
+    }
+
+    public static /* synthetic */ void b(SharedPreferences sharedPreferences, String str) {
+        str.getClass();
+        switch (str) {
+            case "supportsAndroidBinaries":
+                q.h("rbx.channel", "Supports ABC is " + sharedPreferences.getString("supportsAndroidBinaries", "").equals("true"));
+                break;
+            case "engine":
+                q.h("rbx.channel", "Engine library name is " + sharedPreferences.getString("engine", ""));
+                break;
+            case "moduleName":
+                String string = sharedPreferences.getString("moduleName", "");
+                if (!string.isEmpty()) {
+                    q.h("rbx.channel", "ABC module name is " + string);
+                    d(string);
+                    break;
+                }
+                break;
+            default:
+                if (str.equals("channel")) {
+                    String string2 = sharedPreferences.getString("channel", "");
+                    if (!string2.isEmpty() && string2.startsWith("zgooglebinary") && !f38044a.e().contains(string2)) {
+                        f38044a.a(d.c().a(string2).b());
+                        break;
+                    }
+                }
+                break;
+        }
+    }
+
+    public static void c(Context context) {
+        ae.b a10 = ae.c.a(context);
+        f38044a = a10;
+        a10.c(b);
+        SharedPreferences U = a1.U(context);
+        if (U != null) {
+            U.registerOnSharedPreferenceChangeListener(f38045c);
+        }
+    }
+
+    public static void d(String str) {
+        if (f38044a.e().contains(str)) {
+            return;
+        }
+        f38044a.a(d.c().a(str).b());
+    }
+
+    public static boolean e(String str) {
+        if (f38044a == null) {
+            return false;
+        }
+        if (!h.a().q3() || !a1.Y()) {
+            if (str.startsWith("zgooglebinary")) {
+                return !f38044a.e().contains(str);
+            }
+            return false;
+        }
+        if (str.isEmpty()) {
+            return false;
+        }
+        Set<String> e10 = f38044a.e();
+        String J = a1.J();
+        if (J.isEmpty()) {
+            q.h("rbx.channel", "ABC module name is empty");
+            return false;
+        }
+        boolean z10 = !e10.contains(J);
+        q.h("rbx.channel", "waiting for download: " + z10);
+        return z10;
+    }
+
+    public static void f(String str, List<String> list) {
+        if (h.a().t1()) {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(RobloxTelemetryEventConfig.POINTS_BACKEND);
+            arrayList.add(RobloxTelemetryEventConfig.EVENT_INGEST_BACKEND);
+            ArrayList arrayList2 = new ArrayList();
+            arrayList2.add(new Pair("fingerprint", Build.FINGERPRINT));
+            arrayList2.add(new Pair("phase", str));
+            arrayList2.add(new Pair("module_names", String.join(",", list)));
+            arrayList2.add(new Pair("elapsed_realtime_ms", String.valueOf(SystemClock.elapsedRealtime())));
+            ArrayList arrayList3 = new ArrayList();
+            arrayList3.add(RobloxTelemetryEventData.STANDARDIZED_FIELD_KEY_ADD_OS_INFO);
+            LoggingProtocol.j(RobloxTelemetryEvent.builder().setEventType(RobloxTelemetryEvent.ROBLOX_TELEMETRY_EVENT_TYPE).setConfig(RobloxTelemetryEventConfig.builder().setBackEnds(arrayList).setThrottlingHundredthPercentage(0).setEventName("android_binary_channel_download_timing").build()).setData(RobloxTelemetryEventData.builder().setStandardizedFields(arrayList3).setCustomStringFields(arrayList2).build()).build());
+        }
+    }
+
+    public static void g(String str) {
+        if (h.a().R5()) {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(RobloxTelemetryEventConfig.POINTS_BACKEND);
+            ArrayList arrayList2 = new ArrayList();
+            arrayList2.add(new Pair("fingerprint", Build.FINGERPRINT));
+            arrayList2.add(new Pair("lib_status", str));
+            ArrayList arrayList3 = new ArrayList();
+            arrayList3.add(RobloxTelemetryEventData.STANDARDIZED_FIELD_KEY_ADD_OS_INFO);
+            LoggingProtocol.j(RobloxTelemetryEvent.builder().setEventType(RobloxTelemetryEvent.ROBLOX_TELEMETRY_EVENT_TYPE).setConfig(RobloxTelemetryEventConfig.builder().setBackEnds(arrayList).setThrottlingHundredthPercentage(h.a().H()).setEventName("android_binary_channel_gp").build()).setData(RobloxTelemetryEventData.builder().setStandardizedFields(arrayList3).setCustomStringFields(arrayList2).build()).build());
+        }
+    }
+
+    public static void h(Context context) {
+        List<String> a10;
+        if (!h.a().q3() || !a1.Y()) {
+            String W = a1.W();
+            Set<String> e10 = f38044a.e();
+            if (e10.contains(W)) {
+                com.roblox.client.startup.a.C(W);
+            }
+            ArrayList arrayList = new ArrayList();
+            String W2 = a1.W();
+            for (String str : e10) {
+                if (!str.equalsIgnoreCase(W2) && str.startsWith("zgooglebinary")) {
+                    arrayList.add(str);
+                }
+            }
+            f38044a.d(arrayList);
+            return;
+        }
+        String J = a1.J();
+        if (J.isEmpty()) {
+            return;
+        }
+        if (a1.W().isEmpty()) {
+            a10 = o0.a(new Object[]{J});
+            q.h("rbx.channel", "Uninstalling " + J);
+            f38044a.d(a10);
+            a1.s(context);
+            return;
+        }
+        if (!f38044a.e().contains(J)) {
+            d(J);
+            return;
+        }
+        String I = a1.I();
+        if (I.isEmpty()) {
+            q.h("rbx.channel", "ABC library name is empty!");
+            return;
+        }
+        q.h("rbx.channel", "Setting library name to " + I);
+        com.roblox.client.startup.a.C(I);
+    }
+}

@@ -1,0 +1,64 @@
+package com.withpersona.sdk2.inquiry.network.core;
+
+import com.withpersona.sdk2.inquiry.network.core.GenericFileUploadErrorResponse;
+import kotlin.collections.q0;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import sm.h;
+import sm.m;
+import sm.t;
+import sm.w;
+
+/* loaded from: classes3.dex */
+public final class GenericFileUploadErrorResponse_DocumentErrorResponse_PageLimitExceededError_DetailsJsonAdapter extends h<GenericFileUploadErrorResponse.DocumentErrorResponse.PageLimitExceededError.Details> {
+
+    @NotNull
+    private final h<Integer> intAdapter;
+
+    @NotNull
+    private final m.b options = m.b.a("page_limit");
+
+    public GenericFileUploadErrorResponse_DocumentErrorResponse_PageLimitExceededError_DetailsJsonAdapter(@NotNull w wVar) {
+        this.intAdapter = wVar.f(Integer.TYPE, q0.d(), "pageLimit");
+    }
+
+    @NotNull
+    public String toString() {
+        StringBuilder sb2 = new StringBuilder(105);
+        sb2.append("GeneratedJsonAdapter(GenericFileUploadErrorResponse.DocumentErrorResponse.PageLimitExceededError.Details)");
+        return sb2.toString();
+    }
+
+    /* JADX WARN: Can't rename method to resolve collision */
+    @Override // sm.h
+    @NotNull
+    public GenericFileUploadErrorResponse.DocumentErrorResponse.PageLimitExceededError.Details fromJson(@NotNull m mVar) {
+        mVar.b();
+        Integer num = null;
+        while (mVar.f()) {
+            int F = mVar.F(this.options);
+            if (F == -1) {
+                mVar.M();
+                mVar.P();
+            } else if (F == 0 && (num = this.intAdapter.fromJson(mVar)) == null) {
+                throw um.c.x("pageLimit", "page_limit", mVar);
+            }
+        }
+        mVar.d();
+        if (num != null) {
+            return new GenericFileUploadErrorResponse.DocumentErrorResponse.PageLimitExceededError.Details(num.intValue());
+        }
+        throw um.c.o("pageLimit", "page_limit", mVar);
+    }
+
+    @Override // sm.h
+    public void toJson(@NotNull t tVar, @Nullable GenericFileUploadErrorResponse.DocumentErrorResponse.PageLimitExceededError.Details details) {
+        if (details == null) {
+            throw new NullPointerException("value_ was null! Wrap in .nullSafe() to write nullable values.");
+        }
+        tVar.c();
+        tVar.n("page_limit");
+        this.intAdapter.toJson(tVar, (t) Integer.valueOf(details.getPageLimit()));
+        tVar.g();
+    }
+}

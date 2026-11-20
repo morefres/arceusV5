@@ -1,0 +1,24 @@
+package pr;
+
+import com.withpersona.sdk2.inquiry.ui.UiWorkflow;
+import pr.g1;
+
+/* loaded from: classes3.dex */
+public final class i1 implements g1.e {
+
+    /* renamed from: a, reason: collision with root package name */
+    public final h1 f29102a;
+
+    public i1(h1 h1Var) {
+        this.f29102a = h1Var;
+    }
+
+    public static dt.i<g1.e> b(h1 h1Var) {
+        return dt.e.a(new i1(h1Var));
+    }
+
+    @Override // pr.g1.e
+    public g1 a(UiWorkflow.Input input, android.view.l0 l0Var) {
+        return this.f29102a.b(input, l0Var);
+    }
+}

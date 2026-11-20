@@ -1,0 +1,47 @@
+.class public Lim/f$b;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+# interfaces
+.implements Lkm/i;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lim/f;-><init>()V
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x1
+    name = null
+.end annotation
+
+
+# instance fields
+.field public final synthetic a:Lim/f;
+
+
+# direct methods
+.method public constructor <init>(Lim/f;)V
+    .locals 0
+
+    iput-object p1, p0, Lim/f$b;->a:Lim/f;
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public a(Lorg/json/JSONObject;)Lkm/l;
+    .locals 1
+
+    iget-object v0, p0, Lim/f$b;->a:Lim/f;
+
+    invoke-virtual {v0, p1}, Lim/f;->J(Lorg/json/JSONObject;)Lkm/l;
+
+    move-result-object p1
+
+    return-object p1
+.end method

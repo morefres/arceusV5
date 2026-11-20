@@ -1,0 +1,25 @@
+package com.withpersona.sdk2.inquiry.permissions.permissionRequest;
+
+import com.withpersona.sdk2.inquiry.permissions.PermissionRequestWorkflow;
+import com.withpersona.sdk2.inquiry.permissions.permissionRequest.e;
+import dt.i;
+
+/* loaded from: classes3.dex */
+public final class f implements e.a {
+
+    /* renamed from: a, reason: collision with root package name */
+    public final rp.d f12416a;
+
+    public f(rp.d dVar) {
+        this.f12416a = dVar;
+    }
+
+    public static i<e.a> b(rp.d dVar) {
+        return dt.e.a(new f(dVar));
+    }
+
+    @Override // com.withpersona.sdk2.inquiry.permissions.permissionRequest.e.a
+    public e a(PermissionRequestWorkflow.Props props) {
+        return this.f12416a.b(props);
+    }
+}

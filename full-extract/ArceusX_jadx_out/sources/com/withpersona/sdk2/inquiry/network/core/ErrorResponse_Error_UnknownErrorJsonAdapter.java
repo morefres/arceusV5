@@ -1,0 +1,67 @@
+package com.withpersona.sdk2.inquiry.network.core;
+
+import com.withpersona.sdk2.inquiry.network.core.ErrorResponse;
+import com.withpersona.sdk2.inquiry.network.dto.ui.components.Title;
+import kotlin.collections.q0;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import sm.h;
+import sm.m;
+import sm.t;
+import sm.w;
+
+/* loaded from: classes3.dex */
+public final class ErrorResponse_Error_UnknownErrorJsonAdapter extends h<ErrorResponse.Error.UnknownError> {
+
+    @NotNull
+    private final h<String> nullableStringAdapter;
+
+    @NotNull
+    private final m.b options = m.b.a(Title.type, "originalCode");
+
+    public ErrorResponse_Error_UnknownErrorJsonAdapter(@NotNull w wVar) {
+        this.nullableStringAdapter = wVar.f(String.class, q0.d(), Title.type);
+    }
+
+    @NotNull
+    public String toString() {
+        StringBuilder sb2 = new StringBuilder(54);
+        sb2.append("GeneratedJsonAdapter(ErrorResponse.Error.UnknownError)");
+        return sb2.toString();
+    }
+
+    /* JADX WARN: Can't rename method to resolve collision */
+    @Override // sm.h
+    @NotNull
+    public ErrorResponse.Error.UnknownError fromJson(@NotNull m mVar) {
+        mVar.b();
+        String str = null;
+        String str2 = null;
+        while (mVar.f()) {
+            int F = mVar.F(this.options);
+            if (F == -1) {
+                mVar.M();
+                mVar.P();
+            } else if (F == 0) {
+                str = this.nullableStringAdapter.fromJson(mVar);
+            } else if (F == 1) {
+                str2 = this.nullableStringAdapter.fromJson(mVar);
+            }
+        }
+        mVar.d();
+        return new ErrorResponse.Error.UnknownError(str, str2);
+    }
+
+    @Override // sm.h
+    public void toJson(@NotNull t tVar, @Nullable ErrorResponse.Error.UnknownError unknownError) {
+        if (unknownError == null) {
+            throw new NullPointerException("value_ was null! Wrap in .nullSafe() to write nullable values.");
+        }
+        tVar.c();
+        tVar.n(Title.type);
+        this.nullableStringAdapter.toJson(tVar, (t) unknownError.getTitle());
+        tVar.n("originalCode");
+        this.nullableStringAdapter.toJson(tVar, (t) unknownError.getOriginalCode());
+        tVar.g();
+    }
+}

@@ -1,0 +1,234 @@
+package com.withpersona.sdk2.inquiry.steps.ui.components;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import ar.x;
+import com.withpersona.sdk2.inquiry.network.dto.JsonLogicBoolean;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import kotlin.Metadata;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Intrinsics;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import rl.d;
+
+@Metadata(d1 = {"\u0000d\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0000\n\u0002\u0010 \n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0007\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\u000b\n\u0002\b\u0010\n\u0002\u0010!\n\u0002\u0018\u0002\n\u0002\b\u0006\b\u0087\b\u0018\u00002\u00020\u00012\u00020\u00022\u00020\u0003B1\u0012\u0006\u0010\u0005\u001a\u00020\u0004\u0012\f\u0010\u0007\u001a\b\u0012\u0004\u0012\u00020\u00010\u0006\u0012\b\u0010\t\u001a\u0004\u0018\u00010\b\u0012\b\b\u0002\u0010\u000b\u001a\u00020\n¢\u0006\u0004\b\f\u0010\rB\u0011\b\u0016\u0012\u0006\u0010\u000f\u001a\u00020\u000e¢\u0006\u0004\b\f\u0010\u0010J\u001d\u0010\u0012\u001a\u00020\u00022\f\u0010\u0011\u001a\b\u0012\u0004\u0012\u00020\u00010\u0006H\u0016¢\u0006\u0004\b\u0012\u0010\u0013J\r\u0010\u0015\u001a\u00020\u0014¢\u0006\u0004\b\u0015\u0010\u0016J\u001d\u0010\u001b\u001a\u00020\u001a2\u0006\u0010\u0018\u001a\u00020\u00172\u0006\u0010\u0019\u001a\u00020\u0014¢\u0006\u0004\b\u001b\u0010\u001cJ@\u0010\u001d\u001a\u00020\u00002\b\b\u0002\u0010\u0005\u001a\u00020\u00042\u000e\b\u0002\u0010\u0007\u001a\b\u0012\u0004\u0012\u00020\u00010\u00062\n\b\u0002\u0010\t\u001a\u0004\u0018\u00010\b2\b\b\u0002\u0010\u000b\u001a\u00020\nHÆ\u0001¢\u0006\u0004\b\u001d\u0010\u001eJ\u0010\u0010\u001f\u001a\u00020\u0004HÖ\u0001¢\u0006\u0004\b\u001f\u0010 J\u0010\u0010!\u001a\u00020\u0014HÖ\u0001¢\u0006\u0004\b!\u0010\u0016J\u001a\u0010%\u001a\u00020$2\b\u0010#\u001a\u0004\u0018\u00010\"HÖ\u0003¢\u0006\u0004\b%\u0010&R\u001a\u0010\u0005\u001a\u00020\u00048\u0016X\u0096\u0004¢\u0006\f\n\u0004\b\u001d\u0010'\u001a\u0004\b(\u0010 R \u0010\u0007\u001a\b\u0012\u0004\u0012\u00020\u00010\u00068\u0016X\u0096\u0004¢\u0006\f\n\u0004\b)\u0010*\u001a\u0004\b+\u0010,R\u001c\u0010\t\u001a\u0004\u0018\u00010\b8\u0016X\u0096\u0004¢\u0006\f\n\u0004\b-\u0010.\u001a\u0004\b/\u00100R\u001a\u0010\u000b\u001a\u00020\n8\u0016X\u0096\u0004¢\u0006\f\n\u0004\b1\u00102\u001a\u0004\b3\u00104R&\u0010;\u001a\b\u0012\u0004\u0012\u000206058\u0016X\u0096\u0004¢\u0006\u0012\n\u0004\b7\u0010*\u0012\u0004\b9\u0010:\u001a\u0004\b8\u0010,¨\u0006<"}, d2 = {"Lcom/withpersona/sdk2/inquiry/steps/ui/components/HorizontalStackComponent;", "Lcom/withpersona/sdk2/inquiry/steps/ui/components/UiComponent;", "Lcom/withpersona/sdk2/inquiry/steps/ui/components/UiComponentGroup;", "Lar/x;", "", "name", "", "children", "Lcom/withpersona/sdk2/inquiry/network/dto/JsonLogicBoolean;", "hidden", "", "lastValueUpdateTs", "<init>", "(Ljava/lang/String;Ljava/util/List;Lcom/withpersona/sdk2/inquiry/network/dto/JsonLogicBoolean;J)V", "Lcom/withpersona/sdk2/inquiry/network/dto/ui/components/HorizontalStack;", "config", "(Lcom/withpersona/sdk2/inquiry/network/dto/ui/components/HorizontalStack;)V", "newChildren", "q1", "(Ljava/util/List;)Lcom/withpersona/sdk2/inquiry/steps/ui/components/UiComponentGroup;", "", "describeContents", "()I", "Landroid/os/Parcel;", "dest", "flags", "", "writeToParcel", "(Landroid/os/Parcel;I)V", ve.a.f33391e, "(Ljava/lang/String;Ljava/util/List;Lcom/withpersona/sdk2/inquiry/network/dto/JsonLogicBoolean;J)Lcom/withpersona/sdk2/inquiry/steps/ui/components/HorizontalStackComponent;", "toString", "()Ljava/lang/String;", "hashCode", "", "other", "", "equals", "(Ljava/lang/Object;)Z", "Ljava/lang/String;", "getName", j6.b.f21518e, "Ljava/util/List;", "getChildren", "()Ljava/util/List;", "c", "Lcom/withpersona/sdk2/inquiry/network/dto/JsonLogicBoolean;", "getHidden", "()Lcom/withpersona/sdk2/inquiry/network/dto/JsonLogicBoolean;", d.f30696a, "J", "P0", "()J", "", "Lkr/a;", "e", "i", "getAssociatedViews$annotations", "()V", "associatedViews", "ui-step-renderer_release"}, k = 1, mv = {2, 2, 0}, xi = 48)
+/* loaded from: classes3.dex */
+public final /* data */ class HorizontalStackComponent implements UiComponent, UiComponentGroup, x {
+
+    @NotNull
+    public static final Parcelable.Creator<HorizontalStackComponent> CREATOR = new a();
+
+    /* renamed from: a, reason: collision with root package name and from kotlin metadata and from toString */
+    @NotNull
+    public final String name;
+
+    /* renamed from: b, reason: from kotlin metadata and from toString */
+    @NotNull
+    public final List<UiComponent> children;
+
+    /* renamed from: c, reason: collision with root package name and from kotlin metadata and from toString */
+    @Nullable
+    public final JsonLogicBoolean hidden;
+
+    /* renamed from: d, reason: collision with root package name and from kotlin metadata and from toString */
+    public final long lastValueUpdateTs;
+
+    /* renamed from: e, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public final List<kr.a> associatedViews;
+
+    @Metadata(k = 3, mv = {2, 2, 0}, xi = 48)
+    public static final class a implements Parcelable.Creator<HorizontalStackComponent> {
+        @Override // android.os.Parcelable.Creator
+        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        public final HorizontalStackComponent createFromParcel(Parcel parcel) {
+            Intrinsics.checkNotNullParameter(parcel, "parcel");
+            String readString = parcel.readString();
+            int readInt = parcel.readInt();
+            ArrayList arrayList = new ArrayList(readInt);
+            for (int i10 = 0; i10 != readInt; i10++) {
+                arrayList.add(parcel.readParcelable(HorizontalStackComponent.class.getClassLoader()));
+            }
+            return new HorizontalStackComponent(readString, arrayList, (JsonLogicBoolean) parcel.readParcelable(HorizontalStackComponent.class.getClassLoader()), parcel.readLong());
+        }
+
+        @Override // android.os.Parcelable.Creator
+        /* renamed from: b, reason: merged with bridge method [inline-methods] */
+        public final HorizontalStackComponent[] newArray(int i10) {
+            return new HorizontalStackComponent[i10];
+        }
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public HorizontalStackComponent(@NotNull String name, @NotNull List<? extends UiComponent> children, @Nullable JsonLogicBoolean jsonLogicBoolean, long j10) {
+        Intrinsics.checkNotNullParameter(name, "name");
+        Intrinsics.checkNotNullParameter(children, "children");
+        this.name = name;
+        this.children = children;
+        this.hidden = jsonLogicBoolean;
+        this.lastValueUpdateTs = j10;
+        this.associatedViews = new ArrayList();
+    }
+
+    public static /* synthetic */ HorizontalStackComponent f(HorizontalStackComponent horizontalStackComponent, String str, List list, JsonLogicBoolean jsonLogicBoolean, long j10, int i10, Object obj) {
+        if ((i10 & 1) != 0) {
+            str = horizontalStackComponent.name;
+        }
+        if ((i10 & 2) != 0) {
+            list = horizontalStackComponent.children;
+        }
+        if ((i10 & 4) != 0) {
+            jsonLogicBoolean = horizontalStackComponent.hidden;
+        }
+        if ((i10 & 8) != 0) {
+            j10 = horizontalStackComponent.lastValueUpdateTs;
+        }
+        JsonLogicBoolean jsonLogicBoolean2 = jsonLogicBoolean;
+        return horizontalStackComponent.a(str, list, jsonLogicBoolean2, j10);
+    }
+
+    @Override // com.withpersona.sdk2.inquiry.steps.ui.components.UiComponent
+    /* renamed from: P0, reason: from getter */
+    public long getLastValueUpdateTs() {
+        return this.lastValueUpdateTs;
+    }
+
+    @NotNull
+    public final HorizontalStackComponent a(@NotNull String name, @NotNull List<? extends UiComponent> children, @Nullable JsonLogicBoolean hidden, long lastValueUpdateTs) {
+        Intrinsics.checkNotNullParameter(name, "name");
+        Intrinsics.checkNotNullParameter(children, "children");
+        return new HorizontalStackComponent(name, children, hidden, lastValueUpdateTs);
+    }
+
+    @Override // android.os.Parcelable
+    public final int describeContents() {
+        return 0;
+    }
+
+    public boolean equals(@Nullable Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof HorizontalStackComponent)) {
+            return false;
+        }
+        HorizontalStackComponent horizontalStackComponent = (HorizontalStackComponent) other;
+        return Intrinsics.c(this.name, horizontalStackComponent.name) && Intrinsics.c(this.children, horizontalStackComponent.children) && Intrinsics.c(this.hidden, horizontalStackComponent.hidden) && this.lastValueUpdateTs == horizontalStackComponent.lastValueUpdateTs;
+    }
+
+    @Override // com.withpersona.sdk2.inquiry.steps.ui.components.UiComponentGroup
+    @NotNull
+    public List<UiComponent> getChildren() {
+        return this.children;
+    }
+
+    @Override // ar.x
+    @Nullable
+    public JsonLogicBoolean getHidden() {
+        return this.hidden;
+    }
+
+    @Override // com.withpersona.sdk2.inquiry.steps.ui.components.UiComponent
+    @NotNull
+    public String getName() {
+        return this.name;
+    }
+
+    public int hashCode() {
+        int hashCode = ((this.name.hashCode() * 31) + this.children.hashCode()) * 31;
+        JsonLogicBoolean jsonLogicBoolean = this.hidden;
+        return ((hashCode + (jsonLogicBoolean == null ? 0 : jsonLogicBoolean.hashCode())) * 31) + Long.hashCode(this.lastValueUpdateTs);
+    }
+
+    @Override // ar.x
+    @NotNull
+    public List<kr.a> i() {
+        return this.associatedViews;
+    }
+
+    @Override // com.withpersona.sdk2.inquiry.steps.ui.components.UiComponentGroup
+    @NotNull
+    public UiComponentGroup q1(@NotNull List<? extends UiComponent> newChildren) {
+        Intrinsics.checkNotNullParameter(newChildren, "newChildren");
+        return f(this, null, newChildren, null, 0L, 13, null);
+    }
+
+    @NotNull
+    public String toString() {
+        return "HorizontalStackComponent(name=" + this.name + ", children=" + this.children + ", hidden=" + this.hidden + ", lastValueUpdateTs=" + this.lastValueUpdateTs + ")";
+    }
+
+    @Override // android.os.Parcelable
+    public final void writeToParcel(@NotNull Parcel dest, int flags) {
+        Intrinsics.checkNotNullParameter(dest, "dest");
+        dest.writeString(this.name);
+        List<UiComponent> list = this.children;
+        dest.writeInt(list.size());
+        Iterator<UiComponent> it = list.iterator();
+        while (it.hasNext()) {
+            dest.writeParcelable(it.next(), flags);
+        }
+        dest.writeParcelable(this.hidden, flags);
+        dest.writeLong(this.lastValueUpdateTs);
+    }
+
+    public /* synthetic */ HorizontalStackComponent(String str, List list, JsonLogicBoolean jsonLogicBoolean, long j10, int i10, DefaultConstructorMarker defaultConstructorMarker) {
+        this(str, list, jsonLogicBoolean, (i10 & 8) != 0 ? 0L : j10);
+    }
+
+    /* JADX WARN: Illegal instructions before constructor call */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct add '--show-bad-code' argument
+    */
+    public HorizontalStackComponent(@org.jetbrains.annotations.NotNull com.withpersona.sdk2.inquiry.network.dto.ui.components.HorizontalStack r10) {
+        /*
+            r9 = this;
+            java.lang.String r0 = "config"
+            kotlin.jvm.internal.Intrinsics.checkNotNullParameter(r10, r0)
+            java.lang.String r2 = r10.getName()
+            java.util.List r0 = r10.getChildren()
+            if (r0 == 0) goto L32
+            java.lang.Iterable r0 = (java.lang.Iterable) r0
+            java.util.ArrayList r1 = new java.util.ArrayList
+            r1.<init>()
+            java.util.Iterator r0 = r0.iterator()
+        L1a:
+            boolean r3 = r0.hasNext()
+            if (r3 == 0) goto L30
+            java.lang.Object r3 = r0.next()
+            com.withpersona.sdk2.inquiry.network.dto.ui.components.UiComponentConfig r3 = (com.withpersona.sdk2.inquiry.network.dto.ui.components.UiComponentConfig) r3
+            com.withpersona.sdk2.inquiry.steps.ui.components.UiComponent r3 = com.withpersona.sdk2.inquiry.steps.ui.components.b.l(r3)
+            if (r3 == 0) goto L1a
+            r1.add(r3)
+            goto L1a
+        L30:
+            r3 = r1
+            goto L37
+        L32:
+            java.util.List r1 = kotlin.collections.p.k()
+            goto L30
+        L37:
+            com.withpersona.sdk2.inquiry.network.dto.ui.components.HorizontalStack$Attributes r10 = r10.getAttributes()
+            if (r10 == 0) goto L43
+            com.withpersona.sdk2.inquiry.network.dto.JsonLogicBoolean r10 = r10.getHidden()
+        L41:
+            r4 = r10
+            goto L45
+        L43:
+            r10 = 0
+            goto L41
+        L45:
+            r7 = 8
+            r8 = 0
+            r5 = 0
+            r1 = r9
+            r1.<init>(r2, r3, r4, r5, r7, r8)
+            return
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.withpersona.sdk2.inquiry.steps.ui.components.HorizontalStackComponent.<init>(com.withpersona.sdk2.inquiry.network.dto.ui.components.HorizontalStack):void");
+    }
+}

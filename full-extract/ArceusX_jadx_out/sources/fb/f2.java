@@ -1,0 +1,10 @@
+package fb;
+
+import android.os.IInterface;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.internal.games_v2.zzs;
+
+/* loaded from: classes.dex */
+public interface f2 extends IInterface {
+    void t0(Status status, zzs zzsVar);
+}

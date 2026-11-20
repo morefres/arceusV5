@@ -1,0 +1,12 @@
+package ae;
+
+import android.content.Context;
+import androidx.annotation.NonNull;
+
+/* loaded from: classes2.dex */
+public final class c {
+    @NonNull
+    public static b a(@NonNull Context context) {
+        return x0.a(context).zza();
+    }
+}

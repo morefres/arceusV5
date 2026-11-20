@@ -1,0 +1,12 @@
+package m0;
+
+import java.util.List;
+
+/* loaded from: classes.dex */
+public interface c0 {
+    ne.x<Void> a(List<n0.l1> list);
+
+    void b();
+
+    void c();
+}

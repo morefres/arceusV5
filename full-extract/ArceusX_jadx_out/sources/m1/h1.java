@@ -1,0 +1,18 @@
+package m1;
+
+import java.nio.ByteBuffer;
+
+/* loaded from: classes.dex */
+public interface h1 {
+    void a(boolean z10);
+
+    boolean b();
+
+    void c(long j10);
+
+    boolean cancel();
+
+    ne.x<Void> d();
+
+    ByteBuffer t();
+}

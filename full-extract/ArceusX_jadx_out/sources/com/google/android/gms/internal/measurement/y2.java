@@ -1,0 +1,31 @@
+package com.google.android.gms.internal.measurement;
+
+import java.util.Objects;
+
+/* loaded from: classes.dex */
+public final class y2 extends j3 {
+
+    /* renamed from: e, reason: collision with root package name */
+    public final /* synthetic */ r1 f7001e;
+
+    /* renamed from: f, reason: collision with root package name */
+    public final /* synthetic */ v3 f7002f;
+
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public y2(v3 v3Var, r1 r1Var) {
+        super(v3Var, true);
+        this.f7001e = r1Var;
+        Objects.requireNonNull(v3Var);
+        this.f7002f = v3Var;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.j3
+    public final void a() {
+        ((u1) n9.m.l(this.f7002f.m())).getCurrentScreenClass(this.f7001e);
+    }
+
+    @Override // com.google.android.gms.internal.measurement.j3
+    public final void b() {
+        this.f7001e.l(null);
+    }
+}

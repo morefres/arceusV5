@@ -1,0 +1,24 @@
+package ae;
+
+/* loaded from: classes2.dex */
+public final class f0 {
+
+    /* renamed from: a, reason: collision with root package name */
+    public j f416a;
+
+    public /* synthetic */ f0(x xVar) {
+    }
+
+    public final f0 a(j jVar) {
+        this.f416a = jVar;
+        return this;
+    }
+
+    public final s0 b() {
+        j jVar = this.f416a;
+        if (jVar != null) {
+            return new h0(jVar, null);
+        }
+        throw new IllegalStateException(String.valueOf(j.class.getCanonicalName()).concat(" must be set"));
+    }
+}

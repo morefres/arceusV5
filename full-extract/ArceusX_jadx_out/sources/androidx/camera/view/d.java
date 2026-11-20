@@ -1,0 +1,268 @@
+package androidx.camera.view;
+
+import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.util.Size;
+import android.view.PixelCopy;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.widget.FrameLayout;
+import androidx.camera.view.c;
+import androidx.camera.view.d;
+import g0.r1;
+import g0.v2;
+import java.util.Objects;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
+import ne.x;
+import r0.n;
+import x2.g;
+
+/* loaded from: classes.dex */
+public final class d extends c {
+
+    /* renamed from: e, reason: collision with root package name */
+    public SurfaceView f1301e;
+
+    /* renamed from: f, reason: collision with root package name */
+    public final b f1302f;
+
+    public static class a {
+        public static void a(SurfaceView surfaceView, Bitmap bitmap, PixelCopy.OnPixelCopyFinishedListener onPixelCopyFinishedListener, Handler handler) {
+            PixelCopy.request(surfaceView, bitmap, onPixelCopyFinishedListener, handler);
+        }
+    }
+
+    public class b implements SurfaceHolder.Callback {
+
+        /* renamed from: a, reason: collision with root package name */
+        public Size f1303a;
+        public v2 b;
+
+        /* renamed from: c, reason: collision with root package name */
+        public v2 f1304c;
+
+        /* renamed from: d, reason: collision with root package name */
+        public c.a f1305d;
+
+        /* renamed from: e, reason: collision with root package name */
+        public Size f1306e;
+
+        /* renamed from: f, reason: collision with root package name */
+        public boolean f1307f = false;
+
+        /* renamed from: g, reason: collision with root package name */
+        public boolean f1308g = false;
+
+        public b() {
+        }
+
+        public static /* synthetic */ void a(c.a aVar, v2.g gVar) {
+            r1.a("SurfaceViewImpl", "Safe to release surface.");
+            if (aVar != null) {
+                aVar.a();
+            }
+        }
+
+        public final boolean b() {
+            return (this.f1307f || this.b == null || !Objects.equals(this.f1303a, this.f1306e)) ? false : true;
+        }
+
+        public final void c() {
+            c.a aVar;
+            if (this.b != null) {
+                r1.a("SurfaceViewImpl", "Request canceled: " + this.b);
+                if (!this.b.z() || (aVar = this.f1305d) == null) {
+                    return;
+                }
+                aVar.a();
+            }
+        }
+
+        public final void d() {
+            if (this.b != null) {
+                r1.a("SurfaceViewImpl", "Surface closed " + this.b);
+                this.b.n().d();
+            }
+        }
+
+        public void e(v2 v2Var, c.a aVar) {
+            c();
+            if (this.f1308g) {
+                this.f1308g = false;
+                v2Var.t();
+                return;
+            }
+            this.b = v2Var;
+            this.f1305d = aVar;
+            Size q10 = v2Var.q();
+            this.f1303a = q10;
+            this.f1307f = false;
+            if (f()) {
+                return;
+            }
+            r1.a("SurfaceViewImpl", "Wait for new Surface creation.");
+            d.this.f1301e.getHolder().setFixedSize(q10.getWidth(), q10.getHeight());
+        }
+
+        public final boolean f() {
+            Surface surface = d.this.f1301e.getHolder().getSurface();
+            if (!b()) {
+                return false;
+            }
+            r1.a("SurfaceViewImpl", "Surface set on Preview.");
+            final c.a aVar = this.f1305d;
+            v2 v2Var = this.b;
+            Objects.requireNonNull(v2Var);
+            v2Var.w(surface, l2.b.i(d.this.f1301e.getContext()), new x2.a() { // from class: p1.j0
+                @Override // x2.a
+                public final void accept(Object obj) {
+                    d.b.a(c.a.this, (v2.g) obj);
+                }
+            });
+            this.f1307f = true;
+            d.this.f();
+            return true;
+        }
+
+        @Override // android.view.SurfaceHolder.Callback
+        public void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
+            r1.a("SurfaceViewImpl", "Surface changed. Size: " + i11 + "x" + i12);
+            this.f1306e = new Size(i11, i12);
+            f();
+        }
+
+        @Override // android.view.SurfaceHolder.Callback
+        public void surfaceCreated(SurfaceHolder surfaceHolder) {
+            v2 v2Var;
+            r1.a("SurfaceViewImpl", "Surface created.");
+            if (!this.f1308g || (v2Var = this.f1304c) == null) {
+                return;
+            }
+            v2Var.t();
+            this.f1304c = null;
+            this.f1308g = false;
+        }
+
+        @Override // android.view.SurfaceHolder.Callback
+        public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+            r1.a("SurfaceViewImpl", "Surface destroyed.");
+            if (this.f1307f) {
+                d();
+            } else {
+                c();
+            }
+            this.f1308g = true;
+            v2 v2Var = this.b;
+            if (v2Var != null) {
+                this.f1304c = v2Var;
+            }
+            this.f1307f = false;
+            this.b = null;
+            this.f1305d = null;
+            this.f1306e = null;
+            this.f1303a = null;
+        }
+    }
+
+    public d(FrameLayout frameLayout, androidx.camera.view.b bVar) {
+        super(frameLayout, bVar);
+        this.f1302f = new b();
+    }
+
+    public static /* synthetic */ void k(Semaphore semaphore, int i10) {
+        if (i10 == 0) {
+            r1.a("SurfaceViewImpl", "PreviewView.SurfaceViewImplementation.getBitmap() succeeded");
+        } else {
+            r1.c("SurfaceViewImpl", "PreviewView.SurfaceViewImplementation.getBitmap() failed with error " + i10);
+        }
+        semaphore.release();
+    }
+
+    public static boolean m(SurfaceView surfaceView, Size size, v2 v2Var) {
+        return surfaceView != null && Objects.equals(size, v2Var.q());
+    }
+
+    @Override // androidx.camera.view.c
+    public View b() {
+        return this.f1301e;
+    }
+
+    @Override // androidx.camera.view.c
+    public Bitmap c() {
+        SurfaceView surfaceView = this.f1301e;
+        if (surfaceView == null || surfaceView.getHolder().getSurface() == null || !this.f1301e.getHolder().getSurface().isValid()) {
+            return null;
+        }
+        final Semaphore semaphore = new Semaphore(0);
+        Bitmap createBitmap = Bitmap.createBitmap(this.f1301e.getWidth(), this.f1301e.getHeight(), Bitmap.Config.ARGB_8888);
+        HandlerThread handlerThread = new HandlerThread("pixelCopyRequest Thread");
+        handlerThread.start();
+        a.a(this.f1301e, createBitmap, new PixelCopy.OnPixelCopyFinishedListener() { // from class: p1.i0
+            @Override // android.view.PixelCopy.OnPixelCopyFinishedListener
+            public final void onPixelCopyFinished(int i10) {
+                androidx.camera.view.d.k(semaphore, i10);
+            }
+        }, new Handler(handlerThread.getLooper()));
+        try {
+            if (!semaphore.tryAcquire(1, 100L, TimeUnit.MILLISECONDS)) {
+                r1.c("SurfaceViewImpl", "Timed out while trying to acquire screenshot.");
+            }
+            return createBitmap;
+        } catch (InterruptedException e10) {
+            r1.d("SurfaceViewImpl", "Interrupted while trying to acquire screenshot.", e10);
+            return createBitmap;
+        } finally {
+            handlerThread.quitSafely();
+        }
+    }
+
+    @Override // androidx.camera.view.c
+    public void d() {
+    }
+
+    @Override // androidx.camera.view.c
+    public void e() {
+    }
+
+    @Override // androidx.camera.view.c
+    public void g(final v2 v2Var, final c.a aVar) {
+        if (!m(this.f1301e, this.f1298a, v2Var)) {
+            this.f1298a = v2Var.q();
+            l();
+        }
+        if (aVar != null) {
+            v2Var.k(l2.b.i(this.f1301e.getContext()), new Runnable() { // from class: p1.g0
+                @Override // java.lang.Runnable
+                public final void run() {
+                    c.a.this.a();
+                }
+            });
+        }
+        this.f1301e.post(new Runnable() { // from class: p1.h0
+            @Override // java.lang.Runnable
+            public final void run() {
+                androidx.camera.view.d.this.f1302f.e(v2Var, aVar);
+            }
+        });
+    }
+
+    @Override // androidx.camera.view.c
+    public x<Void> i() {
+        return n.p(null);
+    }
+
+    public void l() {
+        g.g(this.b);
+        g.g(this.f1298a);
+        SurfaceView surfaceView = new SurfaceView(this.b.getContext());
+        this.f1301e = surfaceView;
+        surfaceView.setLayoutParams(new FrameLayout.LayoutParams(this.f1298a.getWidth(), this.f1298a.getHeight()));
+        this.b.removeAllViews();
+        this.b.addView(this.f1301e);
+        this.f1301e.getHolder().addCallback(this.f1302f);
+    }
+}

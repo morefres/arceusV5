@@ -1,0 +1,11 @@
+package fn;
+
+import android.content.Context;
+import android.media.MediaRecorder;
+
+/* loaded from: classes3.dex */
+public final /* synthetic */ class p0 {
+    public static /* synthetic */ MediaRecorder a(Context context) {
+        return new MediaRecorder(context);
+    }
+}

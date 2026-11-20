@@ -1,0 +1,192 @@
+package com.google.android.gms.common;
+
+import android.app.PendingIntent;
+import android.os.Parcel;
+import android.os.Parcelable;
+import androidx.annotation.NonNull;
+import androidx.core.view.MotionEventCompat;
+import com.appsflyer.sdk_base.referrer.Payload;
+import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
+import j9.o;
+import n9.k;
+import o9.b;
+
+/* loaded from: classes.dex */
+public final class ConnectionResult extends AbstractSafeParcelable {
+
+    /* renamed from: f, reason: collision with root package name */
+    public final int f5737f;
+
+    /* renamed from: g, reason: collision with root package name */
+    public final int f5738g;
+
+    /* renamed from: h, reason: collision with root package name */
+    public final PendingIntent f5739h;
+
+    /* renamed from: i, reason: collision with root package name */
+    public final String f5740i;
+
+    /* renamed from: j, reason: collision with root package name */
+    public final Integer f5741j;
+
+    /* renamed from: k, reason: collision with root package name */
+    @NonNull
+    public static final ConnectionResult f5736k = new ConnectionResult(0);
+
+    @NonNull
+    public static final Parcelable.Creator<ConnectionResult> CREATOR = new o();
+
+    public ConnectionResult(int i10, int i11, PendingIntent pendingIntent, String str, Integer num) {
+        this.f5737f = i10;
+        this.f5738g = i11;
+        this.f5739h = pendingIntent;
+        this.f5740i = str;
+        this.f5741j = num;
+    }
+
+    @NonNull
+    public static String B3(int i10) {
+        if (i10 == 99) {
+            return "UNFINISHED";
+        }
+        if (i10 == 1500) {
+            return "DRIVE_EXTERNAL_STORAGE_REQUIRED";
+        }
+        switch (i10) {
+            case -1:
+                return "UNKNOWN";
+            case 0:
+                return "SUCCESS";
+            case 1:
+                return "SERVICE_MISSING";
+            case 2:
+                return "SERVICE_VERSION_UPDATE_REQUIRED";
+            case 3:
+                return "SERVICE_DISABLED";
+            case 4:
+                return "SIGN_IN_REQUIRED";
+            case 5:
+                return "INVALID_ACCOUNT";
+            case 6:
+                return "RESOLUTION_REQUIRED";
+            case 7:
+                return "NETWORK_ERROR";
+            case 8:
+                return "INTERNAL_ERROR";
+            case 9:
+                return "SERVICE_INVALID";
+            case 10:
+                return Payload.RESPONSE_DEVELOPER_ERROR;
+            case 11:
+                return "LICENSE_CHECK_FAILED";
+            default:
+                switch (i10) {
+                    case 13:
+                        return "CANCELED";
+                    case 14:
+                        return Payload.RESPONSE_TIMEOUT;
+                    case 15:
+                        return "INTERRUPTED";
+                    case 16:
+                        return "API_UNAVAILABLE";
+                    case 17:
+                        return "SIGN_IN_FAILED";
+                    case 18:
+                        return "SERVICE_UPDATING";
+                    case 19:
+                        return "SERVICE_MISSING_PERMISSION";
+                    case 20:
+                        return "RESTRICTED_PROFILE";
+                    case MotionEventCompat.AXIS_WHEEL /* 21 */:
+                        return "API_VERSION_UPDATE_REQUIRED";
+                    case MotionEventCompat.AXIS_GAS /* 22 */:
+                        return "RESOLUTION_ACTIVITY_NOT_FOUND";
+                    case MotionEventCompat.AXIS_BRAKE /* 23 */:
+                        return "API_DISABLED";
+                    case MotionEventCompat.AXIS_DISTANCE /* 24 */:
+                        return "API_DISABLED_FOR_CONNECTION";
+                    case 25:
+                        return "API_INSTALL_REQUIRED";
+                    default:
+                        StringBuilder sb2 = new StringBuilder(String.valueOf(i10).length() + 20);
+                        sb2.append("UNKNOWN_ERROR_CODE(");
+                        sb2.append(i10);
+                        sb2.append(")");
+                        return sb2.toString();
+                }
+        }
+    }
+
+    public boolean A3() {
+        return this.f5738g == 0;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConnectionResult)) {
+            return false;
+        }
+        ConnectionResult connectionResult = (ConnectionResult) obj;
+        return this.f5738g == connectionResult.f5738g && k.b(this.f5739h, connectionResult.f5739h) && k.b(this.f5740i, connectionResult.f5740i) && k.b(this.f5741j, connectionResult.f5741j);
+    }
+
+    public int hashCode() {
+        return k.c(Integer.valueOf(this.f5738g), this.f5739h, this.f5740i, this.f5741j);
+    }
+
+    @NonNull
+    public String toString() {
+        k.a d10 = k.d(this);
+        d10.a("statusCode", B3(this.f5738g));
+        d10.a("resolution", this.f5739h);
+        d10.a("message", this.f5740i);
+        d10.a("clientMethodKey", this.f5741j);
+        return d10.toString();
+    }
+
+    public Integer v3() {
+        return this.f5741j;
+    }
+
+    public int w3() {
+        return this.f5738g;
+    }
+
+    @Override // android.os.Parcelable
+    public void writeToParcel(@NonNull Parcel parcel, int i10) {
+        int i11 = this.f5737f;
+        int a10 = b.a(parcel);
+        b.n(parcel, 1, i11);
+        b.n(parcel, 2, w3());
+        b.t(parcel, 3, y3(), i10, false);
+        b.v(parcel, 4, x3(), false);
+        b.q(parcel, 5, v3(), false);
+        b.b(parcel, a10);
+    }
+
+    public String x3() {
+        return this.f5740i;
+    }
+
+    public PendingIntent y3() {
+        return this.f5739h;
+    }
+
+    public boolean z3() {
+        return (this.f5738g == 0 || this.f5739h == null) ? false : true;
+    }
+
+    public ConnectionResult(int i10) {
+        this(i10, null, null);
+    }
+
+    public ConnectionResult(int i10, PendingIntent pendingIntent) {
+        this(i10, pendingIntent, null);
+    }
+
+    public ConnectionResult(int i10, PendingIntent pendingIntent, String str) {
+        this(1, i10, pendingIntent, str, null);
+    }
+}

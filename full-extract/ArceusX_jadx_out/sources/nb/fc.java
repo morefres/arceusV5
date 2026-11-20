@@ -1,0 +1,34 @@
+package nb;
+
+import java.util.Objects;
+
+/* loaded from: classes.dex */
+public final class fc implements Runnable {
+
+    /* renamed from: a, reason: collision with root package name */
+    public final /* synthetic */ d5 f26222a;
+    public final /* synthetic */ nc b;
+
+    public fc(nc ncVar, d5 d5Var) {
+        this.f26222a = d5Var;
+        Objects.requireNonNull(ncVar);
+        this.b = ncVar;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        nc ncVar = this.b;
+        synchronized (ncVar) {
+            try {
+                ncVar.d(false);
+                tc tcVar = ncVar.f26504c;
+                if (!tcVar.W()) {
+                    tcVar.f26328a.a().w().a("Connected to service");
+                    tcVar.z(this.f26222a);
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+}

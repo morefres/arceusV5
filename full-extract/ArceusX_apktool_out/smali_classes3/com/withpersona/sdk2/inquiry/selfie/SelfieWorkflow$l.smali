@@ -1,0 +1,347 @@
+.class public final Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;
+.super Lot/m;
+.source "SourceFile"
+
+# interfaces
+.implements Lkotlin/jvm/functions/Function2;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow;->f2(Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$Input;Lcom/withpersona/sdk2/inquiry/selfie/SelfieState$CountdownToManualCapture;Lwm/k$a;)Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$c;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = null
+.end annotation
+
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "Lot/m;",
+        "Lkotlin/jvm/functions/Function2<",
+        "Lju/p0;",
+        "Lmt/b<",
+        "-",
+        "Lkotlin/Unit;",
+        ">;",
+        "Ljava/lang/Object;",
+        ">;"
+    }
+.end annotation
+
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u000c\n\u0002\u0018\u0002\n\u0002\u0010\u0002\n\u0002\u0008\u0002\u0010\u0002\u001a\u00020\u0001*\u00020\u0000H\n\u00a2\u0006\u0004\u0008\u0002\u0010\u0003"
+    }
+    d2 = {
+        "Lju/p0;",
+        "",
+        "<anonymous>",
+        "(Lju/p0;)V"
+    }
+    k = 0x3
+    mv = {
+        0x2,
+        0x2,
+        0x0
+    }
+.end annotation
+
+.annotation runtime Lot/f;
+    c = "com.withpersona.sdk2.inquiry.selfie.SelfieWorkflow$renderCountdownToManualCapture$1"
+    f = "SelfieWorkflow.kt"
+    l = {
+        0x502
+    }
+    m = "invokeSuspend"
+.end annotation
+
+
+# instance fields
+.field public t:I
+
+.field public final synthetic u:Lwm/k$a;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Lwm/k<",
+            "Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$Input;",
+            "Lcom/withpersona/sdk2/inquiry/selfie/SelfieState;",
+            "Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$b;",
+            "Ljava/lang/Object;",
+            ">.a;"
+        }
+    .end annotation
+.end field
+
+.field public final synthetic v:Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow;
+
+
+# direct methods
+.method public constructor <init>(Lwm/k$a;Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow;Lmt/b;)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lwm/k<",
+            "-",
+            "Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$Input;",
+            "Lcom/withpersona/sdk2/inquiry/selfie/SelfieState;",
+            "+",
+            "Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$b;",
+            "+",
+            "Ljava/lang/Object;",
+            ">.a;",
+            "Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow;",
+            "Lmt/b<",
+            "-",
+            "Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;",
+            ">;)V"
+        }
+    .end annotation
+
+    iput-object p1, p0, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->u:Lwm/k$a;
+
+    iput-object p2, p0, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->v:Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow;
+
+    const/4 p1, 0x2
+
+    invoke-direct {p0, p1, p3}, Lot/m;-><init>(ILmt/b;)V
+
+    return-void
+.end method
+
+.method public static synthetic o(Lwm/r$c;)Lkotlin/Unit;
+    .locals 0
+
+    invoke-static {p0}, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->q(Lwm/r$c;)Lkotlin/Unit;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method private static final q(Lwm/r$c;)Lkotlin/Unit;
+    .locals 18
+
+    invoke-virtual/range {p0 .. p0}, Lwm/r$c;->c()Ljava/lang/Object;
+
+    move-result-object v0
+
+    instance-of v1, v0, Lcom/withpersona/sdk2/inquiry/selfie/SelfieState$CountdownToManualCapture;
+
+    if-eqz v1, :cond_0
+
+    check-cast v0, Lcom/withpersona/sdk2/inquiry/selfie/SelfieState$CountdownToManualCapture;
+
+    :goto_0
+    move-object v1, v0
+
+    goto :goto_1
+
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+
+    :goto_1
+    if-nez v1, :cond_1
+
+    sget-object v0, Lkotlin/Unit;->a:Lkotlin/Unit;
+
+    return-object v0
+
+    :cond_1
+    invoke-virtual {v1}, Lcom/withpersona/sdk2/inquiry/selfie/SelfieState$CountdownToManualCapture;->C()I
+
+    move-result v0
+
+    const/4 v2, 0x1
+
+    if-lt v0, v2, :cond_2
+
+    add-int/lit8 v2, v0, -0x1
+
+    invoke-virtual {v1}, Lcom/withpersona/sdk2/inquiry/selfie/SelfieState$CountdownToManualCapture;->D()Lin/b;
+
+    move-result-object v3
+
+    const/16 v16, 0xffc
+
+    const/16 v17, 0x0
+
+    const/4 v4, 0x0
+
+    const/4 v5, 0x0
+
+    const-wide/16 v6, 0x0
+
+    const/4 v8, 0x0
+
+    const-wide/16 v9, 0x0
+
+    const/4 v11, 0x0
+
+    const/4 v12, 0x0
+
+    const/4 v13, 0x0
+
+    const/4 v14, 0x0
+
+    const/4 v15, 0x0
+
+    invoke-static/range {v1 .. v17}, Lcom/withpersona/sdk2/inquiry/selfie/SelfieState$CountdownToManualCapture;->A(Lcom/withpersona/sdk2/inquiry/selfie/SelfieState$CountdownToManualCapture;ILin/b;Lcom/withpersona/sdk2/camera/CameraProperties;Ljava/util/List;JZJLcom/withpersona/sdk2/inquiry/selfie/SelfieState;Lcom/withpersona/sdk2/inquiry/selfie/PoseConfigs;Lcom/withpersona/sdk2/camera/CameraProperties$b;ZZILjava/lang/Object;)Lcom/withpersona/sdk2/inquiry/selfie/SelfieState$CountdownToManualCapture;
+
+    move-result-object v0
+
+    move-object/from16 v1, p0
+
+    invoke-virtual {v1, v0}, Lwm/r$c;->e(Ljava/lang/Object;)V
+
+    :cond_2
+    sget-object v0, Lkotlin/Unit;->a:Lkotlin/Unit;
+
+    return-object v0
+.end method
+
+
+# virtual methods
+.method public final create(Ljava/lang/Object;Lmt/b;)Lmt/b;
+    .locals 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/Object;",
+            "Lmt/b<",
+            "*>;)",
+            "Lmt/b<",
+            "Lkotlin/Unit;",
+            ">;"
+        }
+    .end annotation
+
+    new-instance p1, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;
+
+    iget-object v0, p0, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->u:Lwm/k$a;
+
+    iget-object v1, p0, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->v:Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow;
+
+    invoke-direct {p1, v0, v1, p2}, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;-><init>(Lwm/k$a;Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow;Lmt/b;)V
+
+    return-object p1
+.end method
+
+.method public bridge synthetic invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 0
+
+    .line 1
+    check-cast p1, Lju/p0;
+
+    check-cast p2, Lmt/b;
+
+    invoke-virtual {p0, p1, p2}, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->invoke(Lju/p0;Lmt/b;)Ljava/lang/Object;
+
+    move-result-object p1
+
+    return-object p1
+.end method
+
+.method public final invoke(Lju/p0;Lmt/b;)Ljava/lang/Object;
+    .locals 0
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lju/p0;",
+            "Lmt/b<",
+            "-",
+            "Lkotlin/Unit;",
+            ">;)",
+            "Ljava/lang/Object;"
+        }
+    .end annotation
+
+    .line 2
+    invoke-virtual {p0, p1, p2}, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->create(Ljava/lang/Object;Lmt/b;)Lmt/b;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;
+
+    sget-object p2, Lkotlin/Unit;->a:Lkotlin/Unit;
+
+    invoke-virtual {p1, p2}, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object p1
+
+    return-object p1
+.end method
+
+.method public final invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 5
+
+    invoke-static {}, Lnt/c;->e()Ljava/lang/Object;
+
+    move-result-object v0
+
+    iget v1, p0, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->t:I
+
+    const/4 v2, 0x1
+
+    if-eqz v1, :cond_1
+
+    if-ne v1, v2, :cond_0
+
+    invoke-static {p1}, Lgt/o;->b(Ljava/lang/Object;)V
+
+    goto :goto_0
+
+    :cond_0
+    new-instance p1, Ljava/lang/IllegalStateException;
+
+    const-string v0, "call to \'resume\' before \'invoke\' with coroutine"
+
+    invoke-direct {p1, v0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p1
+
+    :cond_1
+    invoke-static {p1}, Lgt/o;->b(Ljava/lang/Object;)V
+
+    iput v2, p0, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->t:I
+
+    const-wide/16 v3, 0x3e8
+
+    invoke-static {v3, v4, p0}, Lju/z0;->b(JLmt/b;)Ljava/lang/Object;
+
+    move-result-object p1
+
+    if-ne p1, v0, :cond_2
+
+    return-object v0
+
+    :cond_2
+    :goto_0
+    iget-object p1, p0, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->u:Lwm/k$a;
+
+    invoke-virtual {p1}, Lwm/k$a;->d()Lwm/h;
+
+    move-result-object p1
+
+    iget-object v0, p0, Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow$l;->v:Lcom/withpersona/sdk2/inquiry/selfie/SelfieWorkflow;
+
+    new-instance v1, Lwp/c5;
+
+    invoke-direct {v1}, Lwp/c5;-><init>()V
+
+    const/4 v3, 0x0
+
+    invoke-static {v0, v3, v1, v2, v3}, Lwm/w;->g(Lwm/k;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lwm/r;
+
+    move-result-object v0
+
+    invoke-interface {p1, v0}, Lwm/h;->a(Ljava/lang/Object;)V
+
+    sget-object p1, Lkotlin/Unit;->a:Lkotlin/Unit;
+
+    return-object p1
+.end method

@@ -1,0 +1,6 @@
+package ne;
+
+/* loaded from: classes2.dex */
+public interface i<I, O> {
+    x<O> apply(I i10);
+}

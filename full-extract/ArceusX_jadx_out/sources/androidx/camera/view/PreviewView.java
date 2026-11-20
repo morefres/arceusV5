@@ -1,0 +1,636 @@
+package androidx.camera.view;
+
+import android.R;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.hardware.display.DisplayManager;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.AttributeSet;
+import android.util.Rational;
+import android.util.Size;
+import android.view.Display;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.Window;
+import android.view.d0;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import androidx.camera.view.PreviewView;
+import androidx.camera.view.c;
+import androidx.camera.view.internal.compat.quirk.SurfaceViewNotCroppedByParentQuirk;
+import androidx.camera.view.internal.compat.quirk.SurfaceViewStretchedQuirk;
+import g0.a2;
+import g0.f1;
+import g0.r1;
+import g0.v1;
+import g0.v2;
+import g0.y2;
+import java.util.concurrent.atomic.AtomicReference;
+import n0.o0;
+import n0.p0;
+import p0.a0;
+import p0.z;
+import p1.f0;
+import p1.i;
+import p1.t;
+import p1.x;
+import q1.a;
+import r1.a;
+
+/* loaded from: classes.dex */
+public final class PreviewView extends FrameLayout {
+
+    /* renamed from: p, reason: collision with root package name */
+    public static final c f1251p = c.PERFORMANCE;
+
+    /* renamed from: a, reason: collision with root package name */
+    public c f1252a;
+    public androidx.camera.view.c b;
+
+    /* renamed from: c, reason: collision with root package name */
+    public final f0 f1253c;
+
+    /* renamed from: d, reason: collision with root package name */
+    public final androidx.camera.view.b f1254d;
+
+    /* renamed from: e, reason: collision with root package name */
+    public boolean f1255e;
+
+    /* renamed from: f, reason: collision with root package name */
+    public final d0<e> f1256f;
+
+    /* renamed from: g, reason: collision with root package name */
+    public final AtomicReference<androidx.camera.view.a> f1257g;
+
+    /* renamed from: h, reason: collision with root package name */
+    public i f1258h;
+
+    /* renamed from: i, reason: collision with root package name */
+    public x f1259i;
+
+    /* renamed from: j, reason: collision with root package name */
+    public final q1.a f1260j;
+
+    /* renamed from: k, reason: collision with root package name */
+    public o0 f1261k;
+
+    /* renamed from: l, reason: collision with root package name */
+    public MotionEvent f1262l;
+
+    /* renamed from: m, reason: collision with root package name */
+    public final b f1263m;
+
+    /* renamed from: n, reason: collision with root package name */
+    public final View.OnLayoutChangeListener f1264n;
+
+    /* renamed from: o, reason: collision with root package name */
+    public final a2.c f1265o;
+
+    public class a implements a2.c {
+        public a() {
+        }
+
+        public static /* synthetic */ void c(a aVar, androidx.camera.view.a aVar2, p0 p0Var) {
+            if (t.a(PreviewView.this.f1257g, aVar2, null)) {
+                aVar2.i(e.IDLE);
+            }
+            aVar2.f();
+            p0Var.b().d(aVar2);
+        }
+
+        public static /* synthetic */ void d(a aVar, p0 p0Var, v2 v2Var, v2.h hVar) {
+            PreviewView previewView;
+            androidx.camera.view.c cVar;
+            aVar.getClass();
+            r1.a("PreviewView", "Preview transformation info updated. " + hVar);
+            PreviewView.this.f1254d.r(hVar, v2Var.q(), p0Var.k().i() == 0);
+            if (hVar.d() == -1 || ((cVar = (previewView = PreviewView.this).b) != null && (cVar instanceof androidx.camera.view.d))) {
+                PreviewView.this.f1255e = true;
+            } else {
+                previewView.f1255e = false;
+            }
+            PreviewView.this.e();
+        }
+
+        @Override // g0.a2.c
+        public void a(final v2 v2Var) {
+            androidx.camera.view.c dVar;
+            if (!z.d()) {
+                l2.b.i(PreviewView.this.getContext()).execute(new Runnable() { // from class: p1.u
+                    @Override // java.lang.Runnable
+                    public final void run() {
+                        PreviewView.this.f1265o.a(v2Var);
+                    }
+                });
+                return;
+            }
+            r1.a("PreviewView", "Surface requested by Preview.");
+            final p0 m10 = v2Var.m();
+            PreviewView.this.f1261k = m10.k();
+            PreviewView.this.f1259i.g(m10.k().h());
+            v2Var.x(l2.b.i(PreviewView.this.getContext()), new v2.i() { // from class: p1.v
+                @Override // g0.v2.i
+                public final void a(v2.h hVar) {
+                    PreviewView.a.d(PreviewView.a.this, m10, v2Var, hVar);
+                }
+            });
+            PreviewView previewView = PreviewView.this;
+            if (!PreviewView.f(previewView.b, v2Var, previewView.f1252a)) {
+                PreviewView previewView2 = PreviewView.this;
+                if (PreviewView.g(v2Var, previewView2.f1252a)) {
+                    PreviewView previewView3 = PreviewView.this;
+                    dVar = new androidx.camera.view.e(previewView3, previewView3.f1254d);
+                } else {
+                    PreviewView previewView4 = PreviewView.this;
+                    dVar = new androidx.camera.view.d(previewView4, previewView4.f1254d);
+                }
+                previewView2.b = dVar;
+            }
+            o0 k10 = m10.k();
+            PreviewView previewView5 = PreviewView.this;
+            final androidx.camera.view.a aVar = new androidx.camera.view.a(k10, previewView5.f1256f, previewView5.b);
+            PreviewView.this.f1257g.set(aVar);
+            m10.b().c(l2.b.i(PreviewView.this.getContext()), aVar);
+            PreviewView.this.b.g(v2Var, new c.a() { // from class: p1.w
+                @Override // androidx.camera.view.c.a
+                public final void a() {
+                    PreviewView.a.c(PreviewView.a.this, aVar, m10);
+                }
+            });
+            PreviewView previewView6 = PreviewView.this;
+            if (previewView6.indexOfChild(previewView6.f1253c) == -1) {
+                PreviewView previewView7 = PreviewView.this;
+                previewView7.addView(previewView7.f1253c);
+            }
+            PreviewView.this.getClass();
+        }
+    }
+
+    public class b implements DisplayManager.DisplayListener {
+        public b() {
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayAdded(int i10) {
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayChanged(int i10) {
+            Display defaultDisplay = PreviewView.this.getDefaultDisplay();
+            if (defaultDisplay == null || defaultDisplay.getDisplayId() != i10) {
+                return;
+            }
+            PreviewView.this.e();
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayRemoved(int i10) {
+        }
+    }
+
+    public enum c {
+        PERFORMANCE(0),
+        COMPATIBLE(1);
+
+
+        /* renamed from: a, reason: collision with root package name */
+        public final int f1270a;
+
+        c(int i10) {
+            this.f1270a = i10;
+        }
+
+        public static c b(int i10) {
+            for (c cVar : values()) {
+                if (cVar.f1270a == i10) {
+                    return cVar;
+                }
+            }
+            throw new IllegalArgumentException("Unknown implementation mode id " + i10);
+        }
+
+        public int c() {
+            return this.f1270a;
+        }
+    }
+
+    public enum d {
+        FILL_START(0),
+        FILL_CENTER(1),
+        FILL_END(2),
+        FIT_START(3),
+        FIT_CENTER(4),
+        FIT_END(5);
+
+
+        /* renamed from: a, reason: collision with root package name */
+        public final int f1277a;
+
+        d(int i10) {
+            this.f1277a = i10;
+        }
+
+        public static d b(int i10) {
+            for (d dVar : values()) {
+                if (dVar.f1277a == i10) {
+                    return dVar;
+                }
+            }
+            throw new IllegalArgumentException("Unknown scale type id " + i10);
+        }
+
+        public int c() {
+            return this.f1277a;
+        }
+    }
+
+    public enum e {
+        IDLE,
+        STREAMING
+    }
+
+    public PreviewView(Context context, AttributeSet attributeSet) {
+        this(context, attributeSet, 0);
+    }
+
+    public static /* synthetic */ boolean a(PreviewView previewView, a.c cVar) {
+        if (!(cVar instanceof a.c.C0514c)) {
+            previewView.getClass();
+            return true;
+        }
+        i iVar = previewView.f1258h;
+        if (iVar == null) {
+            return true;
+        }
+        iVar.A(((a.c.C0514c) cVar).getIncrementalScaleFactor());
+        return true;
+    }
+
+    public static /* synthetic */ void b(PreviewView previewView, View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        previewView.getClass();
+        if (i12 - i10 == i16 - i14 && i13 - i11 == i17 - i15) {
+            return;
+        }
+        previewView.e();
+        previewView.c(true);
+    }
+
+    public static boolean f(androidx.camera.view.c cVar, v2 v2Var, c cVar2) {
+        return (cVar instanceof androidx.camera.view.d) && !g(v2Var, cVar2);
+    }
+
+    public static boolean g(v2 v2Var, c cVar) {
+        boolean equals = v2Var.m().k().u().equals("androidx.camera.camera2.legacy");
+        boolean z10 = (s1.b.b(SurfaceViewStretchedQuirk.class) == null && s1.b.b(SurfaceViewNotCroppedByParentQuirk.class) == null) ? false : true;
+        if (equals || z10) {
+            return true;
+        }
+        int ordinal = cVar.ordinal();
+        if (ordinal == 0) {
+            return false;
+        }
+        if (ordinal == 1) {
+            return true;
+        }
+        throw new IllegalArgumentException("Invalid implementation mode: " + cVar);
+    }
+
+    private DisplayManager getDisplayManager() {
+        Context context = getContext();
+        if (context == null) {
+            return null;
+        }
+        return (DisplayManager) context.getSystemService("display");
+    }
+
+    private f1.j getScreenFlashInternal() {
+        return this.f1253c.getScreenFlash();
+    }
+
+    private int getViewPortScaleType() {
+        int ordinal = getScaleType().ordinal();
+        if (ordinal == 0) {
+            return 0;
+        }
+        int i10 = 1;
+        if (ordinal != 1) {
+            i10 = 2;
+            if (ordinal != 2) {
+                i10 = 3;
+                if (ordinal != 3 && ordinal != 4 && ordinal != 5) {
+                    throw new IllegalStateException("Unexpected scale type: " + getScaleType());
+                }
+            }
+        }
+        return i10;
+    }
+
+    private void setScreenFlashUiInfo(f1.j jVar) {
+        i iVar = this.f1258h;
+        if (iVar == null) {
+            r1.a("PreviewView", "setScreenFlashUiInfo: mCameraController is null!");
+        } else {
+            iVar.H(new r1.a(a.EnumC0529a.PREVIEW_VIEW, jVar));
+        }
+    }
+
+    public final void c(boolean z10) {
+        z.b();
+        y2 viewPort = getViewPort();
+        if (this.f1258h == null || viewPort == null || !isAttachedToWindow()) {
+            return;
+        }
+        try {
+            this.f1258h.c(getSurfaceProvider(), viewPort);
+        } catch (IllegalStateException e10) {
+            if (!z10) {
+                throw e10;
+            }
+            r1.d("PreviewView", e10.toString(), e10);
+        }
+    }
+
+    @SuppressLint({"WrongConstant"})
+    public y2 d(int i10) {
+        z.b();
+        if (getWidth() == 0 || getHeight() == 0) {
+            return null;
+        }
+        return new y2.a(new Rational(getWidth(), getHeight()), i10).c(getViewPortScaleType()).b(getLayoutDirection()).a();
+    }
+
+    public void e() {
+        z.b();
+        if (this.b != null) {
+            j();
+            this.b.h();
+        }
+        this.f1259i.f(new Size(getWidth(), getHeight()), getLayoutDirection());
+        i iVar = this.f1258h;
+        if (iVar != null) {
+            iVar.V(getSensorToViewTransform());
+        }
+    }
+
+    public Bitmap getBitmap() {
+        z.b();
+        androidx.camera.view.c cVar = this.b;
+        if (cVar == null) {
+            return null;
+        }
+        return cVar.a();
+    }
+
+    public i getController() {
+        z.b();
+        return this.f1258h;
+    }
+
+    public Display getDefaultDisplay() {
+        if (getDisplay() == null) {
+            return null;
+        }
+        Display display = getDisplayManager().getDisplay(0);
+        return display != null ? display : getDisplay();
+    }
+
+    public c getImplementationMode() {
+        z.b();
+        return this.f1252a;
+    }
+
+    public v1 getMeteringPointFactory() {
+        z.b();
+        return this.f1259i;
+    }
+
+    public t1.b getOutputTransform() {
+        Matrix matrix;
+        z.b();
+        try {
+            matrix = this.f1254d.j(new Size(getWidth(), getHeight()), getLayoutDirection());
+        } catch (IllegalStateException unused) {
+            matrix = null;
+        }
+        Rect i10 = this.f1254d.i();
+        if (matrix == null || i10 == null) {
+            r1.a("PreviewView", "Transform info is not ready");
+            return null;
+        }
+        matrix.preConcat(a0.b(i10));
+        if (this.b instanceof androidx.camera.view.e) {
+            matrix.postConcat(getMatrix());
+        } else if (!getMatrix().isIdentity()) {
+            r1.l("PreviewView", "PreviewView needs to be in COMPATIBLE mode for the transform to work correctly.");
+        }
+        return new t1.b(matrix, new Size(i10.width(), i10.height()));
+    }
+
+    public android.view.a0<e> getPreviewStreamState() {
+        return this.f1256f;
+    }
+
+    public d getScaleType() {
+        z.b();
+        return this.f1254d.g();
+    }
+
+    public f1.j getScreenFlash() {
+        return getScreenFlashInternal();
+    }
+
+    public Matrix getSensorToViewTransform() {
+        z.b();
+        if (getWidth() == 0 || getHeight() == 0) {
+            return null;
+        }
+        return this.f1254d.h(new Size(getWidth(), getHeight()), getLayoutDirection());
+    }
+
+    public a2.c getSurfaceProvider() {
+        z.b();
+        return this.f1265o;
+    }
+
+    public y2 getViewPort() {
+        z.b();
+        Display defaultDisplay = getDefaultDisplay();
+        if (defaultDisplay == null) {
+            return null;
+        }
+        return d(defaultDisplay.getRotation());
+    }
+
+    public void h() {
+        DisplayManager displayManager = getDisplayManager();
+        if (displayManager == null) {
+            return;
+        }
+        displayManager.registerDisplayListener(this.f1263m, new Handler(Looper.getMainLooper()));
+    }
+
+    public void i() {
+        DisplayManager displayManager = getDisplayManager();
+        if (displayManager == null) {
+            return;
+        }
+        displayManager.unregisterDisplayListener(this.f1263m);
+    }
+
+    public void j() {
+        Display defaultDisplay;
+        o0 o0Var;
+        if (!this.f1255e || (defaultDisplay = getDefaultDisplay()) == null || (o0Var = this.f1261k) == null) {
+            return;
+        }
+        this.f1254d.o(o0Var.w(defaultDisplay.getRotation()), defaultDisplay.getRotation());
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (!isInEditMode()) {
+            h();
+        }
+        addOnLayoutChangeListener(this.f1264n);
+        androidx.camera.view.c cVar = this.b;
+        if (cVar != null) {
+            cVar.d();
+        }
+        c(true);
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        removeOnLayoutChangeListener(this.f1264n);
+        androidx.camera.view.c cVar = this.b;
+        if (cVar != null) {
+            cVar.e();
+        }
+        i iVar = this.f1258h;
+        if (iVar != null) {
+            iVar.d();
+        }
+        if (isInEditMode()) {
+            return;
+        }
+        i();
+    }
+
+    @Override // android.view.View
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.f1258h == null) {
+            return super.onTouchEvent(motionEvent);
+        }
+        boolean z10 = motionEvent.getPointerCount() == 1;
+        boolean z11 = motionEvent.getAction() == 1;
+        boolean z12 = motionEvent.getEventTime() - motionEvent.getDownTime() < ((long) ViewConfiguration.getLongPressTimeout());
+        if (!z10 || !z11 || !z12) {
+            return this.f1260j.f(motionEvent) || super.onTouchEvent(motionEvent);
+        }
+        this.f1262l = motionEvent;
+        performClick();
+        return true;
+    }
+
+    @Override // android.view.View
+    public boolean performClick() {
+        if (this.f1258h != null) {
+            MotionEvent motionEvent = this.f1262l;
+            float x10 = motionEvent != null ? motionEvent.getX() : getWidth() / 2.0f;
+            MotionEvent motionEvent2 = this.f1262l;
+            this.f1258h.B(this.f1259i, x10, motionEvent2 != null ? motionEvent2.getY() : getHeight() / 2.0f);
+        }
+        this.f1262l = null;
+        return super.performClick();
+    }
+
+    public void setController(i iVar) {
+        z.b();
+        i iVar2 = this.f1258h;
+        if (iVar2 != null && iVar2 != iVar) {
+            iVar2.d();
+            setScreenFlashUiInfo(null);
+        }
+        this.f1258h = iVar;
+        c(false);
+        setScreenFlashUiInfo(getScreenFlashInternal());
+    }
+
+    public void setImplementationMode(c cVar) {
+        z.b();
+        this.f1252a = cVar;
+        c cVar2 = c.PERFORMANCE;
+    }
+
+    public void setScaleType(d dVar) {
+        z.b();
+        this.f1254d.q(dVar);
+        e();
+        c(false);
+    }
+
+    public void setScreenFlashOverlayColor(int i10) {
+        this.f1253c.setBackgroundColor(i10);
+    }
+
+    public void setScreenFlashWindow(Window window) {
+        z.b();
+        this.f1253c.setScreenFlashWindow(window);
+        setScreenFlashUiInfo(getScreenFlashInternal());
+    }
+
+    public PreviewView(Context context, AttributeSet attributeSet, int i10) {
+        this(context, attributeSet, i10, 0);
+    }
+
+    public PreviewView(Context context, AttributeSet attributeSet, int i10, int i11) {
+        super(context, attributeSet, i10, i11);
+        c cVar = f1251p;
+        this.f1252a = cVar;
+        androidx.camera.view.b bVar = new androidx.camera.view.b();
+        this.f1254d = bVar;
+        this.f1255e = true;
+        this.f1256f = new d0<>(e.IDLE);
+        this.f1257g = new AtomicReference<>();
+        this.f1259i = new x(bVar);
+        this.f1263m = new b();
+        this.f1264n = new View.OnLayoutChangeListener() { // from class: p1.r
+            @Override // android.view.View.OnLayoutChangeListener
+            public final void onLayoutChange(View view, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19) {
+                PreviewView.b(PreviewView.this, view, i12, i13, i14, i15, i16, i17, i18, i19);
+            }
+        };
+        this.f1265o = new a();
+        z.b();
+        TypedArray obtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, p1.a0.f28257a, i10, i11);
+        androidx.core.view.o0.k0(this, context, p1.a0.f28257a, attributeSet, obtainStyledAttributes, i10, i11);
+        try {
+            setScaleType(d.b(obtainStyledAttributes.getInteger(p1.a0.f28258c, bVar.g().c())));
+            setImplementationMode(c.b(obtainStyledAttributes.getInteger(p1.a0.b, cVar.c())));
+            obtainStyledAttributes.recycle();
+            this.f1260j = new q1.a(context, new a.b() { // from class: p1.s
+                @Override // q1.a.b
+                public final boolean a(a.c cVar2) {
+                    return PreviewView.a(PreviewView.this, cVar2);
+                }
+            });
+            if (getBackground() == null) {
+                setBackgroundColor(l2.b.c(getContext(), R.color.black));
+            }
+            f0 f0Var = new f0(context);
+            this.f1253c = f0Var;
+            f0Var.setLayoutParams(new LinearLayout.LayoutParams(-1, -1));
+        } catch (Throwable th2) {
+            obtainStyledAttributes.recycle();
+            throw th2;
+        }
+    }
+}

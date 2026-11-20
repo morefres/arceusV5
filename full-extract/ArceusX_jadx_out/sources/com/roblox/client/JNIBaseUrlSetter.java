@@ -1,0 +1,18 @@
+package com.roblox.client;
+
+import android.util.Log;
+import androidx.annotation.Keep;
+import rg.a1;
+
+/* loaded from: classes2.dex */
+public class JNIBaseUrlSetter {
+
+    /* renamed from: a, reason: collision with root package name */
+    public static final String f8942a = "JNIBaseUrlSetter";
+
+    @Keep
+    public static void setBaseUrl(String str) {
+        Log.d(f8942a, "setBaseUrl(" + str + ")");
+        a1.K0(str);
+    }
+}

@@ -1,0 +1,22 @@
+package com.roblox.client;
+
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import rg.w0;
+
+/* loaded from: classes2.dex */
+public class ShareAppChosenReceiver extends w0 {
+    @Override // rg.w0, android.content.BroadcastReceiver
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            Object obj = extras.get("android.intent.extra.CHOSEN_COMPONENT");
+            if (obj instanceof ComponentName) {
+                xj.a.b(((ComponentName) obj).getPackageName());
+            }
+        }
+    }
+}

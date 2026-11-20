@@ -1,0 +1,98 @@
+package com.roblox.client.pushnotification.v2;
+
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
+import com.roblox.client.pushnotification.v2.SendrChatMessageReplyHandler;
+import ek.q;
+import hj.c;
+import hj.i;
+import lj.h;
+import mi.f;
+
+/* loaded from: classes2.dex */
+public class SendrChatMessageReplyHandler extends h {
+    public static /* synthetic */ void k(Context context, String str, String str2, String str3, String str4, boolean z10) {
+        new i().f(context, "ChatNewMessage_" + str, str2, str3, z10);
+        q.e("rbx.push", "Failed to send Chat Message");
+    }
+
+    public static /* synthetic */ void l(Context context, long j10, long j11, String str, String str2, boolean z10) {
+        new i().e(context, "ChatNewMessage_" + j10, j11, str, z10);
+        q.e("rbx.push", "Failed to send Chat Message");
+    }
+
+    @Override // lj.h
+    public Intent j(Context context, Intent intent, Intent intent2) {
+        intent.putExtra("EXTRA_NOTIFICATION_TYPE", "ChatNewMessage");
+        intent.putExtra("EXTRA_CONVERSATION_ID", intent2.getLongExtra("EXTRA_CONVERSATION_ID", -1L));
+        return intent;
+    }
+
+    @Deprecated
+    public final void m(long j10, String str) {
+        q.i("rbx.push", "In markChatNotificationAsRead(), conversationId: " + j10 + " ,messageId: " + str);
+        f.c(j10, null);
+    }
+
+    public final void n(String str, String str2) {
+        q.i("rbx.push", "In markChatNotificationAsRead(), conversationGuid: " + str + " ,messageId: " + str2);
+        f.c(-1L, str);
+    }
+
+    @Deprecated
+    public final void o(final long j10, String str, final Context context, final long j11, final String str2) {
+        f.d(j10, null, str, new f.a() { // from class: mj.l
+            @Override // mi.f.a
+            public final void a(String str3, boolean z10) {
+                SendrChatMessageReplyHandler.l(context, j11, j10, str2, str3, z10);
+            }
+        });
+    }
+
+    @Override // lj.h, rg.w0, android.content.BroadcastReceiver
+    public void onReceive(Context context, Intent intent) {
+        String str;
+        super.onReceive(context, intent);
+        if (intent == null || !"chat_message_replied".equals(intent.getAction())) {
+            return;
+        }
+        q.i("rbx.push", "CMNR.onReceive() INTENT_ACTION_CHAT_MESSAGE_REPLIED");
+        String stringExtra = intent.getStringExtra("EXTRA_MESSAGE_ID");
+        long j10 = -1;
+        if (rh.h.a().v2()) {
+            str = intent.getStringExtra("EXTRA_CONVERSATION_ID");
+        } else {
+            j10 = intent.getLongExtra("EXTRA_CONVERSATION_ID", -1L);
+            str = "";
+        }
+        String str2 = str;
+        String stringExtra2 = intent.getStringExtra("EXTRA_CONVERSATION_TITLE");
+        String stringExtra3 = intent.getStringExtra("tag");
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
+        if (notificationManager != null) {
+            notificationManager.cancel(stringExtra3, stringExtra.hashCode());
+        }
+        CharSequence B = c.B(intent);
+        if (B != null) {
+            if (rh.h.a().v2()) {
+                p(str2, B.toString(), context, str2, stringExtra2);
+                n(str2, stringExtra);
+            } else {
+                long j11 = j10;
+                o(j11, B.toString(), context, j10, stringExtra2);
+                m(j11, stringExtra);
+            }
+            b("chat message replied", context, intent, true, "ChatNewMessage");
+        }
+    }
+
+    public final void p(final String str, String str2, final Context context, final String str3, final String str4) {
+        f.d(-1L, str, str2, new f.a() { // from class: mj.k
+            @Override // mi.f.a
+            public final void a(String str5, boolean z10) {
+                SendrChatMessageReplyHandler.k(context, str3, str, str4, str5, z10);
+            }
+        });
+    }
+}

@@ -1,0 +1,35 @@
+package com.appsflyer.internal;
+
+import java.util.List;
+import kotlin.jvm.internal.Intrinsics;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+/* loaded from: classes.dex */
+public final class AFc1qSDK {
+
+    /* renamed from: d, reason: collision with root package name */
+    @NotNull
+    final List<AFc1pSDK> f5300d;
+
+    public AFc1qSDK(@NotNull List<AFc1pSDK> list) {
+        Intrinsics.checkNotNullParameter(list, "");
+        this.f5300d = list;
+    }
+
+    public final boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        return (obj instanceof AFc1qSDK) && Intrinsics.c(this.f5300d, ((AFc1qSDK) obj).f5300d);
+    }
+
+    public final int hashCode() {
+        return this.f5300d.hashCode();
+    }
+
+    @NotNull
+    public final String toString() {
+        return "StorageConfig(typeEntries=" + this.f5300d + ")";
+    }
+}
