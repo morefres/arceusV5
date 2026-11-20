@@ -1,0 +1,214 @@
+package b6;
+
+import android.net.ConnectivityManager;
+import android.net.NetworkRequest;
+import android.os.Build;
+import b6.b;
+import b6.g;
+import f6.j0;
+import g6.u;
+import gt.o;
+import ju.d2;
+import ju.p0;
+import ju.z0;
+import kotlin.Metadata;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Intrinsics;
+import lu.t;
+import lu.v;
+import lu.y;
+import org.jetbrains.annotations.NotNull;
+import x5.w;
+import x5.x;
+
+@Metadata(d1 = {"\u00006\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000b\n\u0002\b\u0005\b\u0007\u0018\u00002\u00020\u0001B\u0019\u0012\u0006\u0010\u0003\u001a\u00020\u0002\u0012\b\b\u0002\u0010\u0005\u001a\u00020\u0004¢\u0006\u0004\b\u0006\u0010\u0007J\u001d\u0010\f\u001a\b\u0012\u0004\u0012\u00020\u000b0\n2\u0006\u0010\t\u001a\u00020\bH\u0016¢\u0006\u0004\b\f\u0010\rJ\u0017\u0010\u0011\u001a\u00020\u00102\u0006\u0010\u000f\u001a\u00020\u000eH\u0016¢\u0006\u0004\b\u0011\u0010\u0012R\u0014\u0010\u0003\u001a\u00020\u00028\u0002X\u0082\u0004¢\u0006\u0006\n\u0004\b\u0011\u0010\u0013R\u0014\u0010\u0005\u001a\u00020\u00048\u0002X\u0082\u0004¢\u0006\u0006\n\u0004\b\f\u0010\u0014¨\u0006\u0015"}, d2 = {"Lb6/g;", "Lc6/e;", "Landroid/net/ConnectivityManager;", "connManager", "", "timeoutMs", "<init>", "(Landroid/net/ConnectivityManager;J)V", "Lx5/d;", "constraints", "Lmu/h;", "Lb6/b;", j6.b.f21518e, "(Lx5/d;)Lmu/h;", "Lf6/j0;", "workSpec", "", ve.a.f33391e, "(Lf6/j0;)Z", "Landroid/net/ConnectivityManager;", "J", "work-runtime_release"}, k = 1, mv = {2, 1, 0}, xi = 48)
+/* loaded from: classes.dex */
+public final class g implements c6.e {
+
+    /* renamed from: a, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public final ConnectivityManager connManager;
+
+    /* renamed from: b, reason: from kotlin metadata */
+    public final long timeoutMs;
+
+    @Metadata(d1 = {"\u0000\u0010\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u0002\n\u0002\b\u0002\u0010\u0003\u001a\u00020\u0002*\b\u0012\u0004\u0012\u00020\u00010\u0000H\n¢\u0006\u0004\b\u0003\u0010\u0004"}, d2 = {"Llu/v;", "Lb6/b;", "", "<anonymous>", "(Llu/v;)V"}, k = 3, mv = {2, 1, 0})
+    @ot.f(c = "androidx.work.impl.constraints.NetworkRequestConstraintController$track$1", f = "WorkConstraintsTracker.kt", l = {191}, m = "invokeSuspend")
+    public static final class a extends ot.m implements Function2<v<? super b>, mt.b<? super Unit>, Object> {
+
+        /* renamed from: t, reason: collision with root package name */
+        public int f3821t;
+
+        /* renamed from: u, reason: collision with root package name */
+        public /* synthetic */ Object f3822u;
+
+        /* renamed from: v, reason: collision with root package name */
+        public final /* synthetic */ x5.d f3823v;
+
+        /* renamed from: w, reason: collision with root package name */
+        public final /* synthetic */ g f3824w;
+
+        @Metadata(d1 = {"\u0000\f\n\u0002\u0018\u0002\n\u0002\u0010\u0002\n\u0002\b\u0002\u0010\u0002\u001a\u00020\u0001*\u00020\u0000H\n¢\u0006\u0004\b\u0002\u0010\u0003"}, d2 = {"Lju/p0;", "", "<anonymous>", "(Lju/p0;)V"}, k = 3, mv = {2, 1, 0})
+        @ot.f(c = "androidx.work.impl.constraints.NetworkRequestConstraintController$track$1$timeoutJob$1", f = "WorkConstraintsTracker.kt", l = {162}, m = "invokeSuspend")
+        /* renamed from: b6.g$a$a, reason: collision with other inner class name */
+        public static final class C0074a extends ot.m implements Function2<p0, mt.b<? super Unit>, Object> {
+
+            /* renamed from: t, reason: collision with root package name */
+            public int f3825t;
+
+            /* renamed from: u, reason: collision with root package name */
+            public final /* synthetic */ g f3826u;
+
+            /* renamed from: v, reason: collision with root package name */
+            public final /* synthetic */ v<b> f3827v;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            /* JADX WARN: Multi-variable type inference failed */
+            public C0074a(g gVar, v<? super b> vVar, mt.b<? super C0074a> bVar) {
+                super(2, bVar);
+                this.f3826u = gVar;
+                this.f3827v = vVar;
+            }
+
+            @Override // ot.a
+            public final mt.b<Unit> create(Object obj, mt.b<?> bVar) {
+                return new C0074a(this.f3826u, this.f3827v, bVar);
+            }
+
+            @Override // ot.a
+            public final Object invokeSuspend(Object obj) {
+                String str;
+                Object e10 = nt.c.e();
+                int i10 = this.f3825t;
+                if (i10 == 0) {
+                    o.b(obj);
+                    long j10 = this.f3826u.timeoutMs;
+                    this.f3825t = 1;
+                    if (z0.b(j10, this) == e10) {
+                        return e10;
+                    }
+                } else {
+                    if (i10 != 1) {
+                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                    }
+                    o.b(obj);
+                }
+                w e11 = w.e();
+                str = m.f3844a;
+                e11.a(str, "NetworkRequestConstraintController didn't receive neither onCapabilitiesChanged/onLost callback, sending `ConstraintsNotMet` after " + this.f3826u.timeoutMs + " ms");
+                this.f3827v.v(new b.ConstraintsNotMet(7));
+                return Unit.f22894a;
+            }
+
+            @Override // kotlin.jvm.functions.Function2
+            public final Object invoke(p0 p0Var, mt.b<? super Unit> bVar) {
+                return ((C0074a) create(p0Var, bVar)).invokeSuspend(Unit.f22894a);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(x5.d dVar, g gVar, mt.b<? super a> bVar) {
+            super(2, bVar);
+            this.f3823v = dVar;
+            this.f3824w = gVar;
+        }
+
+        public static final Unit s(d2 d2Var, v vVar, b bVar) {
+            d2.a.a(d2Var, null, 1, null);
+            vVar.v(bVar);
+            return Unit.f22894a;
+        }
+
+        public static final Unit u(Function0 function0) {
+            function0.invoke();
+            return Unit.f22894a;
+        }
+
+        @Override // ot.a
+        public final mt.b<Unit> create(Object obj, mt.b<?> bVar) {
+            a aVar = new a(this.f3823v, this.f3824w, bVar);
+            aVar.f3822u = obj;
+            return aVar;
+        }
+
+        @Override // ot.a
+        public final Object invokeSuspend(Object obj) {
+            final d2 d10;
+            Object e10 = nt.c.e();
+            int i10 = this.f3821t;
+            if (i10 == 0) {
+                o.b(obj);
+                final v vVar = (v) this.f3822u;
+                NetworkRequest d11 = this.f3823v.d();
+                if (d11 == null) {
+                    d11 = u.a(this.f3823v.getRequiredNetworkType());
+                }
+                if (d11 == null) {
+                    y.a.a(vVar.a(), null, 1, null);
+                    return Unit.f22894a;
+                }
+                d10 = ju.k.d(vVar, null, null, new C0074a(this.f3824w, vVar, null), 3, null);
+                Function1<? super b, Unit> function1 = new Function1() { // from class: b6.e
+                    @Override // kotlin.jvm.functions.Function1
+                    public final Object invoke(Object obj2) {
+                        Unit s8;
+                        s8 = g.a.s(d2.this, vVar, (b) obj2);
+                        return s8;
+                    }
+                };
+                final Function0<Unit> b = Build.VERSION.SDK_INT >= 30 ? k.f3833a.b(this.f3824w.connManager, d11, function1) : d.INSTANCE.b(this.f3824w.connManager, d11, function1);
+                Function0 function0 = new Function0() { // from class: b6.f
+                    @Override // kotlin.jvm.functions.Function0
+                    public final Object invoke() {
+                        Unit u8;
+                        u8 = g.a.u(Function0.this);
+                        return u8;
+                    }
+                };
+                this.f3821t = 1;
+                if (t.a(vVar, function0, this) == e10) {
+                    return e10;
+                }
+            } else {
+                if (i10 != 1) {
+                    throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                }
+                o.b(obj);
+            }
+            return Unit.f22894a;
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        /* renamed from: r, reason: merged with bridge method [inline-methods] */
+        public final Object invoke(v<? super b> vVar, mt.b<? super Unit> bVar) {
+            return ((a) create(vVar, bVar)).invokeSuspend(Unit.f22894a);
+        }
+    }
+
+    public g(@NotNull ConnectivityManager connManager, long j10) {
+        Intrinsics.checkNotNullParameter(connManager, "connManager");
+        this.connManager = connManager;
+        this.timeoutMs = j10;
+    }
+
+    @Override // c6.e
+    public boolean a(@NotNull j0 workSpec) {
+        Intrinsics.checkNotNullParameter(workSpec, "workSpec");
+        return (workSpec.constraints.d() == null && workSpec.constraints.getRequiredNetworkType() == x.f35347a) ? false : true;
+    }
+
+    @Override // c6.e
+    @NotNull
+    public mu.h<b> b(@NotNull x5.d constraints) {
+        Intrinsics.checkNotNullParameter(constraints, "constraints");
+        return mu.j.d(new a(constraints, this, null));
+    }
+
+    public /* synthetic */ g(ConnectivityManager connectivityManager, long j10, int i10, DefaultConstructorMarker defaultConstructorMarker) {
+        this(connectivityManager, (i10 & 2) != 0 ? 1000L : j10);
+    }
+}

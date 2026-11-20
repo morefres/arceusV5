@@ -1,0 +1,28 @@
+package b0;
+
+import android.hardware.camera2.CaptureRequest;
+import android.os.Build;
+import kotlin.Metadata;
+import kotlin.jvm.internal.Intrinsics;
+import n0.n1;
+import org.jetbrains.annotations.NotNull;
+import y.a;
+
+@Metadata(d1 = {"\u0000 \n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0003\bÀ\u0002\u0018\u00002\u00020\u0001B\t\b\u0002¢\u0006\u0004\b\u0002\u0010\u0003J\u001f\u0010\t\u001a\u00020\b2\u0006\u0010\u0005\u001a\u00020\u00042\u0006\u0010\u0007\u001a\u00020\u0006H\u0007¢\u0006\u0004\b\t\u0010\n¨\u0006\u000b"}, d2 = {"Lb0/b;", "", "<init>", "()V", "Ly/a$a;", "options", "Ln0/n1$c;", "priority", "", ve.a.f33391e, "(Ly/a$a;Ln0/n1$c;)V", "camera-camera2_release"}, k = 1, mv = {2, 0, 0}, xi = 48)
+/* loaded from: classes.dex */
+public final class b {
+
+    /* renamed from: a, reason: collision with root package name */
+    @NotNull
+    public static final b f3622a = new b();
+
+    public static final void a(@NotNull a.C0666a options, @NotNull n1.c priority) {
+        CaptureRequest.Key key;
+        Intrinsics.checkNotNullParameter(options, "options");
+        Intrinsics.checkNotNullParameter(priority, "priority");
+        if (Build.VERSION.SDK_INT >= 34) {
+            key = CaptureRequest.CONTROL_SETTINGS_OVERRIDE;
+            options.g(key, 1, priority);
+        }
+    }
+}

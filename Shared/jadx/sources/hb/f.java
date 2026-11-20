@@ -1,0 +1,14 @@
+package hb;
+
+import android.os.IInterface;
+import com.google.android.gms.internal.location.zzbc;
+import com.google.android.gms.internal.location.zzl;
+
+/* loaded from: classes.dex */
+public interface f extends IInterface {
+    void U(zzl zzlVar);
+
+    void q2(boolean z10);
+
+    void w(zzbc zzbcVar);
+}

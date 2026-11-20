@@ -1,0 +1,31 @@
+package c5;
+
+import java.util.List;
+import kotlin.Metadata;
+import kotlin.Unit;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.text.x;
+import org.jetbrains.annotations.NotNull;
+
+@Metadata(d1 = {"\u0000\u000e\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0003\u001a\u0017\u0010\u0003\u001a\u00020\u00022\u0006\u0010\u0001\u001a\u00020\u0000H\u0007¢\u0006\u0004\b\u0003\u0010\u0004¨\u0006\u0005"}, d2 = {"Lf5/b;", "connection", "", ve.a.f33391e, "(Lf5/b;)V", "room-runtime"}, k = 5, mv = {2, 1, 0}, xi = 48, xs = "androidx/room/util/DBUtil")
+/* loaded from: classes.dex */
+public final /* synthetic */ class b {
+    public static final void a(@NotNull f5.b connection) {
+        Intrinsics.checkNotNullParameter(connection, "connection");
+        List c10 = kotlin.collections.o.c();
+        f5.d r32 = connection.r3("SELECT name FROM sqlite_master WHERE type = 'trigger'");
+        while (r32.i3()) {
+            try {
+                c10.add(r32.F2(0));
+            } finally {
+            }
+        }
+        Unit unit = Unit.f22894a;
+        wt.a.a(r32, null);
+        for (String str : kotlin.collections.o.a(c10)) {
+            if (x.T(str, "room_fts_content_sync_", false, 2, null)) {
+                f5.a.a(connection, "DROP TRIGGER IF EXISTS " + str);
+            }
+        }
+    }
+}

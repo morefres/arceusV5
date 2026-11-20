@@ -1,0 +1,81 @@
+package com.google.android.gms.internal.play_billing;
+
+import java.util.Arrays;
+
+/* loaded from: classes.dex */
+public final class q3 extends p3 {
+
+    /* renamed from: c, reason: collision with root package name */
+    public final byte[] f7266c;
+
+    public q3(byte[] bArr) {
+        super(null);
+        this.f7266c = bArr;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.s3
+    public final byte b(int i10) {
+        return this.f7266c[i10];
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.s3
+    public final int c(int i10, int i11, int i12) {
+        return z4.b(i10, this.f7266c, 0, i12);
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.s3
+    public final int d() {
+        return this.f7266c.length;
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.s3
+    public final s3 e(int i10, int i11) {
+        byte[] bArr = this.f7266c;
+        int i12 = s3.i(0, i11, bArr.length);
+        return i12 == 0 ? s3.b : new m3(bArr, 0, i12);
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.s3
+    public final void f(byte[] bArr, int i10, int i11, int i12) {
+        System.arraycopy(this.f7266c, 0, bArr, 0, i12);
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.s3
+    public final void g(i3 i3Var) {
+        byte[] bArr = this.f7266c;
+        ((x3) i3Var).x(bArr, 0, bArr.length);
+    }
+
+    @Override // com.google.android.gms.internal.play_billing.s3
+    public final boolean h(s3 s3Var) {
+        byte[] bArr;
+        int i10;
+        boolean z10 = s3Var instanceof q3;
+        if (z10) {
+            return Arrays.equals(this.f7266c, ((q3) s3Var).f7266c);
+        }
+        boolean z11 = s3Var instanceof m3;
+        if (!z11) {
+            return s3Var.h(this);
+        }
+        byte[] bArr2 = this.f7266c;
+        int d10 = s3Var.d();
+        int length = bArr2.length;
+        if (length > d10) {
+            throw new IllegalArgumentException("Length too large: " + length + length);
+        }
+        if (length > s3Var.d()) {
+            throw new IllegalArgumentException("Ran off end of other: 0, " + length + ", " + s3Var.d());
+        }
+        if (z10) {
+            return s3.l(bArr2, 0, ((q3) s3Var).f7266c, 0, length);
+        }
+        if (!z11) {
+            return s3Var.e(0, length).equals(e(0, length));
+        }
+        m3 m3Var = (m3) s3Var;
+        bArr = m3Var.f7226c;
+        i10 = m3Var.f7227d;
+        return s3.l(bArr2, 0, bArr, i10, length);
+    }
+}

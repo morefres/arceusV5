@@ -1,0 +1,19 @@
+package androidx.camera.core.internal.compat.quirk;
+
+import android.os.Build;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
+import n0.g3;
+
+/* loaded from: classes.dex */
+public class LowMemoryQuirk implements g3 {
+
+    /* renamed from: a, reason: collision with root package name */
+    public static final Set<String> f1240a = new HashSet(Arrays.asList("SM-A520W", "MOTOG3"));
+
+    public static boolean g() {
+        return f1240a.contains(Build.MODEL.toUpperCase(Locale.US));
+    }
+}

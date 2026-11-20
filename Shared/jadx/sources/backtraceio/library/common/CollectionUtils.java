@@ -1,0 +1,25 @@
+package backtraceio.library.common;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/* loaded from: classes.dex */
+public class CollectionUtils {
+    public static <T> List<T> copyList(List<T> list) {
+        ArrayList arrayList = new ArrayList();
+        if (list != null) {
+            arrayList.addAll(list);
+        }
+        return arrayList;
+    }
+
+    public static <K, V> Map<K, V> copyMap(Map<K, V> map) {
+        HashMap hashMap = new HashMap();
+        if (map != null) {
+            hashMap.putAll(map);
+        }
+        return hashMap;
+    }
+}

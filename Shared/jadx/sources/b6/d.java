@@ -1,0 +1,119 @@
+package b6;
+
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
+import b6.b;
+import b6.d;
+import kotlin.Metadata;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.jvm.internal.y;
+import kotlin.text.x;
+import org.jetbrains.annotations.NotNull;
+import x5.w;
+
+@Metadata(d1 = {"\u0000*\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\t\b\u0003\u0018\u0000 \u00132\u00020\u0001:\u0001\u0011B!\b\u0002\u0012\u0016\u0010\u0006\u001a\u0012\u0012\u0004\u0012\u00020\u0003\u0012\u0004\u0012\u00020\u00040\u0002j\u0002`\u0005¢\u0006\u0004\b\u0007\u0010\bJ\u001f\u0010\r\u001a\u00020\u00042\u0006\u0010\n\u001a\u00020\t2\u0006\u0010\f\u001a\u00020\u000bH\u0016¢\u0006\u0004\b\r\u0010\u000eJ\u0017\u0010\u000f\u001a\u00020\u00042\u0006\u0010\n\u001a\u00020\tH\u0016¢\u0006\u0004\b\u000f\u0010\u0010R$\u0010\u0006\u001a\u0012\u0012\u0004\u0012\u00020\u0003\u0012\u0004\u0012\u00020\u00040\u0002j\u0002`\u00058\u0002X\u0082\u0004¢\u0006\u0006\n\u0004\b\u0011\u0010\u0012¨\u0006\u0014"}, d2 = {"Lb6/d;", "Landroid/net/ConnectivityManager$NetworkCallback;", "Lkotlin/Function1;", "Lb6/b;", "", "Landroidx/work/impl/constraints/OnConstraintState;", "onConstraintState", "<init>", "(Lkotlin/jvm/functions/Function1;)V", "Landroid/net/Network;", "network", "Landroid/net/NetworkCapabilities;", "networkCapabilities", "onCapabilitiesChanged", "(Landroid/net/Network;Landroid/net/NetworkCapabilities;)V", "onLost", "(Landroid/net/Network;)V", ve.a.f33391e, "Lkotlin/jvm/functions/Function1;", j6.b.f21518e, "work-runtime_release"}, k = 1, mv = {2, 1, 0}, xi = 48)
+/* loaded from: classes.dex */
+public final class d extends ConnectivityManager.NetworkCallback {
+
+    /* renamed from: b, reason: from kotlin metadata */
+    @NotNull
+    public static final Companion INSTANCE = new Companion(null);
+
+    /* renamed from: a, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public final Function1<b, Unit> onConstraintState;
+
+    @Metadata(d1 = {"\u00002\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0003\b\u0086\u0003\u0018\u00002\u00020\u0001B\t\b\u0002¢\u0006\u0004\b\u0002\u0010\u0003J;\u0010\u000e\u001a\b\u0012\u0004\u0012\u00020\n0\r2\u0006\u0010\u0005\u001a\u00020\u00042\u0006\u0010\u0007\u001a\u00020\u00062\u0016\u0010\f\u001a\u0012\u0012\u0004\u0012\u00020\t\u0012\u0004\u0012\u00020\n0\bj\u0002`\u000b¢\u0006\u0004\b\u000e\u0010\u000f¨\u0006\u0010"}, d2 = {"Lb6/d$a;", "", "<init>", "()V", "Landroid/net/ConnectivityManager;", "connManager", "Landroid/net/NetworkRequest;", "networkRequest", "Lkotlin/Function1;", "Lb6/b;", "", "Landroidx/work/impl/constraints/OnConstraintState;", "onConstraintState", "Lkotlin/Function0;", j6.b.f21518e, "(Landroid/net/ConnectivityManager;Landroid/net/NetworkRequest;Lkotlin/jvm/functions/Function1;)Lkotlin/jvm/functions/Function0;", "work-runtime_release"}, k = 1, mv = {2, 1, 0}, xi = 48)
+    /* renamed from: b6.d$a, reason: from kotlin metadata */
+    public static final class Companion {
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        public static final Unit c(y yVar, ConnectivityManager connectivityManager, d dVar) {
+            String str;
+            if (yVar.f22979a) {
+                w e10 = w.e();
+                str = m.f3844a;
+                e10.a(str, "NetworkRequestConstraintController unregister callback");
+                connectivityManager.unregisterNetworkCallback(dVar);
+            }
+            return Unit.f22894a;
+        }
+
+        @NotNull
+        public final Function0<Unit> b(@NotNull final ConnectivityManager connManager, @NotNull NetworkRequest networkRequest, @NotNull Function1<? super b, Unit> onConstraintState) {
+            String str;
+            String str2;
+            Intrinsics.checkNotNullParameter(connManager, "connManager");
+            Intrinsics.checkNotNullParameter(networkRequest, "networkRequest");
+            Intrinsics.checkNotNullParameter(onConstraintState, "onConstraintState");
+            final d dVar = new d(onConstraintState, null);
+            final y yVar = new y();
+            try {
+                w e10 = w.e();
+                str2 = m.f3844a;
+                e10.a(str2, "NetworkRequestConstraintController register callback");
+                connManager.registerNetworkCallback(networkRequest, dVar);
+                yVar.f22979a = true;
+            } catch (RuntimeException e11) {
+                String name = e11.getClass().getName();
+                Intrinsics.checkNotNullExpressionValue(name, "getName(...)");
+                if (!x.D(name, "TooManyRequestsException", false, 2, null)) {
+                    throw e11;
+                }
+                w e12 = w.e();
+                str = m.f3844a;
+                e12.b(str, "NetworkRequestConstraintController couldn't register callback", e11);
+                onConstraintState.invoke(new b.ConstraintsNotMet(7));
+            }
+            return new Function0() { // from class: b6.c
+                @Override // kotlin.jvm.functions.Function0
+                public final Object invoke() {
+                    Unit c10;
+                    c10 = d.Companion.c(y.this, connManager, dVar);
+                    return c10;
+                }
+            };
+        }
+
+        public Companion() {
+        }
+    }
+
+    public /* synthetic */ d(Function1 function1, DefaultConstructorMarker defaultConstructorMarker) {
+        this(function1);
+    }
+
+    @Override // android.net.ConnectivityManager.NetworkCallback
+    public void onCapabilitiesChanged(@NotNull Network network, @NotNull NetworkCapabilities networkCapabilities) {
+        String str;
+        Intrinsics.checkNotNullParameter(network, "network");
+        Intrinsics.checkNotNullParameter(networkCapabilities, "networkCapabilities");
+        w e10 = w.e();
+        str = m.f3844a;
+        e10.a(str, "NetworkRequestConstraintController onCapabilitiesChanged callback");
+        this.onConstraintState.invoke(b.a.f3813a);
+    }
+
+    @Override // android.net.ConnectivityManager.NetworkCallback
+    public void onLost(@NotNull Network network) {
+        String str;
+        Intrinsics.checkNotNullParameter(network, "network");
+        w e10 = w.e();
+        str = m.f3844a;
+        e10.a(str, "NetworkRequestConstraintController onLost callback");
+        this.onConstraintState.invoke(new b.ConstraintsNotMet(7));
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public d(Function1<? super b, Unit> function1) {
+        this.onConstraintState = function1;
+    }
+}

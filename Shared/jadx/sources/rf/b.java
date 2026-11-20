@@ -1,0 +1,8 @@
+package rf;
+
+import androidx.annotation.NonNull;
+
+/* loaded from: classes2.dex */
+public interface b<TValue, TContext> {
+    void encode(@NonNull TValue tvalue, @NonNull TContext tcontext);
+}

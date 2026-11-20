@@ -1,0 +1,28 @@
+package ae;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+/* loaded from: classes2.dex */
+public final class l0 {
+
+    /* renamed from: a, reason: collision with root package name */
+    public final Map f446a = new HashMap();
+
+    public final l0 a(String str, String str2, String str3) {
+        if (!this.f446a.containsKey(str2)) {
+            this.f446a.put(str2, new HashMap());
+        }
+        ((Map) this.f446a.get(str2)).put(str, str3);
+        return this;
+    }
+
+    public final n0 b() {
+        HashMap hashMap = new HashMap();
+        for (Map.Entry entry : this.f446a.entrySet()) {
+            hashMap.put((String) entry.getKey(), Collections.unmodifiableMap(new HashMap((Map) entry.getValue())));
+        }
+        return new n0(Collections.unmodifiableMap(hashMap), null);
+    }
+}

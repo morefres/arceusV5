@@ -1,0 +1,10 @@
+package pd;
+
+import androidx.annotation.NonNull;
+import com.google.android.gms.tasks.Task;
+
+/* loaded from: classes2.dex */
+public interface b {
+    @NonNull
+    Task<e> a(@NonNull d dVar);
+}

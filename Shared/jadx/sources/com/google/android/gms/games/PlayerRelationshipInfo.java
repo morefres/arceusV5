@@ -1,0 +1,15 @@
+package com.google.android.gms.games;
+
+import android.os.Parcelable;
+import m9.e;
+
+/* loaded from: classes.dex */
+public interface PlayerRelationshipInfo extends e<PlayerRelationshipInfo>, Parcelable {
+    int X();
+
+    String zza();
+
+    String zzb();
+
+    String zzc();
+}

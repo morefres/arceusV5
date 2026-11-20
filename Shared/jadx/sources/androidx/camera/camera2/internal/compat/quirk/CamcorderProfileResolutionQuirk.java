@@ -1,0 +1,38 @@
+package androidx.camera.camera2.internal.compat.quirk;
+
+import a0.c0;
+import a0.u0;
+import android.hardware.camera2.CameraCharacteristics;
+import android.util.Size;
+import g0.r1;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import n0.g3;
+
+/* loaded from: classes.dex */
+public class CamcorderProfileResolutionQuirk implements g3 {
+
+    /* renamed from: a, reason: collision with root package name */
+    public final u0 f1167a;
+    public List<Size> b = null;
+
+    public CamcorderProfileResolutionQuirk(c0 c0Var) {
+        this.f1167a = c0Var.e();
+    }
+
+    public static boolean h(c0 c0Var) {
+        Integer num = (Integer) c0Var.a(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL);
+        return num != null && num.intValue() == 2;
+    }
+
+    public List<Size> g() {
+        if (this.b == null) {
+            Size[] g10 = this.f1167a.g(34);
+            this.b = g10 != null ? Arrays.asList((Size[]) g10.clone()) : Collections.EMPTY_LIST;
+            r1.a("CamcorderProfileResolutionQuirk", "mSupportedResolutions = " + this.b);
+        }
+        return new ArrayList(this.b);
+    }
+}

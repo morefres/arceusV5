@@ -1,0 +1,975 @@
+package f2;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.Interpolator;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.w;
+import f2.l;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+/* loaded from: classes.dex */
+public class j extends ConstraintLayout implements w {
+
+    /* renamed from: v0, reason: collision with root package name */
+    public static boolean f16683v0;
+    public Interpolator A;
+    public float B;
+    public int C;
+    public int D;
+    public int E;
+    public boolean F;
+    public HashMap<View, g> G;
+    public long H;
+    public float I;
+    public float J;
+    public float K;
+    public long L;
+    public float M;
+    public boolean N;
+    public boolean O;
+    public c P;
+    public int Q;
+    public boolean R;
+    public f2.b S;
+    public boolean T;
+    public float U;
+    public float V;
+    public long W;
+
+    /* renamed from: a0, reason: collision with root package name */
+    public float f16684a0;
+
+    /* renamed from: b0, reason: collision with root package name */
+    public boolean f16685b0;
+
+    /* renamed from: c0, reason: collision with root package name */
+    public ArrayList<h> f16686c0;
+
+    /* renamed from: d0, reason: collision with root package name */
+    public ArrayList<h> f16687d0;
+
+    /* renamed from: e0, reason: collision with root package name */
+    public ArrayList<h> f16688e0;
+
+    /* renamed from: f0, reason: collision with root package name */
+    public CopyOnWriteArrayList<c> f16689f0;
+
+    /* renamed from: g0, reason: collision with root package name */
+    public int f16690g0;
+
+    /* renamed from: h0, reason: collision with root package name */
+    public float f16691h0;
+
+    /* renamed from: i0, reason: collision with root package name */
+    public boolean f16692i0;
+
+    /* renamed from: j0, reason: collision with root package name */
+    public boolean f16693j0;
+
+    /* renamed from: k0, reason: collision with root package name */
+    public float f16694k0;
+
+    /* renamed from: l0, reason: collision with root package name */
+    public boolean f16695l0;
+
+    /* renamed from: m0, reason: collision with root package name */
+    public b f16696m0;
+
+    /* renamed from: n0, reason: collision with root package name */
+    public Runnable f16697n0;
+
+    /* renamed from: o0, reason: collision with root package name */
+    public int[] f16698o0;
+
+    /* renamed from: p0, reason: collision with root package name */
+    public int f16699p0;
+
+    /* renamed from: q0, reason: collision with root package name */
+    public int f16700q0;
+
+    /* renamed from: r0, reason: collision with root package name */
+    public boolean f16701r0;
+
+    /* renamed from: s0, reason: collision with root package name */
+    public d f16702s0;
+
+    /* renamed from: t0, reason: collision with root package name */
+    public boolean f16703t0;
+
+    /* renamed from: u0, reason: collision with root package name */
+    public ArrayList<Integer> f16704u0;
+
+    /* renamed from: z, reason: collision with root package name */
+    public Interpolator f16705z;
+
+    public class a implements Runnable {
+        public a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            j.this.f16696m0.a();
+        }
+    }
+
+    public class b {
+
+        /* renamed from: a, reason: collision with root package name */
+        public float f16707a = Float.NaN;
+        public float b = Float.NaN;
+
+        /* renamed from: c, reason: collision with root package name */
+        public int f16708c = -1;
+
+        /* renamed from: d, reason: collision with root package name */
+        public int f16709d = -1;
+
+        /* renamed from: e, reason: collision with root package name */
+        public final String f16710e = "motion.progress";
+
+        /* renamed from: f, reason: collision with root package name */
+        public final String f16711f = "motion.velocity";
+
+        /* renamed from: g, reason: collision with root package name */
+        public final String f16712g = "motion.StartState";
+
+        /* renamed from: h, reason: collision with root package name */
+        public final String f16713h = "motion.EndState";
+
+        public b() {
+        }
+
+        public void a() {
+            int i10 = this.f16708c;
+            if (i10 != -1 || this.f16709d != -1) {
+                if (i10 == -1) {
+                    j.this.R(this.f16709d);
+                } else {
+                    int i11 = this.f16709d;
+                    if (i11 == -1) {
+                        j.this.O(i10, -1, -1);
+                    } else {
+                        j.this.P(i10, i11);
+                    }
+                }
+                j.this.setState(d.SETUP);
+            }
+            if (Float.isNaN(this.b)) {
+                if (Float.isNaN(this.f16707a)) {
+                    return;
+                }
+                j.this.setProgress(this.f16707a);
+            } else {
+                j.this.N(this.f16707a, this.b);
+                this.f16707a = Float.NaN;
+                this.b = Float.NaN;
+                this.f16708c = -1;
+                this.f16709d = -1;
+            }
+        }
+
+        public Bundle b() {
+            Bundle bundle = new Bundle();
+            bundle.putFloat("motion.progress", this.f16707a);
+            bundle.putFloat("motion.velocity", this.b);
+            bundle.putInt("motion.StartState", this.f16708c);
+            bundle.putInt("motion.EndState", this.f16709d);
+            return bundle;
+        }
+
+        public void c() {
+            this.f16709d = j.this.E;
+            this.f16708c = j.this.C;
+            this.b = j.this.getVelocity();
+            this.f16707a = j.this.getProgress();
+        }
+
+        public void d(int i10) {
+            this.f16709d = i10;
+        }
+
+        public void e(float f10) {
+            this.f16707a = f10;
+        }
+
+        public void f(int i10) {
+            this.f16708c = i10;
+        }
+
+        public void g(Bundle bundle) {
+            this.f16707a = bundle.getFloat("motion.progress");
+            this.b = bundle.getFloat("motion.velocity");
+            this.f16708c = bundle.getInt("motion.StartState");
+            this.f16709d = bundle.getInt("motion.EndState");
+        }
+
+        public void h(float f10) {
+            this.b = f10;
+        }
+    }
+
+    public interface c {
+        void a(j jVar, int i10, int i11);
+
+        void b(j jVar, int i10);
+
+        void c(j jVar, int i10, int i11, float f10);
+    }
+
+    public enum d {
+        UNDEFINED,
+        SETUP,
+        MOVING,
+        FINISHED
+    }
+
+    public void G(float f10) {
+    }
+
+    public void H(boolean z10) {
+        boolean z11;
+        int i10;
+        float interpolation;
+        boolean z12;
+        if (this.L == -1) {
+            this.L = getNanoTime();
+        }
+        float f10 = this.K;
+        if (f10 > 0.0f && f10 < 1.0f) {
+            this.D = -1;
+        }
+        boolean z13 = false;
+        if (this.f16685b0 || (this.O && (z10 || this.M != f10))) {
+            float signum = Math.signum(this.M - f10);
+            long nanoTime = getNanoTime();
+            Interpolator interpolator = this.f16705z;
+            float f11 = !(interpolator instanceof i) ? (((nanoTime - this.L) * signum) * 1.0E-9f) / this.I : 0.0f;
+            float f12 = this.K + f11;
+            if (this.N) {
+                f12 = this.M;
+            }
+            if ((signum <= 0.0f || f12 < this.M) && (signum > 0.0f || f12 > this.M)) {
+                z11 = false;
+            } else {
+                f12 = this.M;
+                this.O = false;
+                z11 = true;
+            }
+            this.K = f12;
+            this.J = f12;
+            this.L = nanoTime;
+            if (interpolator == null || z11) {
+                this.B = f11;
+            } else {
+                if (this.R) {
+                    interpolation = interpolator.getInterpolation((nanoTime - this.H) * 1.0E-9f);
+                    Interpolator interpolator2 = this.f16705z;
+                    if (interpolator2 == null) {
+                        throw null;
+                    }
+                    this.K = interpolation;
+                    this.L = nanoTime;
+                    if (interpolator2 instanceof i) {
+                        float a10 = ((i) interpolator2).a();
+                        this.B = a10;
+                        Math.abs(a10);
+                        if (a10 > 0.0f && interpolation >= 1.0f) {
+                            this.K = 1.0f;
+                            this.O = false;
+                            interpolation = 1.0f;
+                        }
+                        if (a10 < 0.0f && interpolation <= 0.0f) {
+                            this.K = 0.0f;
+                            this.O = false;
+                            f12 = 0.0f;
+                        }
+                    }
+                } else {
+                    interpolation = interpolator.getInterpolation(f12);
+                    Interpolator interpolator3 = this.f16705z;
+                    if (interpolator3 instanceof i) {
+                        this.B = ((i) interpolator3).a();
+                    } else {
+                        this.B = ((interpolator3.getInterpolation(f12 + f11) - interpolation) * signum) / f11;
+                    }
+                }
+                f12 = interpolation;
+            }
+            if (Math.abs(this.B) > 1.0E-5f) {
+                setState(d.MOVING);
+            }
+            if ((signum > 0.0f && f12 >= this.M) || (signum <= 0.0f && f12 <= this.M)) {
+                f12 = this.M;
+                this.O = false;
+            }
+            if (f12 >= 1.0f || f12 <= 0.0f) {
+                this.O = false;
+                setState(d.FINISHED);
+            }
+            int childCount = getChildCount();
+            this.f16685b0 = false;
+            long nanoTime2 = getNanoTime();
+            this.f16694k0 = f12;
+            Interpolator interpolator4 = this.A;
+            float interpolation2 = interpolator4 == null ? f12 : interpolator4.getInterpolation(f12);
+            Interpolator interpolator5 = this.A;
+            if (interpolator5 != null) {
+                float interpolation3 = interpolator5.getInterpolation((signum / this.I) + f12);
+                this.B = interpolation3;
+                this.B = interpolation3 - this.A.getInterpolation(f12);
+            }
+            for (int i11 = 0; i11 < childCount; i11++) {
+                View childAt = getChildAt(i11);
+                g gVar = this.G.get(childAt);
+                if (gVar != null) {
+                    this.f16685b0 = gVar.c(childAt, interpolation2, nanoTime2, null) | this.f16685b0;
+                }
+            }
+            boolean z14 = (signum > 0.0f && f12 >= this.M) || (signum <= 0.0f && f12 <= this.M);
+            if (!this.f16685b0 && !this.O && z14) {
+                setState(d.FINISHED);
+            }
+            if (this.f16693j0) {
+                requestLayout();
+            }
+            boolean z15 = (!z14) | this.f16685b0;
+            this.f16685b0 = z15;
+            if (f12 <= 0.0f && (i10 = this.C) != -1 && this.D != i10) {
+                this.D = i10;
+                throw null;
+            }
+            if (f12 >= 1.0d) {
+                int i12 = this.D;
+                int i13 = this.E;
+                if (i12 != i13) {
+                    this.D = i13;
+                    throw null;
+                }
+            }
+            if (z15 || this.O) {
+                invalidate();
+            } else if ((signum > 0.0f && f12 == 1.0f) || (signum < 0.0f && f12 == 0.0f)) {
+                setState(d.FINISHED);
+            }
+            if (!this.f16685b0 && !this.O && ((signum > 0.0f && f12 == 1.0f) || (signum < 0.0f && f12 == 0.0f))) {
+                L();
+            }
+        }
+        float f13 = this.K;
+        if (f13 < 1.0f) {
+            if (f13 <= 0.0f) {
+                int i14 = this.D;
+                int i15 = this.C;
+                z12 = i14 != i15;
+                this.D = i15;
+            }
+            this.f16703t0 |= z13;
+            if (z13 && !this.f16695l0) {
+                requestLayout();
+            }
+            this.J = this.K;
+        }
+        int i16 = this.D;
+        int i17 = this.E;
+        z12 = i16 != i17;
+        this.D = i17;
+        z13 = z12;
+        this.f16703t0 |= z13;
+        if (z13) {
+            requestLayout();
+        }
+        this.J = this.K;
+    }
+
+    public final void I() {
+        CopyOnWriteArrayList<c> copyOnWriteArrayList;
+        if ((this.P == null && ((copyOnWriteArrayList = this.f16689f0) == null || copyOnWriteArrayList.isEmpty())) || this.f16691h0 == this.J) {
+            return;
+        }
+        if (this.f16690g0 != -1) {
+            K();
+            this.f16692i0 = true;
+        }
+        this.f16690g0 = -1;
+        float f10 = this.J;
+        this.f16691h0 = f10;
+        c cVar = this.P;
+        if (cVar != null) {
+            cVar.c(this, this.C, this.E, f10);
+        }
+        CopyOnWriteArrayList<c> copyOnWriteArrayList2 = this.f16689f0;
+        if (copyOnWriteArrayList2 != null) {
+            Iterator<c> it = copyOnWriteArrayList2.iterator();
+            while (it.hasNext()) {
+                it.next().c(this, this.C, this.E, this.J);
+            }
+        }
+        this.f16692i0 = true;
+    }
+
+    public void J() {
+        int i10;
+        CopyOnWriteArrayList<c> copyOnWriteArrayList;
+        if ((this.P != null || ((copyOnWriteArrayList = this.f16689f0) != null && !copyOnWriteArrayList.isEmpty())) && this.f16690g0 == -1) {
+            this.f16690g0 = this.D;
+            if (this.f16704u0.isEmpty()) {
+                i10 = -1;
+            } else {
+                ArrayList<Integer> arrayList = this.f16704u0;
+                i10 = arrayList.get(arrayList.size() - 1).intValue();
+            }
+            int i11 = this.D;
+            if (i10 != i11 && i11 != -1) {
+                this.f16704u0.add(Integer.valueOf(i11));
+            }
+        }
+        M();
+        Runnable runnable = this.f16697n0;
+        if (runnable != null) {
+            runnable.run();
+            this.f16697n0 = null;
+        }
+        int[] iArr = this.f16698o0;
+        if (iArr == null || this.f16699p0 <= 0) {
+            return;
+        }
+        R(iArr[0]);
+        int[] iArr2 = this.f16698o0;
+        System.arraycopy(iArr2, 1, iArr2, 0, iArr2.length - 1);
+        this.f16699p0--;
+    }
+
+    public final void K() {
+        c cVar = this.P;
+        if (cVar != null) {
+            cVar.a(this, this.C, this.E);
+        }
+        CopyOnWriteArrayList<c> copyOnWriteArrayList = this.f16689f0;
+        if (copyOnWriteArrayList != null) {
+            Iterator<c> it = copyOnWriteArrayList.iterator();
+            while (it.hasNext()) {
+                it.next().a(this, this.C, this.E);
+            }
+        }
+    }
+
+    public void L() {
+    }
+
+    public final void M() {
+        CopyOnWriteArrayList<c> copyOnWriteArrayList;
+        if (this.P == null && ((copyOnWriteArrayList = this.f16689f0) == null || copyOnWriteArrayList.isEmpty())) {
+            return;
+        }
+        int i10 = 0;
+        this.f16692i0 = false;
+        ArrayList<Integer> arrayList = this.f16704u0;
+        int size = arrayList.size();
+        while (i10 < size) {
+            Integer num = arrayList.get(i10);
+            i10++;
+            Integer num2 = num;
+            c cVar = this.P;
+            if (cVar != null) {
+                cVar.b(this, num2.intValue());
+            }
+            CopyOnWriteArrayList<c> copyOnWriteArrayList2 = this.f16689f0;
+            if (copyOnWriteArrayList2 != null) {
+                Iterator<c> it = copyOnWriteArrayList2.iterator();
+                while (it.hasNext()) {
+                    it.next().b(this, num2.intValue());
+                }
+            }
+        }
+        this.f16704u0.clear();
+    }
+
+    public void N(float f10, float f11) {
+        if (!isAttachedToWindow()) {
+            if (this.f16696m0 == null) {
+                this.f16696m0 = new b();
+            }
+            this.f16696m0.e(f10);
+            this.f16696m0.h(f11);
+            return;
+        }
+        setProgress(f10);
+        setState(d.MOVING);
+        this.B = f11;
+        if (f11 != 0.0f) {
+            G(f11 > 0.0f ? 1.0f : 0.0f);
+        } else {
+            if (f10 == 0.0f || f10 == 1.0f) {
+                return;
+            }
+            G(f10 > 0.5f ? 1.0f : 0.0f);
+        }
+    }
+
+    public void O(int i10, int i11, int i12) {
+        setState(d.SETUP);
+        this.D = i10;
+        this.C = -1;
+        this.E = -1;
+        g2.a aVar = this.f1344k;
+        if (aVar != null) {
+            aVar.d(i10, i11, i12);
+        }
+    }
+
+    public void P(int i10, int i11) {
+        if (isAttachedToWindow()) {
+            return;
+        }
+        if (this.f16696m0 == null) {
+            this.f16696m0 = new b();
+        }
+        this.f16696m0.f(i10);
+        this.f16696m0.d(i11);
+    }
+
+    public void Q() {
+        G(1.0f);
+        this.f16697n0 = null;
+    }
+
+    public void R(int i10) {
+        if (isAttachedToWindow()) {
+            S(i10, -1, -1);
+            return;
+        }
+        if (this.f16696m0 == null) {
+            this.f16696m0 = new b();
+        }
+        this.f16696m0.d(i10);
+    }
+
+    public void S(int i10, int i11, int i12) {
+        T(i10, i11, i12, -1);
+    }
+
+    public void T(int i10, int i11, int i12, int i13) {
+        int i14 = this.D;
+        if (i14 == i10) {
+            return;
+        }
+        if (this.C == i10) {
+            G(0.0f);
+            if (i13 > 0) {
+                this.I = i13 / 1000.0f;
+                return;
+            }
+            return;
+        }
+        if (this.E == i10) {
+            G(1.0f);
+            if (i13 > 0) {
+                this.I = i13 / 1000.0f;
+                return;
+            }
+            return;
+        }
+        this.E = i10;
+        if (i14 != -1) {
+            P(i14, i10);
+            G(1.0f);
+            this.K = 0.0f;
+            Q();
+            if (i13 > 0) {
+                this.I = i13 / 1000.0f;
+                return;
+            }
+            return;
+        }
+        this.R = false;
+        this.M = 1.0f;
+        this.J = 0.0f;
+        this.K = 0.0f;
+        this.L = getNanoTime();
+        this.H = getNanoTime();
+        this.N = false;
+        this.f16705z = null;
+        if (i13 == -1) {
+            throw null;
+        }
+        this.C = -1;
+        throw null;
+    }
+
+    @Override // androidx.constraintlayout.widget.ConstraintLayout, android.view.ViewGroup, android.view.View
+    public void dispatchDraw(Canvas canvas) {
+        ArrayList<h> arrayList = this.f16688e0;
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                h hVar = arrayList.get(i10);
+                i10++;
+                hVar.w(canvas);
+            }
+        }
+        H(false);
+        super.dispatchDraw(canvas);
+    }
+
+    public int[] getConstraintSetIds() {
+        return null;
+    }
+
+    public int getCurrentState() {
+        return this.D;
+    }
+
+    public ArrayList<l.a> getDefinedTransitions() {
+        return null;
+    }
+
+    public f2.b getDesignTool() {
+        if (this.S == null) {
+            this.S = new f2.b(this);
+        }
+        return this.S;
+    }
+
+    public int getEndState() {
+        return this.E;
+    }
+
+    public long getNanoTime() {
+        return System.nanoTime();
+    }
+
+    public float getProgress() {
+        return this.K;
+    }
+
+    public l getScene() {
+        return null;
+    }
+
+    public int getStartState() {
+        return this.C;
+    }
+
+    public float getTargetPosition() {
+        return this.M;
+    }
+
+    public Bundle getTransitionState() {
+        if (this.f16696m0 == null) {
+            this.f16696m0 = new b();
+        }
+        this.f16696m0.c();
+        return this.f16696m0.b();
+    }
+
+    public long getTransitionTimeMs() {
+        return (long) (this.I * 1000.0f);
+    }
+
+    public float getVelocity() {
+        return this.B;
+    }
+
+    @Override // androidx.core.view.v
+    public void i(@NonNull View view, @NonNull View view2, int i10, int i11) {
+        this.W = getNanoTime();
+        this.f16684a0 = 0.0f;
+        this.U = 0.0f;
+        this.V = 0.0f;
+    }
+
+    @Override // androidx.core.view.v
+    public void j(@NonNull View view, int i10) {
+    }
+
+    @Override // androidx.core.view.v
+    public void k(@NonNull View view, int i10, int i11, @NonNull int[] iArr, int i12) {
+    }
+
+    @Override // androidx.core.view.w
+    public void m(@NonNull View view, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
+        if (this.T || i10 != 0 || i11 != 0) {
+            iArr[0] = iArr[0] + i12;
+            iArr[1] = iArr[1] + i13;
+        }
+        this.T = false;
+    }
+
+    @Override // androidx.core.view.v
+    public void n(@NonNull View view, int i10, int i11, int i12, int i13, int i14) {
+    }
+
+    @Override // androidx.core.view.v
+    public boolean o(@NonNull View view, @NonNull View view2, int i10, int i11) {
+        return false;
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Display display = getDisplay();
+        if (display != null) {
+            this.f16700q0 = display.getRotation();
+        }
+        L();
+        b bVar = this.f16696m0;
+        if (bVar != null) {
+            if (this.f16701r0) {
+                post(new a());
+            } else {
+                bVar.a();
+            }
+        }
+    }
+
+    @Override // android.view.ViewGroup
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override // androidx.constraintlayout.widget.ConstraintLayout, android.view.ViewGroup, android.view.View
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        this.f16695l0 = true;
+        try {
+            super.onLayout(z10, i10, i11, i12, i13);
+        } finally {
+            this.f16695l0 = false;
+        }
+    }
+
+    @Override // androidx.constraintlayout.widget.ConstraintLayout, android.view.View
+    public void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+    }
+
+    @Override // android.view.ViewGroup, android.view.ViewParent
+    public boolean onNestedFling(@NonNull View view, float f10, float f11, boolean z10) {
+        return false;
+    }
+
+    @Override // android.view.ViewGroup, android.view.ViewParent
+    public boolean onNestedPreFling(@NonNull View view, float f10, float f11) {
+        return false;
+    }
+
+    @Override // android.view.View
+    public void onRtlPropertiesChanged(int i10) {
+    }
+
+    @Override // android.view.View
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override // androidx.constraintlayout.widget.ConstraintLayout, android.view.ViewGroup
+    public void onViewAdded(View view) {
+        super.onViewAdded(view);
+        if (view instanceof h) {
+            h hVar = (h) view;
+            if (this.f16689f0 == null) {
+                this.f16689f0 = new CopyOnWriteArrayList<>();
+            }
+            this.f16689f0.add(hVar);
+            if (hVar.v()) {
+                if (this.f16686c0 == null) {
+                    this.f16686c0 = new ArrayList<>();
+                }
+                this.f16686c0.add(hVar);
+            }
+            if (hVar.u()) {
+                if (this.f16687d0 == null) {
+                    this.f16687d0 = new ArrayList<>();
+                }
+                this.f16687d0.add(hVar);
+            }
+            if (hVar.t()) {
+                if (this.f16688e0 == null) {
+                    this.f16688e0 = new ArrayList<>();
+                }
+                this.f16688e0.add(hVar);
+            }
+        }
+    }
+
+    @Override // androidx.constraintlayout.widget.ConstraintLayout, android.view.ViewGroup
+    public void onViewRemoved(View view) {
+        super.onViewRemoved(view);
+        ArrayList<h> arrayList = this.f16686c0;
+        if (arrayList != null) {
+            arrayList.remove(view);
+        }
+        ArrayList<h> arrayList2 = this.f16687d0;
+        if (arrayList2 != null) {
+            arrayList2.remove(view);
+        }
+    }
+
+    @Override // androidx.constraintlayout.widget.ConstraintLayout, android.view.View, android.view.ViewParent
+    public void requestLayout() {
+        super.requestLayout();
+    }
+
+    public void setDebugMode(int i10) {
+        this.Q = i10;
+        invalidate();
+    }
+
+    public void setDelayedApplicationOfInitialState(boolean z10) {
+        this.f16701r0 = z10;
+    }
+
+    public void setInteractionEnabled(boolean z10) {
+        this.F = z10;
+    }
+
+    public void setInterpolatedProgress(float f10) {
+        setProgress(f10);
+    }
+
+    public void setOnHide(float f10) {
+        ArrayList<h> arrayList = this.f16687d0;
+        if (arrayList != null) {
+            int size = arrayList.size();
+            for (int i10 = 0; i10 < size; i10++) {
+                this.f16687d0.get(i10).setProgress(f10);
+            }
+        }
+    }
+
+    public void setOnShow(float f10) {
+        ArrayList<h> arrayList = this.f16686c0;
+        if (arrayList != null) {
+            int size = arrayList.size();
+            for (int i10 = 0; i10 < size; i10++) {
+                this.f16686c0.get(i10).setProgress(f10);
+            }
+        }
+    }
+
+    public void setProgress(float f10) {
+        if (f10 < 0.0f || f10 > 1.0f) {
+            Log.w("MotionLayout", "Warning! Progress is defined for values between 0.0 and 1.0 inclusive");
+        }
+        if (!isAttachedToWindow()) {
+            if (this.f16696m0 == null) {
+                this.f16696m0 = new b();
+            }
+            this.f16696m0.e(f10);
+            return;
+        }
+        if (f10 <= 0.0f) {
+            if (this.K == 1.0f && this.D == this.E) {
+                setState(d.MOVING);
+            }
+            this.D = this.C;
+            if (this.K == 0.0f) {
+                setState(d.FINISHED);
+                return;
+            }
+            return;
+        }
+        if (f10 < 1.0f) {
+            this.D = -1;
+            setState(d.MOVING);
+            return;
+        }
+        if (this.K == 0.0f && this.D == this.C) {
+            setState(d.MOVING);
+        }
+        this.D = this.E;
+        if (this.K == 1.0f) {
+            setState(d.FINISHED);
+        }
+    }
+
+    public void setScene(l lVar) {
+        t();
+        throw null;
+    }
+
+    public void setStartState(int i10) {
+        if (isAttachedToWindow()) {
+            this.D = i10;
+            return;
+        }
+        if (this.f16696m0 == null) {
+            this.f16696m0 = new b();
+        }
+        this.f16696m0.f(i10);
+        this.f16696m0.d(i10);
+    }
+
+    public void setState(d dVar) {
+        d dVar2 = d.FINISHED;
+        if (dVar == dVar2 && this.D == -1) {
+            return;
+        }
+        d dVar3 = this.f16702s0;
+        this.f16702s0 = dVar;
+        d dVar4 = d.MOVING;
+        if (dVar3 == dVar4 && dVar == dVar4) {
+            I();
+        }
+        int ordinal = dVar3.ordinal();
+        if (ordinal != 0 && ordinal != 1) {
+            if (ordinal == 2 && dVar == dVar2) {
+                J();
+                return;
+            }
+            return;
+        }
+        if (dVar == dVar4) {
+            I();
+        }
+        if (dVar == dVar2) {
+            J();
+        }
+    }
+
+    public void setTransition(int i10) {
+    }
+
+    public void setTransitionDuration(int i10) {
+        Log.e("MotionLayout", "MotionScene not defined");
+    }
+
+    public void setTransitionListener(c cVar) {
+        this.P = cVar;
+    }
+
+    public void setTransitionState(Bundle bundle) {
+        if (this.f16696m0 == null) {
+            this.f16696m0 = new b();
+        }
+        this.f16696m0.g(bundle);
+        if (isAttachedToWindow()) {
+            this.f16696m0.a();
+        }
+    }
+
+    @Override // android.view.View
+    public String toString() {
+        Context context = getContext();
+        return f2.a.a(context, this.C) + "->" + f2.a.a(context, this.E) + " (pos:" + this.K + " Dpos/Dt:" + this.B;
+    }
+
+    @Override // androidx.constraintlayout.widget.ConstraintLayout
+    public void v(int i10) {
+        this.f1344k = null;
+    }
+
+    public void setTransition(l.a aVar) {
+        throw null;
+    }
+}

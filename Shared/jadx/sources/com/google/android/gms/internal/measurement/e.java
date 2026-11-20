@@ -1,0 +1,39 @@
+package com.google.android.gms.internal.measurement;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+
+/* loaded from: classes.dex */
+public final class e implements Iterator {
+
+    /* renamed from: a, reason: collision with root package name */
+    public int f6469a;
+    public final /* synthetic */ f b;
+
+    public e(f fVar) {
+        Objects.requireNonNull(fVar);
+        this.b = fVar;
+        this.f6469a = 0;
+    }
+
+    @Override // java.util.Iterator
+    public final boolean hasNext() {
+        return this.f6469a < this.b.k();
+    }
+
+    @Override // java.util.Iterator
+    public final /* bridge */ /* synthetic */ Object next() {
+        f fVar = this.b;
+        if (this.f6469a < fVar.k()) {
+            int i10 = this.f6469a;
+            this.f6469a = i10 + 1;
+            return fVar.m(i10);
+        }
+        int i11 = this.f6469a;
+        StringBuilder sb2 = new StringBuilder(String.valueOf(i11).length() + 21);
+        sb2.append("Out of bounds index: ");
+        sb2.append(i11);
+        throw new NoSuchElementException(sb2.toString());
+    }
+}

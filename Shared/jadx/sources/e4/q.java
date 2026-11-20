@@ -1,0 +1,379 @@
+package e4;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.b1;
+import android.view.c1;
+import android.view.l;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import d5.f;
+import e.r0;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import k2.b;
+
+/* loaded from: classes.dex */
+public class q extends e.p implements b.d {
+    public boolean A;
+
+    /* renamed from: z, reason: collision with root package name */
+    public boolean f15674z;
+
+    /* renamed from: x, reason: collision with root package name */
+    public final s f15672x = s.b(new a());
+
+    /* renamed from: y, reason: collision with root package name */
+    public final android.view.u f15673y = new android.view.u(this);
+    public boolean B = true;
+
+    public class a extends t<q> implements l2.e, l2.f, k2.o, k2.p, c1, r0, g.g, d5.i, e0, androidx.core.view.o {
+        public a() {
+            super(q.this);
+        }
+
+        @Override // e.r0
+        @NonNull
+        public e.p0 P() {
+            return q.this.P();
+        }
+
+        @Override // androidx.core.view.o
+        public void Q(@NonNull androidx.core.view.r rVar) {
+            q.this.Q(rVar);
+        }
+
+        @Override // android.view.s
+        @NonNull
+        public android.view.l a() {
+            return q.this.f15673y;
+        }
+
+        @Override // e4.e0
+        public void b(@NonNull FragmentManager fragmentManager, @NonNull androidx.fragment.app.c cVar) {
+            q.this.q1(cVar);
+        }
+
+        @Override // e4.t, e4.r
+        public View d(int i10) {
+            return q.this.findViewById(i10);
+        }
+
+        @Override // l2.f
+        public void d0(@NonNull x2.a<Integer> aVar) {
+            q.this.d0(aVar);
+        }
+
+        @Override // e4.t, e4.r
+        public boolean e() {
+            Window window = q.this.getWindow();
+            return (window == null || window.peekDecorView() == null) ? false : true;
+        }
+
+        @Override // k2.o
+        public void e0(@NonNull x2.a<k2.h> aVar) {
+            q.this.e0(aVar);
+        }
+
+        @Override // l2.e
+        public void g0(@NonNull x2.a<Configuration> aVar) {
+            q.this.g0(aVar);
+        }
+
+        @Override // k2.p
+        public void h0(@NonNull x2.a<k2.s> aVar) {
+            q.this.h0(aVar);
+        }
+
+        @Override // l2.f
+        public void j(@NonNull x2.a<Integer> aVar) {
+            q.this.j(aVar);
+        }
+
+        @Override // e4.t
+        public void k(@NonNull String str, FileDescriptor fileDescriptor, @NonNull PrintWriter printWriter, String[] strArr) {
+            q.this.dump(str, fileDescriptor, printWriter, strArr);
+        }
+
+        @Override // androidx.core.view.o
+        public void l0(@NonNull androidx.core.view.r rVar) {
+            q.this.l0(rVar);
+        }
+
+        @Override // e4.t
+        @NonNull
+        public LayoutInflater m() {
+            return q.this.getLayoutInflater().cloneInContext(q.this);
+        }
+
+        @Override // e4.t
+        public void o() {
+            p();
+        }
+
+        public void p() {
+            q.this.Y0();
+        }
+
+        @Override // l2.e
+        public void p0(@NonNull x2.a<Configuration> aVar) {
+            q.this.p0(aVar);
+        }
+
+        @Override // g.g
+        @NonNull
+        /* renamed from: q */
+        public g.f getActivityResultRegistry() {
+            return q.this.getActivityResultRegistry();
+        }
+
+        @Override // e4.t
+        /* renamed from: r, reason: merged with bridge method [inline-methods] */
+        public q l() {
+            return q.this;
+        }
+
+        @Override // android.view.c1
+        @NonNull
+        public b1 v() {
+            return q.this.v();
+        }
+
+        @Override // k2.o
+        public void x(@NonNull x2.a<k2.h> aVar) {
+            q.this.x(aVar);
+        }
+
+        @Override // k2.p
+        public void y(@NonNull x2.a<k2.s> aVar) {
+            q.this.y(aVar);
+        }
+
+        @Override // d5.i
+        @NonNull
+        public d5.f z() {
+            return q.this.z();
+        }
+    }
+
+    public q() {
+        n1();
+    }
+
+    public static /* synthetic */ Bundle i1(q qVar) {
+        qVar.o1();
+        qVar.f15673y.j(l.a.ON_STOP);
+        return new Bundle();
+    }
+
+    private void n1() {
+        z().c("android:support:lifecycle", new f.b() { // from class: e4.m
+            @Override // d5.f.b
+            public final Bundle a() {
+                return q.i1(q.this);
+            }
+        });
+        g0(new x2.a() { // from class: e4.n
+            @Override // x2.a
+            public final void accept(Object obj) {
+                q.this.f15672x.m();
+            }
+        });
+        O0(new x2.a() { // from class: e4.o
+            @Override // x2.a
+            public final void accept(Object obj) {
+                q.this.f15672x.m();
+            }
+        });
+        N0(new f.b() { // from class: e4.p
+            @Override // f.b
+            public final void a(Context context) {
+                q.this.f15672x.a(null);
+            }
+        });
+    }
+
+    public static boolean p1(FragmentManager fragmentManager, l.b bVar) {
+        boolean z10 = false;
+        for (androidx.fragment.app.c cVar : fragmentManager.z0()) {
+            if (cVar != null) {
+                if (cVar.F() != null) {
+                    z10 |= p1(cVar.u(), bVar);
+                }
+                k0 k0Var = cVar.W;
+                if (k0Var != null && k0Var.a().getState().b(l.b.f2629d)) {
+                    cVar.W.g(bVar);
+                    z10 = true;
+                }
+                if (cVar.V.getState().b(l.b.f2629d)) {
+                    cVar.V.o(bVar);
+                    z10 = true;
+                }
+            }
+        }
+        return z10;
+    }
+
+    @Override // k2.b.d
+    @Deprecated
+    public final void O(int i10) {
+    }
+
+    @Override // android.app.Activity
+    public void dump(@NonNull String str, FileDescriptor fileDescriptor, @NonNull PrintWriter printWriter, String[] strArr) {
+        super.dump(str, fileDescriptor, printWriter, strArr);
+        if (r0(strArr)) {
+            printWriter.print(str);
+            printWriter.print("Local FragmentActivity ");
+            printWriter.print(Integer.toHexString(System.identityHashCode(this)));
+            printWriter.println(" State:");
+            String str2 = str + "  ";
+            printWriter.print(str2);
+            printWriter.print("mCreated=");
+            printWriter.print(this.f15674z);
+            printWriter.print(" mResumed=");
+            printWriter.print(this.A);
+            printWriter.print(" mStopped=");
+            printWriter.print(this.B);
+            if (getApplication() != null) {
+                m4.a.b(this).a(str2, fileDescriptor, printWriter, strArr);
+            }
+            this.f15672x.l().b0(str, fileDescriptor, printWriter, strArr);
+        }
+    }
+
+    public final View k1(View view, @NonNull String str, @NonNull Context context, @NonNull AttributeSet attributeSet) {
+        return this.f15672x.n(view, str, context, attributeSet);
+    }
+
+    @NonNull
+    public FragmentManager l1() {
+        return this.f15672x.l();
+    }
+
+    @NonNull
+    @Deprecated
+    public m4.a m1() {
+        return m4.a.b(this);
+    }
+
+    public void o1() {
+        while (p1(l1(), l.b.f2628c)) {
+        }
+    }
+
+    @Override // e.p, android.app.Activity
+    public void onActivityResult(int i10, int i11, Intent intent) {
+        this.f15672x.m();
+        super.onActivityResult(i10, i11, intent);
+    }
+
+    @Override // e.p, k2.g, android.app.Activity
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        this.f15673y.j(l.a.ON_CREATE);
+        this.f15672x.e();
+    }
+
+    @Override // android.app.Activity, android.view.LayoutInflater.Factory2
+    public View onCreateView(View view, @NonNull String str, @NonNull Context context, @NonNull AttributeSet attributeSet) {
+        View k12 = k1(view, str, context, attributeSet);
+        return k12 == null ? super.onCreateView(view, str, context, attributeSet) : k12;
+    }
+
+    @Override // android.app.Activity
+    public void onDestroy() {
+        super.onDestroy();
+        this.f15672x.f();
+        this.f15673y.j(l.a.ON_DESTROY);
+    }
+
+    @Override // e.p, android.app.Activity, android.view.Window.Callback
+    public boolean onMenuItemSelected(int i10, @NonNull MenuItem menuItem) {
+        if (super.onMenuItemSelected(i10, menuItem)) {
+            return true;
+        }
+        if (i10 == 6) {
+            return this.f15672x.d(menuItem);
+        }
+        return false;
+    }
+
+    @Override // android.app.Activity
+    public void onPause() {
+        super.onPause();
+        this.A = false;
+        this.f15672x.g();
+        this.f15673y.j(l.a.ON_PAUSE);
+    }
+
+    @Override // android.app.Activity
+    public void onPostResume() {
+        super.onPostResume();
+        r1();
+    }
+
+    @Override // e.p, android.app.Activity
+    public void onRequestPermissionsResult(int i10, @NonNull String[] strArr, @NonNull int[] iArr) {
+        this.f15672x.m();
+        super.onRequestPermissionsResult(i10, strArr, iArr);
+    }
+
+    @Override // android.app.Activity
+    public void onResume() {
+        this.f15672x.m();
+        super.onResume();
+        this.A = true;
+        this.f15672x.k();
+    }
+
+    @Override // android.app.Activity
+    public void onStart() {
+        this.f15672x.m();
+        super.onStart();
+        this.B = false;
+        if (!this.f15674z) {
+            this.f15674z = true;
+            this.f15672x.c();
+        }
+        this.f15672x.k();
+        this.f15673y.j(l.a.ON_START);
+        this.f15672x.i();
+    }
+
+    @Override // android.app.Activity
+    public void onStateNotSaved() {
+        this.f15672x.m();
+    }
+
+    @Override // android.app.Activity
+    public void onStop() {
+        super.onStop();
+        this.B = true;
+        o1();
+        this.f15672x.j();
+        this.f15673y.j(l.a.ON_STOP);
+    }
+
+    @Deprecated
+    public void q1(@NonNull androidx.fragment.app.c cVar) {
+    }
+
+    public void r1() {
+        this.f15673y.j(l.a.ON_RESUME);
+        this.f15672x.h();
+    }
+
+    @Override // android.app.Activity, android.view.LayoutInflater.Factory
+    public View onCreateView(@NonNull String str, @NonNull Context context, @NonNull AttributeSet attributeSet) {
+        View k12 = k1(null, str, context, attributeSet);
+        return k12 == null ? super.onCreateView(str, context, attributeSet) : k12;
+    }
+}

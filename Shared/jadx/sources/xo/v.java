@@ -1,0 +1,44 @@
+package xo;
+
+import kotlin.Metadata;
+
+/* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
+/* JADX WARN: Unknown enum class pattern. Please report as an issue! */
+@Metadata(d1 = {"\u0000\f\n\u0002\u0018\u0002\n\u0002\u0010\u0010\n\u0002\b\u0006\b\u0086\u0081\u0002\u0018\u00002\b\u0012\u0004\u0012\u00020\u00000\u0001B\t\b\u0002¢\u0006\u0004\b\u0002\u0010\u0003j\u0002\b\u0004j\u0002\b\u0005j\u0002\b\u0006¨\u0006\u0007"}, d2 = {"Lxo/v;", "", "<init>", "(Ljava/lang/String;I)V", ve.a.f33391e, j6.b.f21518e, "c", "inquiry-dynamic-feature_release"}, k = 1, mv = {2, 2, 0}, xi = 48)
+/* loaded from: classes2.dex */
+public final class v {
+
+    /* renamed from: a, reason: collision with root package name */
+    public static final v f35908a = new v("INQUIRY_COMPLETE", 0);
+    public static final v b = new v("INQUIRY_CANCELED", 1);
+
+    /* renamed from: c, reason: collision with root package name */
+    public static final v f35909c = new v("INQUIRY_ERROR", 2);
+
+    /* renamed from: d, reason: collision with root package name */
+    public static final /* synthetic */ v[] f35910d;
+
+    /* renamed from: e, reason: collision with root package name */
+    public static final /* synthetic */ pt.a f35911e;
+
+    static {
+        v[] a10 = a();
+        f35910d = a10;
+        f35911e = pt.b.a(a10);
+    }
+
+    public v(String str, int i10) {
+    }
+
+    public static final /* synthetic */ v[] a() {
+        return new v[]{f35908a, b, f35909c};
+    }
+
+    public static v valueOf(String str) {
+        return (v) Enum.valueOf(v.class, str);
+    }
+
+    public static v[] values() {
+        return (v[]) f35910d.clone();
+    }
+}

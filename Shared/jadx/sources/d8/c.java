@@ -1,0 +1,22 @@
+package d8;
+
+/* loaded from: classes.dex */
+public final class c<T> implements b<T> {
+    public static final c<Object> b = new c<>(null);
+
+    /* renamed from: a, reason: collision with root package name */
+    public final T f14437a;
+
+    public c(T t8) {
+        this.f14437a = t8;
+    }
+
+    public static <T> b<T> a(T t8) {
+        return new c(d.c(t8, "instance cannot be null"));
+    }
+
+    @Override // ft.a
+    public T get() {
+        return this.f14437a;
+    }
+}

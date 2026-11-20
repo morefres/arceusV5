@@ -1,0 +1,104 @@
+package com.google.android.gms.internal.measurement;
+
+import java.util.Iterator;
+import java.util.Map;
+
+/* loaded from: classes.dex */
+public final class sc implements zc {
+
+    /* renamed from: a, reason: collision with root package name */
+    public final oc f6834a;
+    public final ld b;
+
+    /* renamed from: c, reason: collision with root package name */
+    public final boolean f6835c;
+
+    /* renamed from: d, reason: collision with root package name */
+    public final sa f6836d;
+
+    public sc(ld ldVar, sa saVar, oc ocVar) {
+        this.b = ldVar;
+        this.f6835c = ocVar instanceof db;
+        this.f6836d = saVar;
+        this.f6834a = ocVar;
+    }
+
+    public static sc g(ld ldVar, sa saVar, oc ocVar) {
+        return new sc(ldVar, saVar, ocVar);
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zc
+    public final boolean a(Object obj) {
+        return ((db) obj).zzb.e();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zc
+    public final void b(Object obj, Object obj2) {
+        bd.d(this.b, obj, obj2);
+        if (this.f6835c) {
+            bd.c(this.f6836d, obj, obj2);
+        }
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zc
+    public final void c(Object obj) {
+        this.b.b(obj);
+        this.f6836d.a(obj);
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zc
+    public final void d(Object obj, byte[] bArr, int i10, int i11, v9 v9Var) {
+        gb gbVar = (gb) obj;
+        if (gbVar.zzc == md.a()) {
+            gbVar.zzc = md.b();
+        }
+        throw null;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zc
+    public final void e(Object obj, yd ydVar) {
+        Iterator c10 = ((db) obj).zzb.c();
+        while (c10.hasNext()) {
+            Map.Entry entry = (Map.Entry) c10.next();
+            va vaVar = (va) entry.getKey();
+            if (vaVar.zzc() != xd.MESSAGE || vaVar.zzd() || vaVar.zze()) {
+                throw new IllegalStateException("Found invalid MessageSet item.");
+            }
+            if (entry instanceof ub) {
+                ydVar.J(vaVar.zza(), ((ub) entry).a().c());
+            } else {
+                ydVar.J(vaVar.zza(), entry.getValue());
+            }
+        }
+        ((gb) obj).zzc.f(ydVar);
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zc
+    public final boolean f(Object obj, Object obj2) {
+        if (!((gb) obj).zzc.equals(((gb) obj2).zzc)) {
+            return false;
+        }
+        if (this.f6835c) {
+            return ((db) obj).zzb.equals(((db) obj2).zzb);
+        }
+        return true;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zc
+    public final Object zza() {
+        oc ocVar = this.f6834a;
+        return ocVar instanceof gb ? ((gb) ocVar).n() : ocVar.e().M();
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zc
+    public final int zzc(Object obj) {
+        int hashCode = ((gb) obj).zzc.hashCode();
+        return this.f6835c ? (hashCode * 53) + ((db) obj).zzb.f6916a.hashCode() : hashCode;
+    }
+
+    @Override // com.google.android.gms.internal.measurement.zc
+    public final int zze(Object obj) {
+        int h10 = ((gb) obj).zzc.h();
+        return this.f6835c ? h10 + ((db) obj).zzb.g() : h10;
+    }
+}

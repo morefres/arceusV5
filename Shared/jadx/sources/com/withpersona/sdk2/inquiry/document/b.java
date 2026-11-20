@@ -1,0 +1,323 @@
+package com.withpersona.sdk2.inquiry.document;
+
+import android.content.Context;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import com.withpersona.sdk2.inquiry.document.DocumentWorkflow;
+import com.withpersona.sdk2.inquiry.network.dto.ui.styling.StepStyles;
+import com.withpersona.sdk2.inquiry.shared.navigation.NavigationState;
+import com.withpersona.sdk2.inquiry.shared.ui.Pi2NavigationBar;
+import com.withpersona.sdk2.inquiry.steps.ui.UiComponentScreen;
+import com.withpersona.sdk2.inquiry.steps.ui.components.UiComponent;
+import hr.p;
+import java.util.List;
+import java.util.Map;
+import kotlin.Metadata;
+import kotlin.Pair;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.jvm.internal.d0;
+import kotlin.jvm.internal.k;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import ym.ViewEnvironment;
+import ym.a0;
+import ym.k;
+import ym.x;
+import yq.ComponentView;
+import yq.UiStepBottomSheet;
+import yq.s;
+import yt.n;
+
+@Metadata(d1 = {"\u0000f\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010 \n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010$\n\u0002\u0018\u0002\n\u0002\b\u001e\n\u0002\u0018\u0002\n\u0002\b\u0007\u0018\u00002\b\u0012\u0004\u0012\u00020\u00000\u00012\u00020\u0002B}\u0012\u0006\u0010\u0004\u001a\u00020\u0003\u0012$\u0010\u000b\u001a \u0012\u001c\u0012\u001a\u0012\u0004\u0012\u00020\u0007\u0012\u0010\u0012\u000e\u0012\u0004\u0012\u00020\t\u0012\u0004\u0012\u00020\n0\b0\u00060\u0005\u0012\u0006\u0010\r\u001a\u00020\f\u0012\f\u0010\u000f\u001a\b\u0012\u0004\u0012\u00020\n0\u000e\u0012\f\u0010\u0010\u001a\b\u0012\u0004\u0012\u00020\n0\u000e\u0012\n\b\u0002\u0010\u0012\u001a\u0004\u0018\u00010\u0011\u0012\n\b\u0002\u0010\u0013\u001a\u0004\u0018\u00010\u0007\u0012\n\b\u0002\u0010\u0015\u001a\u0004\u0018\u00010\u0014¢\u0006\u0004\b\u0016\u0010\u0017J3\u0010\u001e\u001a\u00020\n2\u0006\u0010\u0019\u001a\u00020\u00182\u0006\u0010\u001a\u001a\u00020\u00002\u0012\u0010\u001d\u001a\u000e\u0012\u0004\u0012\u00020\u0007\u0012\u0004\u0012\u00020\u001c0\u001bH\u0000¢\u0006\u0004\b\u001e\u0010\u001fR\u0017\u0010\u0004\u001a\u00020\u00038\u0006¢\u0006\f\n\u0004\b \u0010!\u001a\u0004\b\"\u0010#R5\u0010\u000b\u001a \u0012\u001c\u0012\u001a\u0012\u0004\u0012\u00020\u0007\u0012\u0010\u0012\u000e\u0012\u0004\u0012\u00020\t\u0012\u0004\u0012\u00020\n0\b0\u00060\u00058\u0006¢\u0006\f\n\u0004\b$\u0010%\u001a\u0004\b&\u0010'R\u0017\u0010\r\u001a\u00020\f8\u0006¢\u0006\f\n\u0004\b(\u0010)\u001a\u0004\b*\u0010+R\u001d\u0010\u000f\u001a\b\u0012\u0004\u0012\u00020\n0\u000e8\u0006¢\u0006\f\n\u0004\b,\u0010-\u001a\u0004\b.\u0010/R\u001d\u0010\u0010\u001a\b\u0012\u0004\u0012\u00020\n0\u000e8\u0006¢\u0006\f\n\u0004\b0\u0010-\u001a\u0004\b1\u0010/R\u001c\u0010\u0012\u001a\u0004\u0018\u00010\u00118\u0016X\u0096\u0004¢\u0006\f\n\u0004\b2\u00103\u001a\u0004\b$\u00104R\u0019\u0010\u0013\u001a\u0004\u0018\u00010\u00078\u0006¢\u0006\f\n\u0004\b\"\u00105\u001a\u0004\b6\u00107R\u0019\u0010\u0015\u001a\u0004\u0018\u00010\u00148\u0006¢\u0006\f\n\u0004\b\u001e\u00108\u001a\u0004\b9\u0010:R&\u0010A\u001a\b\u0012\u0004\u0012\u00020\u00000;8\u0016X\u0096\u0004¢\u0006\u0012\n\u0004\b<\u0010=\u0012\u0004\b?\u0010@\u001a\u0004\b \u0010>¨\u0006B"}, d2 = {"Lcom/withpersona/sdk2/inquiry/document/b;", "Lym/b;", "Lcom/withpersona/sdk2/inquiry/document/DocumentWorkflow$c;", "Lcom/withpersona/sdk2/inquiry/steps/ui/UiComponentScreen;", "uiScreen", "", "Lkotlin/Pair;", "", "Lkotlin/Function1;", "Lcom/withpersona/sdk2/inquiry/steps/ui/components/UiComponent;", "", "componentNamesToActions", "Lcom/withpersona/sdk2/inquiry/shared/navigation/NavigationState;", "navigationState", "Lkotlin/Function0;", "onBack", "onCancel", "Lyq/p;", "bottomSheet", "navBarTitle", "Lcom/withpersona/sdk2/inquiry/network/dto/ui/styling/StepStyles$DocumentStepStyle;", "styles", "<init>", "(Lcom/withpersona/sdk2/inquiry/steps/ui/UiComponentScreen;Ljava/util/List;Lcom/withpersona/sdk2/inquiry/shared/navigation/NavigationState;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lyq/p;Ljava/lang/String;Lcom/withpersona/sdk2/inquiry/network/dto/ui/styling/StepStyles$DocumentStepStyle;)V", "Llq/b;", "binding", "rendering", "", "Lyq/a;", "componentNameToComponentView", "h", "(Llq/b;Lcom/withpersona/sdk2/inquiry/document/b;Ljava/util/Map;)V", ve.a.f33391e, "Lcom/withpersona/sdk2/inquiry/steps/ui/UiComponentScreen;", "g", "()Lcom/withpersona/sdk2/inquiry/steps/ui/UiComponentScreen;", j6.b.f21518e, "Ljava/util/List;", "getComponentNamesToActions", "()Ljava/util/List;", "c", "Lcom/withpersona/sdk2/inquiry/shared/navigation/NavigationState;", "getNavigationState", "()Lcom/withpersona/sdk2/inquiry/shared/navigation/NavigationState;", rl.d.f30696a, "Lkotlin/jvm/functions/Function0;", "getOnBack", "()Lkotlin/jvm/functions/Function0;", "e", "getOnCancel", "f", "Lyq/p;", "()Lyq/p;", "Ljava/lang/String;", "getNavBarTitle", "()Ljava/lang/String;", "Lcom/withpersona/sdk2/inquiry/network/dto/ui/styling/StepStyles$DocumentStepStyle;", "getStyles", "()Lcom/withpersona/sdk2/inquiry/network/dto/ui/styling/StepStyles$DocumentStepStyle;", "Lym/a0;", "i", "Lym/a0;", "()Lym/a0;", "getViewFactory$annotations", "()V", "viewFactory", "document_release"}, k = 1, mv = {2, 2, 0}, xi = 48)
+/* loaded from: classes3.dex */
+public final class b implements ym.b<b>, DocumentWorkflow.c {
+
+    /* renamed from: a, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public final UiComponentScreen uiScreen;
+
+    /* renamed from: b, reason: from kotlin metadata */
+    @NotNull
+    public final List<Pair<String, Function1<UiComponent, Unit>>> componentNamesToActions;
+
+    /* renamed from: c, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public final NavigationState navigationState;
+
+    /* renamed from: d, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public final Function0<Unit> onBack;
+
+    /* renamed from: e, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public final Function0<Unit> onCancel;
+
+    /* renamed from: f, reason: collision with root package name and from kotlin metadata */
+    @Nullable
+    public final UiStepBottomSheet bottomSheet;
+
+    /* renamed from: g, reason: collision with root package name and from kotlin metadata */
+    @Nullable
+    public final String navBarTitle;
+
+    /* renamed from: h, reason: collision with root package name and from kotlin metadata */
+    @Nullable
+    public final StepStyles.DocumentStepStyle styles;
+
+    /* renamed from: i, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public final a0<b> viewFactory;
+
+    @Metadata(k = 3, mv = {2, 2, 0}, xi = 48)
+    public static final /* synthetic */ class a extends k implements n<LayoutInflater, ViewGroup, Boolean, lq.b> {
+
+        /* renamed from: a, reason: collision with root package name */
+        public static final a f10219a = new a();
+
+        public a() {
+            super(3, lq.b.class, "inflate", "inflate(Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Z)Lcom/withpersona/sdk2/inquiry/shared/databinding/Pi2GenericUiStepScreenBinding;", 0);
+        }
+
+        public final lq.b d(LayoutInflater p02, ViewGroup viewGroup, boolean z10) {
+            Intrinsics.checkNotNullParameter(p02, "p0");
+            return lq.b.c(p02, viewGroup, z10);
+        }
+
+        @Override // yt.n
+        public /* bridge */ /* synthetic */ lq.b invoke(LayoutInflater layoutInflater, ViewGroup viewGroup, Boolean bool) {
+            return d(layoutInflater, viewGroup, bool.booleanValue());
+        }
+    }
+
+    @Metadata(k = 3, mv = {2, 2, 0}, xi = 48)
+    /* renamed from: com.withpersona.sdk2.inquiry.document.b$b, reason: collision with other inner class name */
+    public static final class C0177b implements Function1<lq.b, ym.k<b>> {
+
+        /* renamed from: a, reason: collision with root package name */
+        public final /* synthetic */ UiComponentScreen f10220a;
+        public final /* synthetic */ Function2 b;
+
+        /* renamed from: c, reason: collision with root package name */
+        public final /* synthetic */ boolean f10221c;
+
+        /* renamed from: d, reason: collision with root package name */
+        public final /* synthetic */ n f10222d;
+
+        @Metadata(k = 3, mv = {2, 2, 0}, xi = 48)
+        /* renamed from: com.withpersona.sdk2.inquiry.document.b$b$a */
+        public static final class a<RenderingT> implements ym.k {
+            public final /* synthetic */ UiComponentScreen b;
+
+            /* renamed from: c, reason: collision with root package name */
+            public final /* synthetic */ lq.b f10223c;
+
+            /* renamed from: d, reason: collision with root package name */
+            public final /* synthetic */ n f10224d;
+
+            /* renamed from: e, reason: collision with root package name */
+            public final /* synthetic */ yq.g f10225e;
+
+            public a(UiComponentScreen uiComponentScreen, lq.b bVar, n nVar, yq.g gVar) {
+                this.b = uiComponentScreen;
+                this.f10223c = bVar;
+                this.f10224d = nVar;
+                this.f10225e = gVar;
+            }
+
+            @Override // ym.k
+            public final void b(RenderingT rendering, ViewEnvironment viewEnvironment) {
+                Intrinsics.checkNotNullParameter(rendering, "rendering");
+                Intrinsics.checkNotNullParameter(viewEnvironment, "viewEnvironment");
+                Integer i10 = this.b.i();
+                if (i10 != null) {
+                    lq.b bVar = this.f10223c;
+                    int intValue = i10.intValue();
+                    bVar.getRoot().setBackgroundColor(intValue);
+                    Context context = bVar.getRoot().getContext();
+                    Intrinsics.checkNotNullExpressionValue(context, "getContext(...)");
+                    tq.c.b(viewEnvironment, context, intValue);
+                }
+                UiComponentScreen uiComponentScreen = this.b;
+                Context context2 = this.f10223c.getRoot().getContext();
+                Intrinsics.checkNotNullExpressionValue(context2, "getContext(...)");
+                Drawable a10 = uiComponentScreen.a(context2);
+                if (a10 != null) {
+                    lq.b bVar2 = this.f10223c;
+                    bVar2.getRoot().setBackground(a10);
+                    bVar2.f23825d.setBackgroundColor(0);
+                }
+                n nVar = this.f10224d;
+                lq.b bVar3 = this.f10223c;
+                Intrinsics.checkNotNull(bVar3);
+                nVar.invoke(bVar3, rendering, this.f10225e.getViewBindings().a());
+            }
+        }
+
+        public C0177b(UiComponentScreen uiComponentScreen, Function2 function2, boolean z10, n nVar) {
+            this.f10220a = uiComponentScreen;
+            this.b = function2;
+            this.f10221c = z10;
+            this.f10222d = nVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        public final ym.k<b> invoke(lq.b binding) {
+            Intrinsics.checkNotNullParameter(binding, "binding");
+            return new a(this.f10220a, binding, this.f10222d, s.f37035a.l(binding, this.f10220a, this.b, this.f10221c));
+        }
+    }
+
+    @Metadata(k = 3, mv = {2, 2, 0}, xi = 48)
+    public static final /* synthetic */ class c extends k implements n<lq.b, b, Map<String, ? extends ComponentView>, Unit> {
+        public c(Object obj) {
+            super(3, obj, b.class, "showRendering", "showRendering$document_release(Lcom/withpersona/sdk2/inquiry/shared/databinding/Pi2GenericUiStepScreenBinding;Lcom/withpersona/sdk2/inquiry/document/DocumentInstructionsView;Ljava/util/Map;)V", 0);
+        }
+
+        public final void d(lq.b p02, b p12, Map<String, ComponentView> p22) {
+            Intrinsics.checkNotNullParameter(p02, "p0");
+            Intrinsics.checkNotNullParameter(p12, "p1");
+            Intrinsics.checkNotNullParameter(p22, "p2");
+            ((b) this.receiver).h(p02, p12, p22);
+        }
+
+        @Override // yt.n
+        public /* bridge */ /* synthetic */ Unit invoke(lq.b bVar, b bVar2, Map<String, ? extends ComponentView> map) {
+            d(bVar, bVar2, map);
+            return Unit.f22894a;
+        }
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public b(@NotNull UiComponentScreen uiScreen, @NotNull List<? extends Pair<String, ? extends Function1<? super UiComponent, Unit>>> componentNamesToActions, @NotNull NavigationState navigationState, @NotNull Function0<Unit> onBack, @NotNull Function0<Unit> onCancel, @Nullable UiStepBottomSheet uiStepBottomSheet, @Nullable String str, @Nullable StepStyles.DocumentStepStyle documentStepStyle) {
+        Intrinsics.checkNotNullParameter(uiScreen, "uiScreen");
+        Intrinsics.checkNotNullParameter(componentNamesToActions, "componentNamesToActions");
+        Intrinsics.checkNotNullParameter(navigationState, "navigationState");
+        Intrinsics.checkNotNullParameter(onBack, "onBack");
+        Intrinsics.checkNotNullParameter(onCancel, "onCancel");
+        this.uiScreen = uiScreen;
+        this.componentNamesToActions = componentNamesToActions;
+        this.navigationState = navigationState;
+        this.onBack = onBack;
+        this.onCancel = onCancel;
+        this.bottomSheet = uiStepBottomSheet;
+        this.navBarTitle = str;
+        this.styles = documentStepStyle;
+        s sVar = s.f37035a;
+        Function2 function2 = new Function2() { // from class: xn.f
+            @Override // kotlin.jvm.functions.Function2
+            public final Object invoke(Object obj, Object obj2) {
+                Unit l10;
+                l10 = com.withpersona.sdk2.inquiry.document.b.l((lq.b) obj, (Map) obj2);
+                return l10;
+            }
+        };
+        c cVar = new c(this);
+        k.Companion companion = ym.k.INSTANCE;
+        this.viewFactory = new x(d0.b(b.class), a.f10219a, new C0177b(uiScreen, function2, true, cVar));
+    }
+
+    public static final void i(Function1 function1, ComponentView componentView, View view) {
+        function1.invoke(componentView.c());
+    }
+
+    public static final Unit j(b bVar) {
+        bVar.onBack.invoke();
+        return Unit.f22894a;
+    }
+
+    public static final Unit k(b bVar) {
+        bVar.onCancel.invoke();
+        return Unit.f22894a;
+    }
+
+    public static final Unit l(lq.b binding, Map map) {
+        Intrinsics.checkNotNullParameter(binding, "binding");
+        Intrinsics.checkNotNullParameter(map, "<unused var>");
+        ConstraintLayout root = binding.getRoot();
+        Intrinsics.checkNotNullExpressionValue(root, "getRoot(...)");
+        uq.g.d(root, false, false, false, false, 15, null);
+        return Unit.f22894a;
+    }
+
+    @Override // ym.b
+    @NotNull
+    public a0<b> a() {
+        return this.viewFactory;
+    }
+
+    @Override // com.withpersona.sdk2.inquiry.document.DocumentWorkflow.c
+    @Nullable
+    /* renamed from: b, reason: from getter */
+    public UiStepBottomSheet getBottomSheet() {
+        return this.bottomSheet;
+    }
+
+    @NotNull
+    /* renamed from: g, reason: from getter */
+    public final UiComponentScreen getUiScreen() {
+        return this.uiScreen;
+    }
+
+    public final void h(@NotNull lq.b binding, @NotNull final b rendering, @NotNull Map<String, ComponentView> componentNameToComponentView) {
+        Intrinsics.checkNotNullParameter(binding, "binding");
+        Intrinsics.checkNotNullParameter(rendering, "rendering");
+        Intrinsics.checkNotNullParameter(componentNameToComponentView, "componentNameToComponentView");
+        for (Pair<String, Function1<UiComponent, Unit>> pair : this.componentNamesToActions) {
+            String c10 = pair.c();
+            final Function1<UiComponent, Unit> d10 = pair.d();
+            final ComponentView componentView = componentNameToComponentView.get(c10);
+            if (componentView != null) {
+                componentView.d().setOnClickListener(new View.OnClickListener() { // from class: xn.c
+                    @Override // android.view.View.OnClickListener
+                    public final void onClick(View view) {
+                        com.withpersona.sdk2.inquiry.document.b.i(Function1.this, componentView, view);
+                    }
+                });
+            }
+        }
+        NavigationState navigationState = rendering.navigationState;
+        Function0 function0 = new Function0() { // from class: xn.d
+            @Override // kotlin.jvm.functions.Function0
+            public final Object invoke() {
+                Unit j10;
+                j10 = com.withpersona.sdk2.inquiry.document.b.j(com.withpersona.sdk2.inquiry.document.b.this);
+                return j10;
+            }
+        };
+        Function0 function02 = new Function0() { // from class: xn.e
+            @Override // kotlin.jvm.functions.Function0
+            public final Object invoke() {
+                Unit k10;
+                k10 = com.withpersona.sdk2.inquiry.document.b.k(com.withpersona.sdk2.inquiry.document.b.this);
+                return k10;
+            }
+        };
+        Pi2NavigationBar navigationBar = binding.f23826e;
+        Intrinsics.checkNotNullExpressionValue(navigationBar, "navigationBar");
+        ConstraintLayout root = binding.getRoot();
+        Intrinsics.checkNotNullExpressionValue(root, "getRoot(...)");
+        StepStyles.DocumentStepStyle documentStepStyle = rendering.styles;
+        Rect h10 = documentStepStyle != null ? cr.h.h(documentStepStyle) : null;
+        String str = rendering.navBarTitle;
+        StepStyles.DocumentStepStyle documentStepStyle2 = rendering.styles;
+        gr.c.e(navigationState, function0, function02, null, navigationBar, root, h10, str, documentStepStyle2 != null ? documentStepStyle2.getNavBarTitleStyleValue() : null, 8, null);
+        FrameLayout contentContainer = binding.b;
+        Intrinsics.checkNotNullExpressionValue(contentContainer, "contentContainer");
+        p.b(contentContainer, rendering.styles, false, false, 6, null);
+    }
+
+    public /* synthetic */ b(UiComponentScreen uiComponentScreen, List list, NavigationState navigationState, Function0 function0, Function0 function02, UiStepBottomSheet uiStepBottomSheet, String str, StepStyles.DocumentStepStyle documentStepStyle, int i10, DefaultConstructorMarker defaultConstructorMarker) {
+        this(uiComponentScreen, list, navigationState, function0, function02, (i10 & 32) != 0 ? null : uiStepBottomSheet, (i10 & 64) != 0 ? null : str, (i10 & 128) != 0 ? null : documentStepStyle);
+    }
+}

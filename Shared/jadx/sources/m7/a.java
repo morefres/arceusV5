@@ -1,0 +1,30 @@
+package m7;
+
+import java.util.List;
+
+/* loaded from: classes3.dex */
+public class a extends p<Integer, Integer> {
+    public a(List<t7.a<Integer>> list) {
+        super(list);
+    }
+
+    @Override // m7.o
+    public i7.a<Integer, Integer> a() {
+        return new i7.b(this.f24398a);
+    }
+
+    @Override // m7.p, m7.o
+    public /* bridge */ /* synthetic */ List b() {
+        return super.b();
+    }
+
+    @Override // m7.p, m7.o
+    public /* bridge */ /* synthetic */ boolean c() {
+        return super.c();
+    }
+
+    @Override // m7.p
+    public /* bridge */ /* synthetic */ String toString() {
+        return super.toString();
+    }
+}

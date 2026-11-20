@@ -1,0 +1,441 @@
+package com.withpersona.sdk2.inquiry.governmentid;
+
+import com.appsflyer.sdk_base.referrer.Payload;
+import com.withpersona.sdk2.camera.AutoCaptureRule;
+import com.withpersona.sdk2.camera.AutoCaptureRuleSet;
+import com.withpersona.sdk2.camera.ExtractedTexts;
+import com.withpersona.sdk2.inquiry.governmentid.IdConfig;
+import com.withpersona.sdk2.inquiry.governmentid.IdPart;
+import com.withpersona.sdk2.inquiry.governmentid.Screen;
+import com.withpersona.sdk2.inquiry.governmentid.autoClassification.AutoClassificationConfig;
+import com.withpersona.sdk2.inquiry.network.dto.NextStep;
+import com.withpersona.sdk2.inquiry.network.dto.government_id.CapturePageConfig;
+import com.withpersona.sdk2.inquiry.network.dto.government_id.Id;
+import com.withpersona.sdk2.inquiry.network.dto.ui.components.RemoteImage;
+import dn.AamvaExtraction;
+import dn.e;
+import go.j2;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import kotlin.Metadata;
+import kotlin.collections.q;
+import kotlin.jvm.internal.Intrinsics;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+@Metadata(d1 = {"\u0000¢\u0001\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0000\n\u0002\u0010\t\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\u001a#\u0010\u0006\u001a\u0004\u0018\u00010\u0005*\u00020\u00002\u0006\u0010\u0002\u001a\u00020\u00012\u0006\u0010\u0004\u001a\u00020\u0003¢\u0006\u0004\b\u0006\u0010\u0007\u001a5\u0010\u000e\u001a\u0004\u0018\u00010\r*\u0004\u0018\u00010\b2\u0006\u0010\n\u001a\u00020\t2\u0006\u0010\f\u001a\u00020\u000b2\u0006\u0010\u0002\u001a\u00020\u00012\u0006\u0010\u0004\u001a\u00020\u0003¢\u0006\u0004\b\u000e\u0010\u000f\u001a\u0015\u0010\u0012\u001a\u0004\u0018\u00010\u0011*\u00020\u0010H\u0001¢\u0006\u0004\b\u0012\u0010\u0013\u001a\u001b\u0010\u0017\u001a\u00020\u0016*\u00020\u00142\u0006\u0010\u0015\u001a\u00020\u0003H\u0001¢\u0006\u0004\b\u0017\u0010\u0018\u001a\u0017\u0010\u0019\u001a\u00020\u00162\u0006\u0010\u0015\u001a\u00020\u0003H\u0002¢\u0006\u0004\b\u0019\u0010\u001a\u001a\u0013\u0010\u001d\u001a\u00020\u001c*\u00020\u001bH\u0002¢\u0006\u0004\b\u001d\u0010\u001e\u001a\u0013\u0010 \u001a\u00020\u001f*\u00020\u001bH\u0002¢\u0006\u0004\b \u0010!\u001a\u0015\u0010$\u001a\u0004\u0018\u00010#*\u00020\"H\u0002¢\u0006\u0004\b$\u0010%\u001a\u0013\u0010(\u001a\u00020'*\u00020&H\u0002¢\u0006\u0004\b(\u0010)\u001a\u0015\u0010,\u001a\u00020+*\u0004\u0018\u00010*H\u0002¢\u0006\u0004\b,\u0010-\u001a\u0017\u0010.\u001a\u00020\u00112\u0006\u0010\n\u001a\u00020\tH\u0002¢\u0006\u0004\b.\u0010/\u001a)\u00101\u001a\u00020'2\u0006\u0010\f\u001a\u00020\u000b2\b\u00100\u001a\u0004\u0018\u00010\t2\u0006\u0010\u0002\u001a\u00020\u0001H\u0002¢\u0006\u0004\b1\u00102\u001a\u0011\u00105\u001a\u000204*\u000203¢\u0006\u0004\b5\u00106\u001a\u0011\u00108\u001a\u000204*\u000207¢\u0006\u0004\b8\u00109\u001a\u001b\u0010<\u001a\u00020;*\u0004\u0018\u00010:2\u0006\u0010\u0004\u001a\u00020\u0003¢\u0006\u0004\b<\u0010=¨\u0006>"}, d2 = {"Lcom/withpersona/sdk2/inquiry/network/dto/government_id/Id;", "", "countryCode", "", "defaultManualCaptureDelayMs", "Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig;", "o", "(Lcom/withpersona/sdk2/inquiry/network/dto/government_id/Id;Ljava/lang/String;J)Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig;", "Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig;", "Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$b;", "side", "Lno/b;", Payload.TYPE, "Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$IdSideConfig;", "h", "(Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig;Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$b;Lno/b;Ljava/lang/String;J)Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$IdSideConfig;", "Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$AutoCaptureConfig;", "Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$AutoCaptureConfig;", "g", "(Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$AutoCaptureConfig;)Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$AutoCaptureConfig;", "Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$ManualCaptureConfig;", "defaultManualCaptureDelay", "Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$ManualCaptureConfig;", "i", "(Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$ManualCaptureConfig;J)Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$ManualCaptureConfig;", j6.b.f21518e, "(J)Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$ManualCaptureConfig;", "Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$RuleSet;", "Lcom/withpersona/sdk2/camera/AutoCaptureRuleSet;", "f", "(Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$RuleSet;)Lcom/withpersona/sdk2/camera/AutoCaptureRuleSet;", "", rl.d.f30696a, "(Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$RuleSet;)Z", "Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$Rule;", "Lcom/withpersona/sdk2/camera/AutoCaptureRule;", "e", "(Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$Rule;)Lcom/withpersona/sdk2/camera/AutoCaptureRule;", "Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$OverlayConfig;", "Lcom/withpersona/sdk2/inquiry/governmentid/Screen$Overlay;", "j", "(Lcom/withpersona/sdk2/inquiry/network/dto/government_id/CapturePageConfig$OverlayConfig;)Lcom/withpersona/sdk2/inquiry/governmentid/Screen$Overlay;", "Lcom/withpersona/sdk2/inquiry/network/dto/government_id/Id$IdLocalIcon;", "Lgo/j2;", "n", "(Lcom/withpersona/sdk2/inquiry/network/dto/government_id/Id$IdLocalIcon;)Lgo/j2;", ve.a.f33391e, "(Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$b;)Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$AutoCaptureConfig;", "currentSide", "c", "(Lno/b;Lcom/withpersona/sdk2/inquiry/governmentid/IdConfig$b;Ljava/lang/String;)Lcom/withpersona/sdk2/inquiry/governmentid/Screen$Overlay;", "Lcom/withpersona/sdk2/camera/ExtractedTexts;", "Lcom/withpersona/sdk2/inquiry/governmentid/GovernmentIdDetails;", "l", "(Lcom/withpersona/sdk2/camera/ExtractedTexts;)Lcom/withpersona/sdk2/inquiry/governmentid/GovernmentIdDetails;", "Ldn/e;", "m", "(Ldn/e;)Lcom/withpersona/sdk2/inquiry/governmentid/GovernmentIdDetails;", "Lcom/withpersona/sdk2/inquiry/network/dto/NextStep$GovernmentId$AutoClassificationConfig;", "Lcom/withpersona/sdk2/inquiry/governmentid/autoClassification/AutoClassificationConfig;", "k", "(Lcom/withpersona/sdk2/inquiry/network/dto/NextStep$GovernmentId$AutoClassificationConfig;J)Lcom/withpersona/sdk2/inquiry/governmentid/autoClassification/AutoClassificationConfig;", "government-id_release"}, k = 2, mv = {2, 2, 0}, xi = 48)
+/* loaded from: classes3.dex */
+public final class d {
+
+    @Metadata(k = 3, mv = {2, 2, 0}, xi = 48)
+    public static final /* synthetic */ class a {
+
+        /* renamed from: a, reason: collision with root package name */
+        public static final /* synthetic */ int[] f10928a;
+        public static final /* synthetic */ int[] b;
+
+        /* renamed from: c, reason: collision with root package name */
+        public static final /* synthetic */ int[] f10929c;
+
+        /* renamed from: d, reason: collision with root package name */
+        public static final /* synthetic */ int[] f10930d;
+
+        static {
+            int[] iArr = new int[CapturePageConfig.RuleType.values().length];
+            try {
+                iArr[CapturePageConfig.RuleType.ID_FRONT.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                iArr[CapturePageConfig.RuleType.ID_FRONT_OR_BACK.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                iArr[CapturePageConfig.RuleType.BARCODE_PDF417.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+            try {
+                iArr[CapturePageConfig.RuleType.PASSPORT_MRZ.ordinal()] = 4;
+            } catch (NoSuchFieldError unused4) {
+            }
+            try {
+                iArr[CapturePageConfig.RuleType.TEXT_EXTRACTION.ordinal()] = 5;
+            } catch (NoSuchFieldError unused5) {
+            }
+            f10928a = iArr;
+            int[] iArr2 = new int[CapturePageConfig.OverlayLocalIcon.values().length];
+            try {
+                iArr2[CapturePageConfig.OverlayLocalIcon.BARCODE.ordinal()] = 1;
+            } catch (NoSuchFieldError unused6) {
+            }
+            try {
+                iArr2[CapturePageConfig.OverlayLocalIcon.PASSPORT.ordinal()] = 2;
+            } catch (NoSuchFieldError unused7) {
+            }
+            try {
+                iArr2[CapturePageConfig.OverlayLocalIcon.ID_FRONT.ordinal()] = 3;
+            } catch (NoSuchFieldError unused8) {
+            }
+            try {
+                iArr2[CapturePageConfig.OverlayLocalIcon.ID_BACK.ordinal()] = 4;
+            } catch (NoSuchFieldError unused9) {
+            }
+            try {
+                iArr2[CapturePageConfig.OverlayLocalIcon.CORNERS_ONLY.ordinal()] = 5;
+            } catch (NoSuchFieldError unused10) {
+            }
+            try {
+                iArr2[CapturePageConfig.OverlayLocalIcon.EMPTY.ordinal()] = 6;
+            } catch (NoSuchFieldError unused11) {
+            }
+            b = iArr2;
+            int[] iArr3 = new int[Id.IdLocalIcon.values().length];
+            try {
+                iArr3[Id.IdLocalIcon.WORLD.ordinal()] = 1;
+            } catch (NoSuchFieldError unused12) {
+            }
+            try {
+                iArr3[Id.IdLocalIcon.CARD.ordinal()] = 2;
+            } catch (NoSuchFieldError unused13) {
+            }
+            try {
+                iArr3[Id.IdLocalIcon.FLAG.ordinal()] = 3;
+            } catch (NoSuchFieldError unused14) {
+            }
+            try {
+                iArr3[Id.IdLocalIcon.HOUSE.ordinal()] = 4;
+            } catch (NoSuchFieldError unused15) {
+            }
+            f10929c = iArr3;
+            int[] iArr4 = new int[IdConfig.b.values().length];
+            try {
+                iArr4[IdConfig.b.f10747d.ordinal()] = 1;
+            } catch (NoSuchFieldError unused16) {
+            }
+            try {
+                iArr4[IdConfig.b.f10748e.ordinal()] = 2;
+            } catch (NoSuchFieldError unused17) {
+            }
+            try {
+                iArr4[IdConfig.b.f10750g.ordinal()] = 3;
+            } catch (NoSuchFieldError unused18) {
+            }
+            try {
+                iArr4[IdConfig.b.f10749f.ordinal()] = 4;
+            } catch (NoSuchFieldError unused19) {
+            }
+            try {
+                iArr4[IdConfig.b.f10751h.ordinal()] = 5;
+            } catch (NoSuchFieldError unused20) {
+            }
+            f10930d = iArr4;
+        }
+    }
+
+    public static final IdConfig.AutoCaptureConfig a(IdConfig.b bVar) {
+        int i10 = a.f10930d[bVar.ordinal()];
+        if (i10 == 1) {
+            return new IdConfig.AutoCaptureConfig(new AutoCaptureRuleSet(kotlin.collections.o.d(new AutoCaptureRule.FrontRule(false, 1, null))));
+        }
+        if (i10 != 2 && i10 != 3) {
+            if (i10 == 4) {
+                return new IdConfig.AutoCaptureConfig(new AutoCaptureRuleSet(kotlin.collections.o.d(new AutoCaptureRule.FrontOrBackRule(false, 1, null))));
+            }
+            if (i10 == 5) {
+                return new IdConfig.AutoCaptureConfig(null, 1, null);
+            }
+            throw new gt.l();
+        }
+        return new IdConfig.AutoCaptureConfig(new AutoCaptureRuleSet(kotlin.collections.o.d(new AutoCaptureRule.BarcodePdf417Rule(false, 1, null))));
+    }
+
+    public static final IdConfig.ManualCaptureConfig b(long j10) {
+        return new IdConfig.ManualCaptureConfig(true, j10);
+    }
+
+    public static final Screen.Overlay c(no.b bVar, IdConfig.b bVar2, String str) {
+        if (bVar2 == IdConfig.b.f10750g) {
+            return Screen.Overlay.Barcode.f10762a;
+        }
+        if (bVar2 == IdConfig.b.f10751h) {
+            return Screen.Overlay.Rectangle.f10767a;
+        }
+        no.b bVar3 = no.b.f27217c;
+        if (bVar == bVar3 && bVar2 == IdConfig.b.f10748e && Intrinsics.c(str, "US")) {
+            return Screen.Overlay.Barcode.f10762a;
+        }
+        if (bVar != no.b.f27224j && bVar != no.b.f27233s) {
+            if (bVar != bVar3 && bVar != no.b.f27218d && bVar != no.b.f27226l) {
+                return Screen.Overlay.Rectangle.f10767a;
+            }
+            return Screen.Overlay.GenericFront.f10765a;
+        }
+        return Screen.Overlay.Passport.f10766a;
+    }
+
+    public static final boolean d(CapturePageConfig.RuleSet ruleSet) {
+        boolean z10;
+        boolean z11;
+        List<CapturePageConfig.Rule> rules = ruleSet.getRules();
+        if (rules != null) {
+            z10 = true;
+            z11 = false;
+            for (CapturePageConfig.Rule rule : rules) {
+                if (Intrinsics.c(rule.isRequired(), Boolean.TRUE) && rule.getType() == null) {
+                    z10 = false;
+                } else if (rule.getType() != null) {
+                    z11 = true;
+                }
+            }
+        } else {
+            z10 = true;
+            z11 = false;
+        }
+        return z10 && z11;
+    }
+
+    public static final AutoCaptureRule e(CapturePageConfig.Rule rule) {
+        CapturePageConfig.RuleType type = rule.getType();
+        int i10 = type == null ? -1 : a.f10928a[type.ordinal()];
+        if (i10 == -1) {
+            return null;
+        }
+        if (i10 == 1) {
+            return new AutoCaptureRule.FrontRule(Intrinsics.c(rule.isRequired(), Boolean.TRUE));
+        }
+        if (i10 == 2) {
+            return new AutoCaptureRule.FrontOrBackRule(Intrinsics.c(rule.isRequired(), Boolean.TRUE));
+        }
+        if (i10 == 3) {
+            return new AutoCaptureRule.BarcodePdf417Rule(Intrinsics.c(rule.isRequired(), Boolean.TRUE));
+        }
+        if (i10 == 4) {
+            return new AutoCaptureRule.MrzRule(Intrinsics.c(rule.isRequired(), Boolean.TRUE));
+        }
+        if (i10 == 5) {
+            return new AutoCaptureRule.TextExtractionRule(Intrinsics.c(rule.isRequired(), Boolean.TRUE));
+        }
+        throw new gt.l();
+    }
+
+    public static final AutoCaptureRuleSet f(CapturePageConfig.RuleSet ruleSet) {
+        List k10;
+        List<CapturePageConfig.Rule> rules = ruleSet.getRules();
+        if (rules != null) {
+            k10 = new ArrayList();
+            Iterator<T> it = rules.iterator();
+            while (it.hasNext()) {
+                AutoCaptureRule e10 = e((CapturePageConfig.Rule) it.next());
+                if (e10 != null) {
+                    k10.add(e10);
+                }
+            }
+        } else {
+            k10 = kotlin.collections.p.k();
+        }
+        return new AutoCaptureRuleSet(k10);
+    }
+
+    @Nullable
+    public static final IdConfig.AutoCaptureConfig g(@NotNull CapturePageConfig.AutoCaptureConfig autoCaptureConfig) {
+        Object obj;
+        Intrinsics.checkNotNullParameter(autoCaptureConfig, "<this>");
+        List<CapturePageConfig.RuleSet> ruleSets = autoCaptureConfig.getRuleSets();
+        if (ruleSets == null) {
+            return null;
+        }
+        if (ruleSets.isEmpty()) {
+            return new IdConfig.AutoCaptureConfig(null, 1, null);
+        }
+        Iterator<T> it = ruleSets.iterator();
+        while (true) {
+            if (!it.hasNext()) {
+                obj = null;
+                break;
+            }
+            obj = it.next();
+            if (d((CapturePageConfig.RuleSet) obj)) {
+                break;
+            }
+        }
+        CapturePageConfig.RuleSet ruleSet = (CapturePageConfig.RuleSet) obj;
+        return ruleSet == null ? new IdConfig.AutoCaptureConfig(null, 1, null) : new IdConfig.AutoCaptureConfig(f(ruleSet));
+    }
+
+    @Nullable
+    public static final IdConfig.IdSideConfig h(@Nullable CapturePageConfig capturePageConfig, @NotNull IdConfig.b side, @NotNull no.b type, @NotNull String countryCode, long j10) {
+        IdConfig.AutoCaptureConfig a10;
+        IdConfig.ManualCaptureConfig b;
+        Screen.Overlay c10;
+        CapturePageConfig.OverlayConfig overlay;
+        CapturePageConfig.ManualCaptureConfig manualCaptureConfig;
+        CapturePageConfig.AutoCaptureConfig autoCaptureConfig;
+        Intrinsics.checkNotNullParameter(side, "side");
+        Intrinsics.checkNotNullParameter(type, "type");
+        Intrinsics.checkNotNullParameter(countryCode, "countryCode");
+        if (capturePageConfig == null || (autoCaptureConfig = capturePageConfig.getAutoCaptureConfig()) == null || (a10 = g(autoCaptureConfig)) == null) {
+            a10 = a(side);
+        }
+        if (capturePageConfig == null || (manualCaptureConfig = capturePageConfig.getManualCaptureConfig()) == null || (b = i(manualCaptureConfig, j10)) == null) {
+            b = b(j10);
+        }
+        IdConfig.ManualCaptureConfig manualCaptureConfig2 = b;
+        if (a10.getRuleSet().a().isEmpty() && !manualCaptureConfig2.getIsEnabled()) {
+            return null;
+        }
+        String key = side.getKey();
+        if (capturePageConfig == null || (overlay = capturePageConfig.getOverlay()) == null || (c10 = j(overlay)) == null) {
+            c10 = c(type, side, countryCode);
+        }
+        return new IdConfig.IdSideConfig(key, side, c10, a10, manualCaptureConfig2);
+    }
+
+    @NotNull
+    public static final IdConfig.ManualCaptureConfig i(@NotNull CapturePageConfig.ManualCaptureConfig manualCaptureConfig, long j10) {
+        Intrinsics.checkNotNullParameter(manualCaptureConfig, "<this>");
+        Boolean isEnabled = manualCaptureConfig.isEnabled();
+        boolean booleanValue = isEnabled != null ? isEnabled.booleanValue() : true;
+        Long delayMs = manualCaptureConfig.getDelayMs();
+        if (delayMs != null) {
+            j10 = delayMs.longValue();
+        }
+        return new IdConfig.ManualCaptureConfig(booleanValue, j10);
+    }
+
+    public static final Screen.Overlay j(CapturePageConfig.OverlayConfig overlayConfig) {
+        RemoteImage overlay = overlayConfig.getOverlay();
+        if (overlay != null) {
+            return new Screen.Overlay.Custom(overlay);
+        }
+        CapturePageConfig.OverlayLocalIcon overlayFallback = overlayConfig.getOverlayFallback();
+        switch (overlayFallback == null ? -1 : a.b[overlayFallback.ordinal()]) {
+            case -1:
+                return Screen.Overlay.Rectangle.f10767a;
+            case 0:
+            default:
+                throw new gt.l();
+            case 1:
+                return Screen.Overlay.Barcode.f10762a;
+            case 2:
+                return Screen.Overlay.Passport.f10766a;
+            case 3:
+                return Screen.Overlay.GenericFront.f10765a;
+            case 4:
+                return Screen.Overlay.Barcode.f10762a;
+            case 5:
+                return Screen.Overlay.CornersOnly.f10763a;
+            case 6:
+                return Screen.Overlay.Rectangle.f10767a;
+        }
+    }
+
+    @NotNull
+    public static final AutoClassificationConfig k(@Nullable NextStep.GovernmentId.AutoClassificationConfig autoClassificationConfig, long j10) {
+        CapturePageConfig capturePageConfig;
+        AutoClassificationConfig.Companion companion = AutoClassificationConfig.INSTANCE;
+        IdConfig.IdSideConfig idSideConfig = null;
+        Boolean isEnabled = autoClassificationConfig != null ? autoClassificationConfig.isEnabled() : null;
+        Boolean extractTextFromImage = autoClassificationConfig != null ? autoClassificationConfig.getExtractTextFromImage() : null;
+        if (autoClassificationConfig != null && (capturePageConfig = autoClassificationConfig.getCapturePageConfig()) != null) {
+            idSideConfig = h(capturePageConfig, IdConfig.b.f10747d, no.b.B, "", j10);
+        }
+        return companion.b(isEnabled, extractTextFromImage, idSideConfig);
+    }
+
+    @NotNull
+    public static final GovernmentIdDetails l(@NotNull ExtractedTexts extractedTexts) {
+        Intrinsics.checkNotNullParameter(extractedTexts, "<this>");
+        return new GovernmentIdDetails(extractedTexts.getDateOfBirth(), extractedTexts.getExpirationDate());
+    }
+
+    @NotNull
+    public static final GovernmentIdDetails m(@NotNull dn.e eVar) {
+        Intrinsics.checkNotNullParameter(eVar, "<this>");
+        if (eVar instanceof e.MrzBarcodeInfo) {
+            e.MrzBarcodeInfo mrzBarcodeInfo = (e.MrzBarcodeInfo) eVar;
+            return new GovernmentIdDetails(mrzBarcodeInfo.getBirthdate(), mrzBarcodeInfo.getExpirationDate());
+        }
+        if (!(eVar instanceof e.Pdf417BarcodeInfo)) {
+            throw new gt.l();
+        }
+        e.Pdf417BarcodeInfo pdf417BarcodeInfo = (e.Pdf417BarcodeInfo) eVar;
+        AamvaExtraction b = pdf417BarcodeInfo.b();
+        Date birthdate = b != null ? b.getBirthdate() : null;
+        AamvaExtraction b10 = pdf417BarcodeInfo.b();
+        return new GovernmentIdDetails(birthdate, b10 != null ? b10.getExpirationDate() : null);
+    }
+
+    public static final j2 n(Id.IdLocalIcon idLocalIcon) {
+        int i10 = idLocalIcon == null ? -1 : a.f10929c[idLocalIcon.ordinal()];
+        if (i10 == -1) {
+            return j2.b;
+        }
+        if (i10 == 1) {
+            return j2.f18631a;
+        }
+        if (i10 == 2) {
+            return j2.b;
+        }
+        if (i10 == 3) {
+            return j2.f18632c;
+        }
+        if (i10 == 4) {
+            return j2.f18633d;
+        }
+        throw new gt.l();
+    }
+
+    @Nullable
+    public static final IdConfig o(@NotNull Id id2, @NotNull String countryCode, long j10) {
+        j2 c10;
+        String str;
+        long j11;
+        IdConfig.IdSideConfig h10;
+        Intrinsics.checkNotNullParameter(id2, "<this>");
+        Intrinsics.checkNotNullParameter(countryCode, "countryCode");
+        no.b a10 = no.b.INSTANCE.a(id2.getClass());
+        if (a10 == no.b.B && !id2.isDynamicGovId()) {
+            return null;
+        }
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        List<CapturePageConfig> capturePageConfigs = id2.getCapturePageConfigs();
+        if (capturePageConfigs != null) {
+            for (CapturePageConfig capturePageConfig : capturePageConfigs) {
+                String side = capturePageConfig.getSide();
+                if (side != null) {
+                    linkedHashMap.put(side, capturePageConfig);
+                }
+            }
+        }
+        List<String> requiresSides = id2.getRequiresSides();
+        ArrayList arrayList = new ArrayList(q.u(requiresSides, 10));
+        for (String str2 : requiresSides) {
+            IdConfig.b a11 = IdConfig.b.INSTANCE.a(str2);
+            if (a11 == null || (h10 = h((CapturePageConfig) linkedHashMap.get(str2), a11, a10, (str = countryCode), (j11 = j10))) == null) {
+                return null;
+            }
+            arrayList.add(h10);
+            countryCode = str;
+            j10 = j11;
+        }
+        String str3 = id2.getClass();
+        if (id2.isDynamicGovId()) {
+            Id.IdIcon icon = id2.getIcon();
+            c10 = n(icon != null ? icon.getIconFallback() : null);
+        } else {
+            c10 = a10.c();
+        }
+        ArrayList arrayList2 = new ArrayList(q.u(arrayList, 10));
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            arrayList2.add(new IdPart.SideIdPart(((IdConfig.IdSideConfig) obj).getSide()));
+        }
+        return new IdConfig(str3, c10, arrayList, arrayList2, a10);
+    }
+}

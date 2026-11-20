@@ -1,0 +1,57 @@
+package com.withpersona.sdk2.inquiry.governmentid;
+
+import com.withpersona.sdk2.inquiry.governmentid.network.AutoClassifyResponse;
+import com.withpersona.sdk2.inquiry.shared.ui.ScreenWithTransitionContainer;
+import ho.b0;
+import io.z;
+import java.util.Set;
+import kotlin.Metadata;
+import kotlin.collections.p0;
+import kotlin.collections.q0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Intrinsics;
+import org.jetbrains.annotations.NotNull;
+import ro.q;
+import sm.h;
+import ym.a0;
+
+@Metadata(d1 = {"\u0000\f\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\b\u0007\u0018\u0000 \u00022\u00020\u0001:\u0001\u0002¨\u0006\u0003"}, d2 = {"Lcom/withpersona/sdk2/inquiry/governmentid/k;", "", ve.a.f33391e, "government-id_release"}, k = 1, mv = {2, 2, 0}, xi = 48)
+/* loaded from: classes3.dex */
+public final class k {
+
+    /* renamed from: a, reason: collision with root package name and from kotlin metadata */
+    @NotNull
+    public static final Companion INSTANCE = new Companion(null);
+
+    @Metadata(d1 = {"\u0000*\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\"\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\b\u0087\u0003\u0018\u00002\u00020\u0001B\t\b\u0002¢\u0006\u0004\b\u0002\u0010\u0003J!\u0010\b\u001a\f\u0012\b\u0012\u0006\u0012\u0002\b\u00030\u00070\u00062\u0006\u0010\u0005\u001a\u00020\u0004H\u0007¢\u0006\u0004\b\b\u0010\tJ\u001a\u0010\f\u001a\r\u0012\t\u0012\u00070\n¢\u0006\u0002\b\u000b0\u0006H\u0007¢\u0006\u0004\b\f\u0010\r¨\u0006\u000e"}, d2 = {"Lcom/withpersona/sdk2/inquiry/governmentid/k$a;", "", "<init>", "()V", "Lio/z;", "governmentIdCameraScreenViewFactory", "", "Lym/a0;", j6.b.f21518e, "(Lio/z;)Ljava/util/Set;", "Lsm/h$e;", "Lcom/withpersona/sdk2/inquiry/network/core/MoshiJsonAdapter;", ve.a.f33391e, "()Ljava/util/Set;", "government-id_release"}, k = 1, mv = {2, 2, 0}, xi = 48)
+    /* renamed from: com.withpersona.sdk2.inquiry.governmentid.k$a, reason: from kotlin metadata */
+    public static final class Companion {
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        @NotNull
+        public final Set<h.e> a() {
+            return p0.c(AutoClassifyResponse.INSTANCE.a());
+        }
+
+        @NotNull
+        public final Set<a0<?>> b(@NotNull z governmentIdCameraScreenViewFactory) {
+            Intrinsics.checkNotNullParameter(governmentIdCameraScreenViewFactory, "governmentIdCameraScreenViewFactory");
+            return q0.g(i.INSTANCE, governmentIdCameraScreenViewFactory, q.INSTANCE, m.INSTANCE, cn.c.INSTANCE, ScreenWithTransitionContainer.INSTANCE, b0.INSTANCE, qo.e.INSTANCE, qo.j.INSTANCE, qo.p.INSTANCE, qo.k.INSTANCE);
+        }
+
+        public Companion() {
+        }
+    }
+
+    @NotNull
+    public static final Set<h.e> a() {
+        return INSTANCE.a();
+    }
+
+    @NotNull
+    public static final Set<a0<?>> b(@NotNull z zVar) {
+        return INSTANCE.b(zVar);
+    }
+}
